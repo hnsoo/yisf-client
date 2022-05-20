@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import Draggable from "react-draggable";
 import {Resizable} from 'react-resizable';
-import {ResizableBox} from 'react-resizable';
 import './Folder.css';
-// import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/Fi';
-// import {FaAngleLeft, FaAngleRight} from 'react-icons/Fi';
+import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
+import {FaAngleLeft, FaAngleRight} from 'react-icons/fa';
 
 export default function Folder(){
     const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +34,11 @@ export default function Folder(){
             <Draggable handle={Header}>
                 <Resizable className="box" height={height} width={width} onResize={onFirstBoxResize} resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}>
                     <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"} ContainerWidth={width + "px"}>
-                        <Header>Header</Header>
+                        <Header>
+                            <Back><FaAngleLeft/></Back>
+                            <Front><FaAngleRight/></Front>
+                            <Address><FiHome /></Address>
+                        </Header>
                         <SideBar>SideBar</SideBar>
                         <Content>Content</Content>
                     </Container>
@@ -49,7 +52,7 @@ const Container = styled.div`
   display: ${(props) => props.Show};
   height: ${(props) => props.ContainerHeight};
   width: ${(props) => props.ContainerWidth};
-  grid-template-rows: 35px 1fr;
+  grid-template-rows: 50px 1fr;
   grid-template-columns: 200px 1fr;
   grid-template-areas: 
       "header header"
@@ -59,7 +62,47 @@ const Container = styled.div`
 const Header = styled.div`
   background: #dbdbdb;
   grid-area: header;
-  padding: 0.25rem;
+  padding: 0.5rem;
+`
+const Back = styled.div`
+  padding: 6px;
+  box-sizing: border-box;
+  position: absolute;
+  width: 40px;
+  height: 34px;
+  left: 10px;
+  background: rgba(245, 245, 245, 0.03);
+  mix-blend-mode: normal;
+  border: 1px solid #A9A9A9;
+  border-radius: 10px 0px 0px 10px;
+`
+const Front = styled.div`
+  padding: 6px;
+  box-sizing: border-box;
+  position: absolute;
+  width: 40px;
+  height: 34px;
+  left: 49px;
+  background: rgba(245, 245, 245, 0.03);
+  mix-blend-mode: normal;
+  border: 1px solid #A9A9A9;
+  border-radius: 0px 10px 10px 0px;
+`
+const Address = styled.div`
+  display: flex;
+  padding: 8px;
+  
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 317px;
+  height: 34px;
+  left: 100px;
+
+  background: rgba(245, 245, 245, 0.03);
+  mix-blend-mode: normal;
+  border: 1px solid #A9A9A9;
+  border-radius: 10px;
 `
 const SideBar = styled.div`
   background: #e6e6e6;
