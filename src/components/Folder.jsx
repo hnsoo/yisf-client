@@ -9,8 +9,8 @@ import './Folder.css';
 
 export default function Folder(){
     const [isOpen, setIsOpen] = useState(false);
-    const [width, setWidth] = useState(200)
-    const [height, setHeight] = useState(200)
+    const [width, setWidth] = useState(1000)
+    const [height, setHeight] = useState(500)
 
     const handleModal = () => {
         setIsOpen(!isOpen)
@@ -50,7 +50,7 @@ const Container = styled.div`
   height: ${(props) => props.ContainerHeight};
   width: ${(props) => props.ContainerWidth};
   grid-template-rows: 35px 1fr;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 200px 1fr;
   grid-template-areas: 
       "header header"
       "sidebar content";
