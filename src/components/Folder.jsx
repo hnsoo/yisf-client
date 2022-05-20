@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import Draggable from "react-draggable";
 import {Resizable} from 'react-resizable';
-import './Folder.css';
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
-import {FaAngleLeft, FaAngleRight} from 'react-icons/fa';
+import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
+import {RiUser3Fill} from 'react-icons/ri';
+import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
+import {SiDiscord} from 'react-icons/si';
+import './Folder.css'
 
 export default function Folder(){
     const [isOpen, setIsOpen] = useState(false);
@@ -33,14 +36,25 @@ export default function Folder(){
             </button>
             <Draggable handle={Header}>
                 <Resizable className="box" height={height} width={width} onResize={onFirstBoxResize} resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}>
-                    <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"} ContainerWidth={width + "px"}>
+                    <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
+                               ContainerWidth={width + "px"}>
                         <Header>
                             <Back><FaAngleLeft/></Back>
                             <Front><FaAngleRight/></Front>
-                            <Address><FiHome /></Address>
+                            <Address><FiHome/></Address>
+                            <Ctrl>
+                                <FiStopCircle size="30" color="#4f4f4f"/>
+                                <FiXCircle size="30" color="#4f4f4f"/>
+                            </Ctrl>
                         </Header>
-                        <SideBar>SideBar</SideBar>
-                        <Content>Content</Content>
+                        <SideBar>
+                            <Menu><RiUser3Fill size="25" color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
+                            <Menu><BsBarChartFill size="25" color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
+                            <Menu><SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
+                            <Menu><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
+                            <Menu><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
+                        </SideBar>
+                        <Content></Content>
                     </Container>
                 </Resizable>
             </Draggable>
@@ -48,21 +62,25 @@ export default function Folder(){
     );
 }
 
+// Container
 const Container = styled.div`
   display: ${(props) => props.Show};
   height: ${(props) => props.ContainerHeight};
   width: ${(props) => props.ContainerWidth};
   grid-template-rows: 50px 1fr;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 150px 1fr;
   grid-template-areas: 
       "header header"
       "sidebar content";
   text-align: center;
 `
+
+// Header
 const Header = styled.div`
-  background: #dbdbdb;
+  background: white;
+  border: 2px solid #A9A9A9;
   grid-area: header;
-  padding: 0.5rem;
+  padding: 6px;
 `
 const Back = styled.div`
   padding: 6px;
@@ -95,7 +113,7 @@ const Address = styled.div`
   box-sizing: border-box;
 
   position: absolute;
-  width: 317px;
+  width: 450px;
   height: 34px;
   left: 100px;
 
@@ -104,13 +122,40 @@ const Address = styled.div`
   border: 1px solid #A9A9A9;
   border-radius: 10px;
 `
-const SideBar = styled.div`
-  background: #e6e6e6;
-  grid-area: sidebar;
-  padding: 0.25rem;
+const Ctrl = styled.div`
+  position: absolute;
+  right: 10px;
+  padding: 2px;
 `
+
+// SideBar
+const SideBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-left: 2px solid #A9A9A9;
+  border-right: 2px solid #A9A9A9;
+  border-bottom: 2px solid #A9A9A9;
+  grid-area: sidebar;
+  padding: 0.5rem;
+`
+
+const Menu = styled.div`
+  display: flex;
+  padding-left: 15px;
+`
+
+const MenuTitle = styled.div`
+  font-size: 1.1rem;
+  margin-left: 10px;
+  padding-bottom: 5px;
+`
+
+// Content
 const Content = styled.div`
-  background: #f6f6f6;
+  background: white;
+  border-right: 2px solid #A9A9A9;
+  border-bottom: 2px solid #A9A9A9;
   grid-area: content;
   padding: 0.25rem;
 `
