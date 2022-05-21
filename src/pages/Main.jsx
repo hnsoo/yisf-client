@@ -43,11 +43,12 @@ const SideBar = styled.div`
   grid-area: sidebar;
 `
 const Content = styled.div`
+  width: 90vw;
+  height: 95vh;
   grid-area: content;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   align-content: flex-start;
 `
 
@@ -56,5 +57,5 @@ const FolderContainer = styled.div`
   flex-direction: column;
   align-items: center;
   color: white;
-  padding-left: 25px;
+  padding: 20px;
 `
