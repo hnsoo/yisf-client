@@ -39,6 +39,6 @@ const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 10vw;
-  height: 100vh;
+  height: 95vh;
   background: rgba(54, 9, 45, 0.5);
 `

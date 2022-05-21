@@ -22,7 +22,7 @@ export default function TopBar() {
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 35px;
+  height: 5vh;
   background: #3A2D34;
   justify-content: space-between;
 `
@@ -41,7 +41,7 @@ const LogoutContainer = styled.div`
 const LogoutImg = styled.div`
   width: 20px;
   height: 20px;
-  padding-top: 3px;
+  padding-top: 4px;
   padding-right: 7px;
 `
 const LogoutText = styled.div`
