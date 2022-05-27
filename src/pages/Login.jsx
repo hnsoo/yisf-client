@@ -16,9 +16,6 @@ export default function Login() {
     const onChangePassword = (e) => {
         setPassword(e.target.value);
     }
-    const getExpires = () => {
-        return new Date(localStorage.getItem('tokenExpired'));
-    }
 
     const onClickLogin = () => {
         console.log('로그인 클릭');
