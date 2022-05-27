@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import styled from "styled-components";
+import AuthService from "../service/Auth"
 import WallPaper from '../assets/img/wallPaper.jpg';
+import {useCookies} from "react-cookie";
 
 export default function Login() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+    const [cookies, setCookie, removeCookie] = useCookies(['refresh']);
 
     const onChangeId = (e) => {
         setId(e.target.value);
@@ -12,6 +15,14 @@ export default function Login() {
 
     const onChangePassword = (e) => {
         setPassword(e.target.value);
+    }
+    const getExpires = () => {
+        return new Date(localStorage.getItem('tokenExpired'));
+    }
+
+    const onClickLogin = () => {
+        console.log('로그인 클릭');
+        AuthService.login(id, password)
     }
 
     return (
@@ -35,6 +46,7 @@ export default function Login() {
                     />
                     <LoginBtn
                         Show={password.length > 0 ? "box" : "none"}
+                        onClick={onClickLogin}
                     >Login</LoginBtn>
                 </LoginContainer>
             </Container>
