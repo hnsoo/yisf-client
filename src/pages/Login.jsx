@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import AuthService from "../service/Auth"
 import WallPaper from '../assets/img/wallPaper.jpg';
-import {useCookies} from "react-cookie";
 
 export default function Login() {
     const [id, setId] = useState('');
