@@ -7,7 +7,6 @@ import {useCookies} from "react-cookie";
 export default function Login() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
-    const [cookies, setCookie, removeCookie] = useCookies(['refresh']);
 
     const onChangeId = (e) => {
         setId(e.target.value);
