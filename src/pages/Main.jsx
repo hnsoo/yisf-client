@@ -1,21 +1,29 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 import WallPaper from '../assets/img/wallPaper.jpg';
 import Dock from "../components/Dock";
 import TopBar from "../components/TopBar";
 import IconFolder from "../assets/img/folder.png"
+import {useSelector} from "react-redux";
+import {Navigate} from "react-router-dom";
 
 export default function Main() {
+    const isLoggedIn = useSelector(state => state.isLoggedIn)
+
+    if (!isLoggedIn) {
+        return <Navigate to="/login" />;
+    }
+
     return (
         <Background>
             <Header><TopBar/></Header>
             <SideBar><Dock/></SideBar>
             <Content>
-                <FolderContainer><img src={IconFolder} height="100px" width="100px"/>Reversing</FolderContainer>
-                <FolderContainer><img src={IconFolder} height="100px" width="100px"/>Forensic</FolderContainer>
-                <FolderContainer><img src={IconFolder} height="100px" width="100px"/>Web</FolderContainer>
-                <FolderContainer><img src={IconFolder} height="100px" width="100px"/>Pwnable</FolderContainer>
-                <FolderContainer><img src={IconFolder} height="100px" width="100px"/>Misc</FolderContainer>
+                <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing</FolderContainer>
+                <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic</FolderContainer>
+                <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web</FolderContainer>
+                <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
+                <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
             </Content>
         </Background>
     );

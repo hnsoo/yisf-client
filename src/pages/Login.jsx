@@ -24,8 +24,7 @@ const Login = () => {
         console.log('로그인 클릭');
         dispatch(login(id, password))
             .then(() => {
-                console.log(isLoggedIn)
-                // window.location.reload();
+                window.location.reload();
             })
             .catch(() => {
                 console.log('login fail')
