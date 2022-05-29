@@ -1,23 +1,39 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import AuthService from "../service/Auth"
+import { useDispatch, useSelector} from "react-redux"
 import WallPaper from '../assets/img/wallPaper.jpg';
+import { Navigate } from 'react-router-dom';
+import { login } from "../redux/action";
 
-export default function Login() {
+const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
+    const isLoggedIn = useSelector(state => state.isLoggedIn)
+    const dispatch = useDispatch();
+
     const onChangeId = (e) => {
         setId(e.target.value);
-    }
+    };
 
     const onChangePassword = (e) => {
         setPassword(e.target.value);
-    }
+    };
 
     const onClickLogin = () => {
         console.log('로그인 클릭');
-        AuthService.login(id, password)
+        dispatch(login(id, password))
+            .then(() => {
+                console.log(isLoggedIn)
+                // window.location.reload();
+            })
+            .catch(() => {
+                console.log('login fail')
+            });
+    };
+
+    if (isLoggedIn) {
+        return <Navigate to="/" />;
     }
 
     return (
@@ -48,6 +64,7 @@ export default function Login() {
         </Background>
     );
 }
+export default Login;
 
 const Background = styled.div`
   position: absolute;
