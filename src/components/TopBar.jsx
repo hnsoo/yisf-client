@@ -5,7 +5,7 @@ import {HiOutlineLogout} from 'react-icons/hi'
 export default function TopBar() {
     return (
       <Container>
-          <div></div>
+          <div/>
           <Timer>
             35:24:50
           </Timer>
@@ -25,11 +25,11 @@ const Container = styled.div`
   height: 5vh;
   background: #3A2D34;
   justify-content: space-between;
+  align-items: center;
 `
 const Timer = styled.div`
   color: white;
   font-size: 1.1rem;
-  padding-top: 4px;
 `
 
 const LogoutContainer = styled.div`
