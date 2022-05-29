@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import Draggable from "react-draggable";
-import {Resizable} from 'react-resizable';
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
 import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
-import './Folder.css'
+// import './Folder.css'
 
 export default function Folder(){
     const [isOpen, setIsOpen] = useState(false);
@@ -18,26 +17,18 @@ export default function Folder(){
         setIsOpen(!isOpen)
     };
 
-    const onFirstBoxResize = (e, {element, size, handle}) => {
-        setWidth(size.width)
-        setHeight(size.height)
-    }
-
     return (
-        // <Resizable className="box" height={height} width={width} onResize={onFirstBoxResize} resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}>
-        //     <div style={{width: width + 'px', height: height + 'px'}}>
-        //         <span className="text">{"Raw use of <Resizable> element. 200x200, all Resize Handles."}</span>
-        //         <button>Reset this element's width/height</button>
-        //     </div>
-        // </Resizable>
         <>
             <button onClick={handleModal}>
                 Click me!
             </button>
             <Draggable handle={Header}>
-                <Resizable className="box" height={height} width={width} onResize={onFirstBoxResize} resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}>
                     <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
                                ContainerWidth={width + "px"}>
+                        <TopLine LineWidth={width + "px"}/>
+                        <BottomLine LineWidth={width + "px"}/>
+                        <LeftLine LineHeight={height + "px"}/>
+                        <RightLine LineHeight={height + "px"}/>
                         <Header>
                             <Back><FaAngleLeft/></Back>
                             <Front><FaAngleRight/></Front>
@@ -56,7 +47,6 @@ export default function Folder(){
                         </SideBar>
                         <Content></Content>
                     </Container>
-                </Resizable>
             </Draggable>
         </>
     );
@@ -73,6 +63,49 @@ const Container = styled.div`
       "header header"
       "sidebar content";
   text-align: center;
+`
+const TopLine = styled.div`
+  top: 0;
+  width: ${(props) => props.LineWidth};
+  height: 3px;
+  background-color: palevioletred;
+  position: absolute;
+  :hover {
+    cursor: n-resize;
+  };
+  :active {
+    background-color: blue;
+  };
+`
+const BottomLine = styled.div`
+  bottom: 0;
+  width: ${(props) => props.LineWidth};
+  height: 3px;
+  background-color: palevioletred;
+  position: absolute;
+  :hover {
+    cursor: s-resize;
+  };
+`
+const LeftLine = styled.div`
+  left: 0;
+  width: 3px;
+  height: ${(props) => props.LineHeight};
+  background-color: palevioletred;
+  position: absolute;
+  :hover {
+    cursor: w-resize;
+  };
+`
+const RightLine = styled.div`
+  right: 0;
+  width: 3px;
+  height: ${(props) => props.LineHeight};
+  background-color: palevioletred;
+  position: absolute;
+  :hover {
+    cursor: e-resize;
+  };
 `
 
 // Header
