@@ -12,10 +12,37 @@ export default function Folder(){
     const [isOpen, setIsOpen] = useState(false);
     const [width, setWidth] = useState(1000)
     const [height, setHeight] = useState(500)
+    const [mouseX, setMouseX] = useState(0)
+    const [mouseY, setMouseY] = useState(0)
 
     const handleModal = () => {
         setIsOpen(!isOpen)
     };
+
+    const nDragStart = (e) => {
+        setMouseY(e.clientY)
+    }
+    const nDragEnd = (e) => {
+        setHeight(height + mouseY - e.clientY);
+    }
+    const sDragStart = (e) => {
+        setMouseY(e.clientY)
+    }
+    const sDragEnd = (e) => {
+        setHeight(height + e.clientY - mouseY);
+    }
+    const eDragStart = (e) => {
+        setMouseX(e.clientX)
+    }
+    const eDragEnd = (e) => {
+        setWidth(width + e.clientX - mouseX);
+    }
+    const wDragStart = (e) => {
+        setMouseX(e.clientX)
+    }
+    const wDragEnd = (e) => {
+        setWidth(width + mouseX - e.clientX);
+    }
 
     return (
         <>
@@ -25,10 +52,30 @@ export default function Folder(){
             <Draggable handle={Header}>
                     <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
                                ContainerWidth={width + "px"}>
-                        <TopLine LineWidth={width + "px"}/>
-                        <BottomLine LineWidth={width + "px"}/>
-                        <LeftLine LineHeight={height + "px"}/>
-                        <RightLine LineHeight={height + "px"}/>
+                        <TopLine
+                            LineWidth={width + "px"}
+                            draggable="true"
+                            onDragStart={nDragStart}
+                            onDragEnd={nDragEnd}
+                        />
+                        <BottomLine
+                            LineWidth={width + "px"}
+                            draggable="true"
+                            onDragStart={sDragStart}
+                            onDragEnd={sDragEnd}
+                        />
+                        <LeftLine
+                            LineHeight={height + "px"}
+                            draggable="true"
+                            onDragStart={wDragStart}
+                            onDragEnd={wDragEnd}
+                        />
+                        <RightLine
+                            LineHeight={height + "px"}
+                            draggable="true"
+                            onDragStart={eDragStart}
+                            onDragEnd={eDragEnd}
+                        />
                         <Header>
                             <Back><FaAngleLeft/></Back>
                             <Front><FaAngleRight/></Front>
@@ -64,45 +111,43 @@ const Container = styled.div`
       "sidebar content";
   text-align: center;
 `
-const TopLine = styled.div`
-  top: 0;
-  width: ${(props) => props.LineWidth};
-  height: 3px;
+
+const Line = styled.div`
   background-color: palevioletred;
   position: absolute;
-  :hover {
-    cursor: n-resize;
-  };
   :active {
     background-color: blue;
   };
 `
-const BottomLine = styled.div`
+
+const TopLine = styled(Line)`
+  top: 0;
+  width: ${(props) => props.LineWidth};
+  height: 3px;
+  :hover {
+    cursor: n-resize;
+  };
+`
+const BottomLine = styled(Line)`
   bottom: 0;
   width: ${(props) => props.LineWidth};
   height: 3px;
-  background-color: palevioletred;
-  position: absolute;
   :hover {
     cursor: s-resize;
   };
 `
-const LeftLine = styled.div`
+const LeftLine = styled(Line)`
   left: 0;
   width: 3px;
   height: ${(props) => props.LineHeight};
-  background-color: palevioletred;
-  position: absolute;
   :hover {
     cursor: w-resize;
   };
 `
-const RightLine = styled.div`
+const RightLine = styled(Line)`
   right: 0;
   width: 3px;
   height: ${(props) => props.LineHeight};
-  background-color: palevioletred;
-  position: absolute;
   :hover {
     cursor: e-resize;
   };
