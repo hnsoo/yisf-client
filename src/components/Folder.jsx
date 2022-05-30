@@ -58,6 +58,11 @@ export default function Folder(){
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:100, y:100}}>
                 <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
+                    <TopLeft/>
+                    <TopRight/>
+                    <BottomLeft/>
+                    <BottomRight/>
+
                     <TopLine
                         LineWidth={width + "px"}
                         draggable="true"
@@ -119,6 +124,33 @@ const Container = styled.div`
       "header header"
       "sidebar content";
   text-align: center;
+`
+
+const resizer = styled.div`
+  width: 20px;
+  height: 20px;
+  background: burlywood;
+  position: absolute;
+`
+const TopLeft = styled(resizer)`
+    left: -5px;
+    top: -5px;
+    cursor: nwse-resize;
+`
+const TopRight = styled(resizer)`
+    right: -5px;
+    top: -5px;
+    cursor: nesw-resize;
+`
+const BottomLeft = styled(resizer)`
+    left: -5px;
+    bottom: -5px;
+    cursor: nesw-resize;
+`
+const BottomRight = styled(resizer)`
+    right: -5px;
+    bottom: -5px;
+    cursor: nwse-resize;
 `
 
 const Line = styled.div`
