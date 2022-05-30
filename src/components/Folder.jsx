@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import Draggable from "react-draggable";
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
 import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
@@ -49,52 +48,43 @@ export default function Folder(){
             <button onClick={handleModal}>
                 Click me!
             </button>
-            <Draggable handle={Header}>
-                    <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
-                               ContainerWidth={width + "px"}>
-                        <TopLine
-                            LineWidth={width + "px"}
-                            draggable="true"
-                            onDragStart={nDragStart}
-                            onDragEnd={nDragEnd}
-                        />
-                        <BottomLine
-                            LineWidth={width + "px"}
-                            draggable="true"
-                            onDragStart={sDragStart}
-                            onDragEnd={sDragEnd}
-                        />
-                        <LeftLine
-                            LineHeight={height + "px"}
-                            draggable="true"
-                            onDragStart={wDragStart}
-                            onDragEnd={wDragEnd}
-                        />
-                        <RightLine
-                            LineHeight={height + "px"}
-                            draggable="true"
-                            onDragStart={eDragStart}
-                            onDragEnd={eDragEnd}
-                        />
-                        <Header>
-                            <Back><FaAngleLeft/></Back>
-                            <Front><FaAngleRight/></Front>
-                            <Address><FiHome/></Address>
-                            <Ctrl>
-                                <FiStopCircle size="30" color="#4f4f4f"/>
-                                <FiXCircle size="30" color="#4f4f4f"/>
-                            </Ctrl>
-                        </Header>
-                        <SideBar>
-                            <Menu><RiUser3Fill size="25" color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
-                            <Menu><BsBarChartFill size="25" color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
-                            <Menu><SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
-                            <Menu><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
-                            <Menu><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
-                        </SideBar>
-                        <Content></Content>
-                    </Container>
-            </Draggable>
+                <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
+                           ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
+                    <TopLine
+                        LineWidth={width + "px"}
+                        onMouseDown={handleResize}
+                        onMouseMove={e => resize("n", e)}
+                    />
+                    <BottomLine
+                        LineWidth={width + "px"}
+
+                    />
+                    <LeftLine
+                        LineHeight={height + "px"}
+
+                    />
+                    <RightLine
+                        LineHeight={height + "px"}
+
+                    />
+                    <Header>
+                        <Back><FaAngleLeft/></Back>
+                        <Front><FaAngleRight/></Front>
+                        <Address><FiHome/></Address>
+                        <Ctrl>
+                            <FiStopCircle size="30" color="#4f4f4f"/>
+                            <FiXCircle size="30" color="#4f4f4f"/>
+                        </Ctrl>
+                    </Header>
+                    <SideBar>
+                        <Menu><RiUser3Fill size="25" color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
+                        <Menu><BsBarChartFill size="25" color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
+                        <Menu><SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
+                        <Menu><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
+                        <Menu><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
+                    </SideBar>
+                    <Content></Content>
+                </Container>
         </>
     );
 }
@@ -104,6 +94,9 @@ const Container = styled.div`
   display: ${(props) => props.Show};
   height: ${(props) => props.ContainerHeight};
   width: ${(props) => props.ContainerWidth};
+  position: absolute;
+  top: ${(props) => props.y};
+  left: ${(props) => props.x};
   grid-template-rows: 50px 1fr;
   grid-template-columns: 150px 1fr;
   grid-template-areas: 
