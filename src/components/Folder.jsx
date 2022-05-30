@@ -166,6 +166,7 @@ const resizer = styled.div`
   height: 20px;
   background: burlywood;
   position: absolute;
+  z-index: 999;
 `
 const TopLeft = styled(resizer)`
     left: -5px;
