@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
+import Draggable from "react-draggable";
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
 import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
-// import './Folder.css'
 
 export default function Folder(){
     const [isOpen, setIsOpen] = useState(false);
@@ -13,34 +13,41 @@ export default function Folder(){
     const [height, setHeight] = useState(500)
     const [mouseX, setMouseX] = useState(0)
     const [mouseY, setMouseY] = useState(0)
+    const [isMove, setIsMove] = useState(false)
+    const [divX, setDivX] = useState(0)
+    const [divY, setDivY] = useState(0)
 
     const handleModal = () => {
         setIsOpen(!isOpen)
     };
 
-    const nDragStart = (e) => {
+    const dragStart = (e) => {
+        setMouseX(e.clientX)
         setMouseY(e.clientY)
     }
-    const nDragEnd = (e) => {
-        setHeight(height + mouseY - e.clientY);
+
+    const dragEnd = (direction, e) => {
+        switch (direction) {
+            case "n":
+                setHeight(height + (mouseY - e.clientY))
+                setDivY(divY - (mouseY - e.clientY));
+                break;
+            case "s":
+                setHeight(height - (mouseY - e.clientY));
+                break;
+            case "w":
+                setWidth(width + (mouseX - e.clientX));
+                setDivX(divX - (mouseX - e.clientX))
+                break;
+            default:
+                setWidth(width - (mouseX - e.clientX));
+                break;
+        }
+        setIsMove(true)
     }
-    const sDragStart = (e) => {
-        setMouseY(e.clientY)
-    }
-    const sDragEnd = (e) => {
-        setHeight(height + e.clientY - mouseY);
-    }
-    const eDragStart = (e) => {
-        setMouseX(e.clientX)
-    }
-    const eDragEnd = (e) => {
-        setWidth(width + e.clientX - mouseX);
-    }
-    const wDragStart = (e) => {
-        setMouseX(e.clientX)
-    }
-    const wDragEnd = (e) => {
-        setWidth(width + mouseX - e.clientX);
+
+    const move = () => {
+        return {x: divX, y:divY}
     }
 
     return (
@@ -48,24 +55,32 @@ export default function Folder(){
             <button onClick={handleModal}>
                 Click me!
             </button>
+            <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:100, y:100}}>
                 <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
                     <TopLine
                         LineWidth={width + "px"}
-                        onMouseDown={handleResize}
-                        onMouseMove={e => resize("n", e)}
+                        draggable="true"
+                        onDragStart={dragStart}
+                        onDragEnd={e => dragEnd("n", e)}
                     />
                     <BottomLine
                         LineWidth={width + "px"}
-
+                        draggable="true"
+                        onDragStart={dragStart}
+                        onDragEnd={e => dragEnd("s", e)}
                     />
                     <LeftLine
                         LineHeight={height + "px"}
-
+                        draggable="true"
+                        onDragStart={dragStart}
+                        onDragEnd={e => dragEnd("w", e)}
                     />
                     <RightLine
                         LineHeight={height + "px"}
-
+                        draggable="true"
+                        onDragStart={dragStart}
+                        onDragEnd={e => dragEnd("e", e)}
                     />
                     <Header>
                         <Back><FaAngleLeft/></Back>
@@ -85,6 +100,7 @@ export default function Folder(){
                     </SideBar>
                     <Content></Content>
                 </Container>
+            </Draggable>
         </>
     );
 }
@@ -95,8 +111,8 @@ const Container = styled.div`
   height: ${(props) => props.ContainerHeight};
   width: ${(props) => props.ContainerWidth};
   position: absolute;
-  top: ${(props) => props.y};
   left: ${(props) => props.x};
+  top: ${(props) => props.y};
   grid-template-rows: 50px 1fr;
   grid-template-columns: 150px 1fr;
   grid-template-areas: 
@@ -180,7 +196,7 @@ const Front = styled.div`
 const Address = styled.div`
   display: flex;
   padding: 8px;
-  
+
   box-sizing: border-box;
 
   position: absolute;
@@ -230,5 +246,4 @@ const Content = styled.div`
   grid-area: content;
   padding: 0.25rem;
 `
-
 
