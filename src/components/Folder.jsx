@@ -39,9 +39,28 @@ export default function Folder(){
                 setWidth(width + (mouseX - e.clientX));
                 setDivX(divX - (mouseX - e.clientX))
                 break;
-            default:
+            case "e":
                 setWidth(width - (mouseX - e.clientX));
                 break;
+            case "nw":
+                setHeight(height + (mouseY - e.clientY))
+                setDivY(divY - (mouseY - e.clientY));
+                setWidth(width + (mouseX - e.clientX));
+                setDivX(divX - (mouseX - e.clientX))
+                break;
+            case "ne":
+                setHeight(height + (mouseY - e.clientY))
+                setDivY(divY - (mouseY - e.clientY));
+                setWidth(width - (mouseX - e.clientX));
+                break;
+            case "sw":
+                setHeight(height - (mouseY - e.clientY));
+                setWidth(width + (mouseX - e.clientX));
+                setDivX(divX - (mouseX - e.clientX))
+                break;
+            default:
+                setHeight(height - (mouseY - e.clientY));
+                setWidth(width - (mouseX - e.clientX));
         }
         setIsMove(true)
     }
@@ -58,10 +77,26 @@ export default function Folder(){
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:100, y:100}}>
                 <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
-                    <TopLeft/>
-                    <TopRight/>
-                    <BottomLeft/>
-                    <BottomRight/>
+                    <TopLeft
+                        draggable="true"
+                        onDragStart={dragStart}
+                        onDragEnd={e => dragEnd("nw", e)}
+                    />
+                    <TopRight
+                        draggable="true"
+                        onDragStart={dragStart}
+                        onDragEnd={e => dragEnd("ne", e)}
+                    />
+                    <BottomLeft
+                        draggable="true"
+                        onDragStart={dragStart}
+                        onDragEnd={e => dragEnd("sw", e)}
+                    />
+                    <BottomRight
+                        draggable="true"
+                        onDragStart={dragStart}
+                        onDragEnd={e => dragEnd("se", e)}
+                    />
 
                     <TopLine
                         LineWidth={width + "px"}
