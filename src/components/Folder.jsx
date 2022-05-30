@@ -128,11 +128,10 @@ const Line = styled.div`
     background-color: blue;
   };
 `
-
 const TopLine = styled(Line)`
   top: 0;
   width: ${(props) => props.LineWidth};
-  height: 3px;
+  height: 5px;
   :hover {
     cursor: n-resize;
   };
@@ -140,14 +139,14 @@ const TopLine = styled(Line)`
 const BottomLine = styled(Line)`
   bottom: 0;
   width: ${(props) => props.LineWidth};
-  height: 3px;
+  height: 5px;
   :hover {
     cursor: s-resize;
   };
 `
 const LeftLine = styled(Line)`
   left: 0;
-  width: 3px;
+  width: 5px;
   height: ${(props) => props.LineHeight};
   :hover {
     cursor: w-resize;
@@ -155,7 +154,7 @@ const LeftLine = styled(Line)`
 `
 const RightLine = styled(Line)`
   right: 0;
-  width: 3px;
+  width: 5px;
   height: ${(props) => props.LineHeight};
   :hover {
     cursor: e-resize;
