@@ -1,4 +1,4 @@
-import AuthService from "../service/Auth";
+import AuthService from "../../service/Auth";
 
 export const login = (id, password) => (dispatch) => {
     return AuthService.login(id, password).then(
