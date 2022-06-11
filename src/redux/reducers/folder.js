@@ -1,4 +1,5 @@
 import {
+    CLOSE_FOLDER,
     OPEN_FOLDER,
 } from "../ations/types";
 
@@ -11,6 +12,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isOpened: true,
+            };
+        case CLOSE_FOLDER:
+            return {
+                ...state,
+                isOpened: false,
             };
 
         default:
