@@ -6,9 +6,9 @@ import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
+import {useSelector} from "react-redux";
 
 export default function Folder(){
-    const [isOpen, setIsOpen] = useState(false);
     const [width, setWidth] = useState(1000)
     const [height, setHeight] = useState(500)
     const [mouseX, setMouseX] = useState(0)
@@ -17,9 +17,7 @@ export default function Folder(){
     const [divX, setDivX] = useState(0)
     const [divY, setDivY] = useState(0)
 
-    const handleModal = () => {
-        setIsOpen(!isOpen)
-    };
+    const isOpened = useSelector(state => state.isOpened)
 
     const dragStart = (e) => {
         setMouseX(e.clientX)
@@ -71,11 +69,8 @@ export default function Folder(){
 
     return (
         <>
-            <button onClick={handleModal}>
-                Click me!
-            </button>
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:100, y:100}}>
-                <Container Show={isOpen ? "grid" : "none"} ContainerHeight={height + "px"}
+                <Container Show={isOpened ? "grid" : "none"} ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
                     <TopLeft
                         draggable="true"
