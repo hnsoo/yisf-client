@@ -7,15 +7,20 @@ import IconFolder from "../assets/img/folder.png"
 import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
-import {openFolder} from "../redux/ations/folder";
+import {closeFolder, openFolder} from "../redux/ations/folder";
 
 export default function Main() {
-    const isLoggedIn = useSelector(state => state.isLoggedIn)
-    const [typeFolder, setTypeFolder] = useState(false)
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+    const isOpened = useSelector(state => state.folder.isOpened)
     const dispatch = useDispatch();
 
     const clickReversing = () => {
-        dispatch(openFolder())
+        if (isOpened){
+            dispatch(closeFolder())
+        }
+        else {
+            dispatch(openFolder())
+        }
     }
 
     if (!isLoggedIn) {
@@ -32,7 +37,7 @@ export default function Main() {
                 <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web</FolderContainer>
                 <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
                 <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
-                <Folder/>
+                {isOpened && <Folder />}
             </Content>
         </Background>
     );
