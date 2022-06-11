@@ -4,7 +4,7 @@ const initialState = token
     ? { isLoggedIn: true, token}
     : { isLoggedIn: false, token: null};
 
-export default function auth(state = initialState, action) {
+export default function(state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
         case "LOGIN_SUCCESS":
