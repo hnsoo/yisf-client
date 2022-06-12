@@ -9,7 +9,7 @@ const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
-    const isLoggedIn = useSelector(state => state.isLoggedIn)
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
     const dispatch = useDispatch();
 
     const onChangeId = (e) => {
