@@ -6,8 +6,9 @@ import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Notice from "./Notice";
+import {closeFolder} from "../redux/ations/folder";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -19,6 +20,11 @@ export default function Folder(){
     const [divY, setDivY] = useState(0)
 
     const view = useSelector(state => state.folder.view)
+    const dispatch = useDispatch();
+
+    const clickClose = () => {
+        dispatch(closeFolder())
+    }
 
     const SelectView = () => {
         switch (view) {
@@ -101,7 +107,6 @@ export default function Folder(){
                         onDragStart={dragStart}
                         onDragEnd={e => dragEnd("se", e)}
                     />
-
                     <TopLine
                         LineWidth={width + "px"}
                         draggable="true"
@@ -132,7 +137,11 @@ export default function Folder(){
                         <Address><FiHome/></Address>
                         <Ctrl>
                             <FiStopCircle size="30" color="#4f4f4f"/>
-                            <FiXCircle size="30" color="#4f4f4f"/>
+                            <FiXCircle
+                                onClick={clickClose}
+                                size="30"
+                                color="#4f4f4f"
+                            />
                         </Ctrl>
                     </Header>
                     <SideBar>
