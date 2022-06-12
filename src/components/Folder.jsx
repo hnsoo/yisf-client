@@ -6,6 +6,8 @@ import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
+import {useSelector} from "react-redux";
+import Notice from "./Notice";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -15,6 +17,16 @@ export default function Folder(){
     const [isMove, setIsMove] = useState(false)
     const [divX, setDivX] = useState(0)
     const [divY, setDivY] = useState(0)
+
+    const view = useSelector(state => state.folder.view)
+
+    const SelectView = () => {
+        switch (view) {
+            case "notice":
+                return <Notice />
+            default:
+        }
+    }
 
     const dragStart = (e) => {
         setMouseX(e.clientX)
@@ -130,7 +142,9 @@ export default function Folder(){
                         <Menu><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
                         <Menu><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
                     </SideBar>
-                    <Content></Content>
+                    <Content>
+                        <SelectView />
+                    </Content>
                 </Container>
             </Draggable>
         </>

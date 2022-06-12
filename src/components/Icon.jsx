@@ -1,9 +1,25 @@
 import React from 'react';
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
+import {openNotice} from "../redux/ations/folder";
 
-export default function Icon({color, img}){
+export default function Icon({role, color, img}){
+    const dispatch = useDispatch()
+
+    const setView = (role) => {
+        switch (role) {
+            case 'notice':
+                dispatch(openNotice())
+                break;
+            default:
+        }
+    }
+
     return (
-        <Container BackgroundColor={color}>
+        <Container
+            onClick={()=>{setView(role)}}
+            BackgroundColor={color}
+        >
             {img}
         </Container>
     );

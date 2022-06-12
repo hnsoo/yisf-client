@@ -22,8 +22,9 @@ export default function Dock(){
             img={<SiDiscord size= "70px" color="white"/>}
         />
         <Icon
+            role={"notice"}
             color={"#AC3652"}
-            img={<BsMegaphoneFill size= "70px" color="white"/>}
+            img={<BsMegaphoneFill size= "70px" color="white" />}
         />
         <Icon
             color={"#AC7636"}
