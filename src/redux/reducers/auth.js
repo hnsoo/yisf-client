@@ -3,7 +3,7 @@ import {
     LOGIN_FAIL,
 } from "../ations/types";
 
-const token = localStorage.getItem("token");
+const token = JSON.parse(localStorage.getItem("token"));
 
 const initialState = token
     ? { isLoggedIn: true, token}
