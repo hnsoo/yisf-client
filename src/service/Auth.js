@@ -14,6 +14,7 @@ class AuthService {
             .then ((res) => {
                 // reponse가 ok가 아닐 때
                 if (!res.ok) {
+                    console.log(res.json())
                     throw new Error('400 or 500 에러 발생')
                 }
                 return res.json()
