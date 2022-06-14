@@ -143,7 +143,7 @@ export default function Folder(){
                     <Header>
                         <Back><FaAngleLeft/></Back>
                         <Front><FaAngleRight/></Front>
-                        <Address><FiHome/></Address>
+                        <Address><FiHome/><Route>{view}</Route></Address>
                         <Ctrl>
                             <FiStopCircle size="30" color="#4f4f4f"/>
                             <FiXCircle
@@ -300,6 +300,13 @@ const Address = styled.div`
   border: 1px solid #A9A9A9;
   border-radius: 10px;
 `
+
+const Route = styled.div`
+  position: absolute;
+  left: 31px;
+  bottom: 7px;
+`
+
 const Ctrl = styled.div`
   position: absolute;
   right: 10px;
