@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import WallPaper from '../assets/img/wallPaper.jpg';
-import Dock from "../components/Dock";
+import Dock from "../components/dock/Dock";
 import TopBar from "../components/TopBar";
 import IconFolder from "../assets/img/folder.png"
 import {useDispatch, useSelector} from "react-redux";

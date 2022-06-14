@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import Icon from "./Icon";
+import Icon from "../Icon";
 import {FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';

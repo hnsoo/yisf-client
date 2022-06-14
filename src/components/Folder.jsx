@@ -7,11 +7,11 @@ import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
 import {useDispatch, useSelector} from "react-redux";
-import Notice from "./Notice";
+import Notice from "./dock/Notice";
 import {closeFolder} from "../redux/ations/folder";
-import Mypage from "./Mypage";
-import Rank from "./Rank";
-import Sponser from "./Sponser";
+import Mypage from "./dock/Mypage";
+import Rank from "./dock/Rank";
+import Sponser from "./dock/Sponser";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
