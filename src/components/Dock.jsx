@@ -29,6 +29,7 @@ export default function Dock(){
             img={<BsMegaphoneFill size= "70px" color="white" />}
         />
         <Icon
+            role={"sponser"}
             color={"#AC7636"}
             img={<FaHandshake size= "70px" color="white"/>}
         />

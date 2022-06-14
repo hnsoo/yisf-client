@@ -1,7 +1,7 @@
 import {
     CLOSE_FOLDER,
     OPEN_FOLDER, OPEN_MYPAGE,
-    OPEN_NOTICE, OPEN_RANK,
+    OPEN_NOTICE, OPEN_RANK, OPEN_SPONSER,
 } from "../ations/types";
 
 const initialState = { isOpened: false }
@@ -36,6 +36,12 @@ export default function (state = initialState, action) {
                 ...state,
                 isOpened: true,
                 view: "rank",
+            };
+        case OPEN_SPONSER:
+            return {
+                ...state,
+                isOpened: true,
+                view: "sponser",
             };
 
         default:

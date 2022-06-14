@@ -1,4 +1,4 @@
-import {OPEN_FOLDER, CLOSE_FOLDER, OPEN_NOTICE, OPEN_MYPAGE, OPEN_RANK} from "./types";
+import {OPEN_FOLDER, CLOSE_FOLDER, OPEN_NOTICE, OPEN_MYPAGE, OPEN_RANK, OPEN_SPONSER} from "./types";
 
 export const openFolder = () => ({
     type: OPEN_FOLDER,
@@ -18,4 +18,8 @@ export const openMypage = () => ({
 
 export const openRank = () => ({
     type: OPEN_RANK,
+});
+
+export const openSponser = () => ({
+    type: OPEN_SPONSER,
 });

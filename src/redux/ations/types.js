@@ -6,3 +6,4 @@ export const CLOSE_FOLDER = "CLOSE_FOLDER";
 export const OPEN_NOTICE = "OPEN_NOTICE";
 export const OPEN_MYPAGE = "OPEN_MYPAGE";
 export const OPEN_RANK = "OPEN_RANK";
+export const OPEN_SPONSER = "OPEN_SPONSER";
