@@ -1,6 +1,6 @@
 import {
     CLOSE_FOLDER,
-    OPEN_FOLDER,
+    OPEN_FOLDER, OPEN_MYPAGE,
     OPEN_NOTICE,
 } from "../ations/types";
 
@@ -24,6 +24,12 @@ export default function (state = initialState, action) {
                 ...state,
                 isOpened: true,
                 view: "notice",
+            };
+        case OPEN_MYPAGE:
+            return {
+                ...state,
+                isOpened: true,
+                view: "mypage",
             };
 
         default:

@@ -9,6 +9,7 @@ import {SiDiscord} from 'react-icons/si';
 import {useDispatch, useSelector} from "react-redux";
 import Notice from "./Notice";
 import {closeFolder} from "../redux/ations/folder";
+import Mypage from "./Mypage";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -30,6 +31,8 @@ export default function Folder(){
         switch (view) {
             case "notice":
                 return <Notice />
+            case "mypage":
+                return <Mypage />
             default:
         }
     }

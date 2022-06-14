@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {openNotice} from "../redux/ations/folder";
+import {openNotice, openMypage} from "../redux/ations/folder";
 
 export default function Icon({role, color, img}){
     const dispatch = useDispatch()
@@ -10,6 +10,9 @@ export default function Icon({role, color, img}){
         switch (role) {
             case 'notice':
                 dispatch(openNotice())
+                break;
+            case 'mypage':
+                dispatch(openMypage())
                 break;
             default:
         }

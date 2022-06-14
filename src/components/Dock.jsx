@@ -10,6 +10,7 @@ export default function Dock(){
     return (
       <Container>
         <Icon
+            role={"mypage"}
             color={"#37AB45"}
             img={<RiUser3Fill size= "70px" color="white"/>}
         />
