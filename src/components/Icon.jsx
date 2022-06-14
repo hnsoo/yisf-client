@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {openNotice, openMypage} from "../redux/ations/folder";
+import {openNotice, openMypage, openRank} from "../redux/ations/folder";
 
 export default function Icon({role, color, img}){
     const dispatch = useDispatch()
@@ -13,6 +13,9 @@ export default function Icon({role, color, img}){
                 break;
             case 'mypage':
                 dispatch(openMypage())
+                break;
+            case 'rank':
+                dispatch(openRank())
                 break;
             default:
         }

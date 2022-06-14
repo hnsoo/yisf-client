@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Notice from "./Notice";
 import {closeFolder} from "../redux/ations/folder";
 import Mypage from "./Mypage";
+import Rank from "./Rank";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -33,6 +34,8 @@ export default function Folder(){
                 return <Notice />
             case "mypage":
                 return <Mypage />
+            case "rank":
+                return <Rank />
             default:
         }
     }

@@ -1,7 +1,7 @@
 import {
     CLOSE_FOLDER,
     OPEN_FOLDER, OPEN_MYPAGE,
-    OPEN_NOTICE,
+    OPEN_NOTICE, OPEN_RANK,
 } from "../ations/types";
 
 const initialState = { isOpened: false }
@@ -30,6 +30,12 @@ export default function (state = initialState, action) {
                 ...state,
                 isOpened: true,
                 view: "mypage",
+            };
+        case OPEN_RANK:
+            return {
+                ...state,
+                isOpened: true,
+                view: "rank",
             };
 
         default:

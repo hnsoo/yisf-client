@@ -15,6 +15,7 @@ export default function Dock(){
             img={<RiUser3Fill size= "70px" color="white"/>}
         />
         <Icon
+            role={"rank"}
             color={"#A7AC36"}
             img={<BsBarChartFill size= "70px" color="white"/>}
         />
