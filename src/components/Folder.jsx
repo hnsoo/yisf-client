@@ -12,6 +12,7 @@ import {closeFolder} from "../redux/ations/folder";
 import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
+import Reversing from "./Reversing"
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -39,6 +40,8 @@ export default function Folder(){
                 return <Rank />
             case "sponsor":
                 return <Sponsor />
+            case "reversing":
+                return <Reversing />
             default:
         }
     }

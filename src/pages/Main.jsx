@@ -7,15 +7,15 @@ import IconFolder from "../assets/img/folder.png"
 import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
-import {closeFolder, openFolder, openReversing} from "../redux/ations/folder";
+import {openReversing} from "../redux/ations/folder";
 
 export default function Main() {
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
-    const isOpened = useSelector(state => state.folder.isOpened)
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    const isOpened = useSelector(state => state.folder.isOpened);
     const dispatch = useDispatch();
 
     const clickReversing = () => {
-        dispatch(openReversing())
+        dispatch(openReversing());
     }
 
     if (!isLoggedIn) {
