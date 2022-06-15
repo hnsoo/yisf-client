@@ -1,8 +1,21 @@
 import React from 'react';
 import styled from "styled-components";
 import {HiOutlineLogout} from 'react-icons/hi'
+import AuthService from "../service/auth";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../redux/ations/auth";
 
 export default function TopBar() {
+
+    const dispatch = useDispatch()
+
+    const clickLogout = () => {
+        // 로컬스토리지, 쿠키 제거
+        AuthService.logout()
+        // isLogedin false
+        dispatch(logout())
+    }
+
     return (
       <Container>
           <div/>
@@ -13,7 +26,9 @@ export default function TopBar() {
             <LogoutImg>
                 <HiOutlineLogout size="20px" color="white"/>
             </LogoutImg>
-            <LogoutText>Log out</LogoutText>
+            <LogoutText
+            onClick={clickLogout}
+            >Log out</LogoutText>
           </LogoutContainer>
       </Container>
     );

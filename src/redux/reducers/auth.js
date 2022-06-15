@@ -1,9 +1,10 @@
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
+    LOGOUT_SUCCESS,
 } from "../ations/types";
 
-const token = JSON.parse(localStorage.getItem("token"));
+const token = localStorage.getItem("token");
 
 const initialState = token
     ? { isLoggedIn: true, token}
@@ -24,6 +25,12 @@ export default function(state = initialState, action) {
                 isLoggedIn: false,
                 token: null,
             };
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                isLoggedIn: false,
+                token: null,
+            }
 
         default:
             return state;

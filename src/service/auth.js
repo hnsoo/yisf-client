@@ -38,6 +38,11 @@ class AuthService {
                 return Promise.reject();
             });
     }
+    logout() {
+        localStorage.removeItem("token")
+        localStorage.removeItem("tokenExpired")
+        removeCookie("refresh")
+    }
 }
 
 export default new AuthService();

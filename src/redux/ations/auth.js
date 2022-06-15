@@ -1,6 +1,7 @@
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
+    LOGOUT_SUCCESS,
 } from "./types";
 
 import AuthService from "../../service/auth";
@@ -25,3 +26,7 @@ export const login = (id, password) => (dispatch) => {
             }
         );
 };
+
+export const logout = () => ({
+    type: LOGOUT_SUCCESS,
+});
