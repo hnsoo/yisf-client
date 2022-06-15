@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-export default function Notice({color, img}){
+export default function Notice(){
     return (
         <Container>
             <b>공지사항</b><br/>
