@@ -24,7 +24,7 @@ export default function Main() {
     }
 
     if (!isLoggedIn) {
-        return <Navigate to="/login" />;
+        // return <Navigate to="/login" />;
     }
 
     return (
