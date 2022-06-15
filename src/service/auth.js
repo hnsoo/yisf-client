@@ -1,4 +1,4 @@
-import {getCookie, setCookie} from "./cookie";
+import {getCookie, setCookie, removeCookie} from "./cookie";
 
 const API_URL = "http://15.165.86.75:8080/api/v1"
 
