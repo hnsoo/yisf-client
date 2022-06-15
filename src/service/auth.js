@@ -4,15 +4,16 @@ const API_URL = "http://15.165.86.75:8080/api/v1"
 
 class AuthService {
     login(id, password) {
-        return fetch(API_URL + '/login' + '?username=asd123&password=asd123123asd', {
-            method: "POST",
-            body: JSON.stringify({
+        return fetch(API_URL + '/login', {
+            method: 'POST',
+            body: new URLSearchParams({
                     username: id,
                     password: password,
                 })
         })
             .then ((res) => {
                 // reponse가 ok가 아닐 때
+                console.log(res)
                 if (!res.ok) {
                     console.log(res.json())
                     throw new Error('400 or 500 에러 발생')
@@ -20,8 +21,11 @@ class AuthService {
                 return res.json()
             })
             .then((result) => {
+                if(result.errorCode){
+                    throw new Error(result.detail)
+                }
                 const expires = new Date(result.tokenExpired)
-                console.log(expires, result.tokenExpired)
+                console.log(result)
                 localStorage.setItem('token', result.token);
                 localStorage.setItem('tokenExpired', result.tokenExpired);
                 setCookie('refresh', result.refresh, {
@@ -29,7 +33,6 @@ class AuthService {
                     expires,
                     // httpOnly: true,
                 });
-                console.log(getCookie('refresh'))
                 return result;
             }
             )
