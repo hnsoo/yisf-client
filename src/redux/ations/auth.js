@@ -3,7 +3,7 @@ import {
     LOGIN_FAIL,
 } from "./types";
 
-import AuthService from "../../service/Auth";
+import AuthService from "../../service/auth";
 
 export const login = (id, password) => (dispatch) => {
     return AuthService.login(id, password)
