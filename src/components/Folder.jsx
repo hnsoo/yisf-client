@@ -11,7 +11,7 @@ import Notice from "./dock/Notice";
 import {closeFolder} from "../redux/ations/folder";
 import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
-import Sponser from "./dock/Sponser";
+import Sponsor from "./dock/Sponsor";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -37,8 +37,8 @@ export default function Folder(){
                 return <Mypage />
             case "rank":
                 return <Rank />
-            case "sponser":
-                return <Sponser />
+            case "sponsor":
+                return <Sponsor />
             default:
         }
     }

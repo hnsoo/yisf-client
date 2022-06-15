@@ -1,7 +1,11 @@
 import {
     CLOSE_FOLDER,
-    OPEN_FOLDER, OPEN_MYPAGE,
-    OPEN_NOTICE, OPEN_RANK, OPEN_SPONSER,
+    OPEN_FOLDER,
+    OPEN_MYPAGE,
+    OPEN_NOTICE,
+    OPEN_RANK,
+    OPEN_SPONSOR,
+    OPEN_REVERSING
 } from "../ations/types";
 
 const initialState = { isOpened: false }
@@ -37,12 +41,18 @@ export default function (state = initialState, action) {
                 isOpened: true,
                 view: "rank",
             };
-        case OPEN_SPONSER:
+        case OPEN_SPONSOR:
             return {
                 ...state,
                 isOpened: true,
-                view: "sponser",
+                view: "sponsor",
             };
+        case OPEN_REVERSING:
+            return {
+                ...state,
+                isOpened: true,
+                view: "reversing"
+            }
 
         default:
             return state;

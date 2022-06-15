@@ -11,24 +11,24 @@ import ahnlab from '../../assets/img/sponsor/ahnlab.png'
 import estIcon from '../../assets/img/sponsor/est.png'
 
 
-export default function Sponser(){
+export default function Sponsor(){
     return (
         <Container>
             <b>주최</b><br/>
-            <img src={schIcon} height="50px" /><br/>
+            <img src={schIcon} /><br/>
             <b>주관</b><br/>
-            <img src={schIcon} height="50px" /><br/>
+            <img src={schIcon} /><br/>
             <b>후원</b><br/>
-            <img src={moisIcon} height="50px" />
-            <img src={msitIcon} height="50px" />
-            <img src={kisaIcon} height="50px" /><br/>
+            <img src={moisIcon} />
+            <img src={msitIcon} />
+            <img src={kisaIcon} /><br/>
             <b>미디어 협력</b><br/>
-            <img src={newsIcon} height="50px" /><br/>
+            <img src={newsIcon} /><br/>
             <b>기관 협력</b><br/>
-            <img src={kiiscIcon} height="50px" />
-            <img src={kisiaIcon} height="50px" />
-            <img src={ahnlab} height="50px" />
-            <img src={estIcon} height="50px" /><br/>
+            <img src={kiiscIcon} />
+            <img src={kisiaIcon} />
+            <img src={ahnlab} />
+            <img src={estIcon} /><br/>
         </Container>
     );
 }
