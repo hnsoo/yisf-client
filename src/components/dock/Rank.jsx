@@ -3,8 +3,14 @@ import styled from "styled-components";
 
 export default function Rank(){
     return (
-        <div>
-            <p>실시간 유저 랭킹</p>
-        </div>
+        <Container>
+            <b>실시간 유저 랭킹</b>
+        </Container>
     );
 }
+const Container = styled.div`
+  //display: flex;
+  text-align: left;
+  flex-direction: column;
+  padding: 0.25rem;
+`
