@@ -27,7 +27,8 @@ const Login = () => {
                 window.location.reload();
             })
             .catch(() => {
-                console.log('login fail')
+                console.log('login fail');
+                alert('Login Fail')
             });
     };
 
