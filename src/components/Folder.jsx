@@ -12,7 +12,8 @@ import {closeFolder} from "../redux/ations/folder";
 import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
-import Reversing from "./Reversing"
+import Reversing from "./Pwnable"
+import Pwnable from "./Pwnable";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -40,8 +41,8 @@ export default function Folder(){
                 return <Rank />
             case "sponsor":
                 return <Sponsor />
-            case "reversing":
-                return <Reversing />
+            case "pwnable":
+                return <Pwnable />
             default:
         }
     }
@@ -164,7 +165,7 @@ export default function Folder(){
                         <Menu><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
                     </SideBar>
                     <Content>
-                        <SelectView />
+                        {SelectView()}
                     </Content>
                 </Container>
             </Draggable>

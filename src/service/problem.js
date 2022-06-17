@@ -4,7 +4,7 @@ const API_URL = "http://15.165.86.75:8080/api/v1/problem"
 
 class ProblemService {
     pwnableList() {
-        return fetch(API_URL + '/pwnable', {
+        return fetch(API_URL + '/Pwnable', {
             method: 'GET',
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token"),

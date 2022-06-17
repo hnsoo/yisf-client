@@ -5,7 +5,7 @@ import {
     OPEN_NOTICE,
     OPEN_RANK,
     OPEN_SPONSOR,
-    OPEN_REVERSING
+    OPEN_PWNABLE
 } from "../ations/types";
 
 const initialState = { isOpened: false }
@@ -47,11 +47,11 @@ export default function (state = initialState, action) {
                 isOpened: true,
                 view: "sponsor",
             };
-        case OPEN_REVERSING:
+        case OPEN_PWNABLE:
             return {
                 ...state,
                 isOpened: true,
-                view: "reversing"
+                view: "pwnable"
             }
 
         default:

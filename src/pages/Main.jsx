@@ -7,15 +7,15 @@ import IconFolder from "../assets/img/folder.png"
 import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
-import {openReversing} from "../redux/ations/folder";
+import {openPwnable} from "../redux/ations/folder";
 
 export default function Main() {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const isOpened = useSelector(state => state.folder.isOpened);
     const dispatch = useDispatch();
 
-    const clickReversing = () => {
-        dispatch(openReversing());
+    const clickPwnable = () => {
+        dispatch(openPwnable());
     }
 
     if (!isLoggedIn) {
@@ -27,10 +27,10 @@ export default function Main() {
             <Header><TopBar/></Header>
             <SideBar><Dock/></SideBar>
             <Content>
-                <FolderContainer onClick={clickReversing}><img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing</FolderContainer>
+                <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing</FolderContainer>
                 <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic</FolderContainer>
                 <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web</FolderContainer>
-                <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
+                <FolderContainer onClick={clickPwnable}><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
                 <FolderContainer><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
                 {isOpened && <Folder />}
             </Content>

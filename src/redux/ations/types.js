@@ -8,4 +8,4 @@ export const OPEN_NOTICE = "OPEN_NOTICE";
 export const OPEN_MYPAGE = "OPEN_MYPAGE";
 export const OPEN_RANK = "OPEN_RANK";
 export const OPEN_SPONSOR = "OPEN_SPONSOR";
-export const OPEN_REVERSING = "OPEN_REVERSING";
+export const OPEN_PWNABLE = "OPEN_PWNABLE";
