@@ -13,28 +13,6 @@ export default function Main() {
     const isOpened = useSelector(state => state.folder.isOpened);
     const dispatch = useDispatch();
 
-    const clickFolder = (field) => {
-        switch (field) {
-            case "pwnable":
-                dispatch(openPwnable());
-                break;
-            case "reversing":
-                dispatch(openReversing());
-                break;
-            case "forensic":
-                dispatch(openForensic());
-                break;
-            case "web":
-                dispatch(openWeb());
-                break;
-            case "misc":
-                dispatch(openMisc());
-                break;
-            default:
-        }
-
-    }
-
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
     }
@@ -44,11 +22,11 @@ export default function Main() {
             <Header><TopBar/></Header>
             <SideBar><Dock/></SideBar>
             <Content>
-                <FolderContainer onClick={() => clickFolder("reversing")}><img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing</FolderContainer>
-                <FolderContainer onClick={() => clickFolder("forensic")}><img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic</FolderContainer>
-                <FolderContainer onClick={() => clickFolder("web")}><img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web</FolderContainer>
-                <FolderContainer onClick={() => clickFolder("pwnable")}><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
-                <FolderContainer onClick={() => clickFolder("misc")}><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
+                <FolderContainer onClick={()=>dispatch(openReversing())}><img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing</FolderContainer>
+                <FolderContainer onClick={()=>dispatch(openForensic())}><img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic</FolderContainer>
+                <FolderContainer onClick={()=>dispatch(openWeb())}><img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web</FolderContainer>
+                <FolderContainer onClick={()=>dispatch(openPwnable())}><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
+                <FolderContainer onClick={()=>dispatch(openMisc())}><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
                 {isOpened && <Folder />}
             </Content>
         </Background>

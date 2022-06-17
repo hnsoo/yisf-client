@@ -5,7 +5,11 @@ import {
     OPEN_NOTICE,
     OPEN_RANK,
     OPEN_SPONSOR,
-    OPEN_PWNABLE, OPEN_REVERSING, OPEN_FORENSIC, OPEN_WEB, OPEN_MISC
+    OPEN_PWNABLE,
+    OPEN_REVERSING,
+    OPEN_FORENSIC,
+    OPEN_WEB,
+    OPEN_MISC
 } from "../ations/types";
 
 const initialState = { isOpened: false }
