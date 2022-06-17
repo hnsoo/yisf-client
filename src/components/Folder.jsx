@@ -8,11 +8,10 @@ import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
 import {useDispatch, useSelector} from "react-redux";
 import Notice from "./dock/Notice";
-import {closeFolder} from "../redux/ations/folder";
+import {closeFolder, openMypage, openNotice, openPwnable, openRank, openSponsor} from "../redux/ations/folder";
 import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
-import Reversing from "./Pwnable"
 import Pwnable from "./Pwnable";
 
 export default function Folder(){
@@ -29,6 +28,28 @@ export default function Folder(){
 
     const clickClose = () => {
         dispatch(closeFolder())
+    }
+
+    const clickMenu = (menu) => {
+
+        switch (menu) {
+            case "notice":
+                dispatch(openNotice());
+                break;
+            case "mypage":
+                dispatch(openMypage());
+                break;
+            case "rank":
+                dispatch(openRank());
+                break;
+            case "sponsor":
+                dispatch(openSponsor());
+                break;
+            case "pwnable":
+                dispatch(openPwnable());
+                break;
+            default:
+        }
     }
 
     const SelectView = () => {
@@ -158,11 +179,11 @@ export default function Folder(){
                         </Ctrl>
                     </Header>
                     <SideBar>
-                        <Menu><RiUser3Fill size="25" color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
-                        <Menu><BsBarChartFill size="25" color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
+                        <Menu onClick={()=>(clickMenu("mypage"))}><RiUser3Fill size="25" color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
+                        <Menu onClick={()=>(clickMenu("rank"))}><BsBarChartFill size="25" color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
                         <Menu><SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
-                        <Menu><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
-                        <Menu><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
+                        <Menu onClick={()=>(clickMenu("notice"))}><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
+                        <Menu onClick={()=>(clickMenu("sponsor"))}><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
                     </SideBar>
                     <Content>
                         {SelectView()}
