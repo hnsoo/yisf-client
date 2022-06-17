@@ -46,6 +46,15 @@ class AuthService {
         localStorage.removeItem("tokenExpired")
         removeCookie("refresh")
     }
+    checkSession() {
+        let expires = new Date(localStorage.getItem("tokenExpired"));
+        let now = new Date();
+
+        // 토큰 유효기간을 지났을 경우
+        if (expires < now) {
+            // 토큰 재발행 함수 실행
+        }
+    }
 }
 
 export default new AuthService();
