@@ -5,7 +5,11 @@ import {
     OPEN_MYPAGE,
     OPEN_RANK,
     OPEN_SPONSOR,
-    OPEN_PWNABLE
+    OPEN_PWNABLE,
+    OPEN_REVERSING,
+    OPEN_FORENSIC,
+    OPEN_WEB,
+    OPEN_MISC,
 } from "./types";
 
 export const openFolder = () => ({
@@ -34,4 +38,16 @@ export const openSponsor = () => ({
 
 export const openPwnable = () => ({
     type: OPEN_PWNABLE,
+});
+export const openReversing = () => ({
+    type: OPEN_REVERSING,
+});
+export const openForensic = () => ({
+    type: OPEN_FORENSIC,
+});
+export const openWeb = () => ({
+    type: OPEN_WEB,
+});
+export const openMisc = () => ({
+    type: OPEN_MISC,
 });

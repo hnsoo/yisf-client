@@ -9,3 +9,7 @@ export const OPEN_MYPAGE = "OPEN_MYPAGE";
 export const OPEN_RANK = "OPEN_RANK";
 export const OPEN_SPONSOR = "OPEN_SPONSOR";
 export const OPEN_PWNABLE = "OPEN_PWNABLE";
+export const OPEN_REVERSING = "OPEN_REVERSING";
+export const OPEN_FORENSIC = "OPEN_FORENSIC";
+export const OPEN_WEB = "OPEN_WEB";
+export const OPEN_MISC = "OPEN_MISC";
