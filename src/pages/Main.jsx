@@ -1,4 +1,3 @@
-import React, {useState} from "react";
 import styled from "styled-components";
 import WallPaper from '../assets/img/wallPaper.jpg';
 import Dock from "../components/dock/Dock";

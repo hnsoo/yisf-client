@@ -1,15 +1,39 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
+import UserService from "../../service/user";
 
 export default function Mypage(){
+    const [info, setInfo] = useState({
+        id: 0,
+        username: "",
+        nickname: "",
+        email: "",
+        score: 0,
+    })
+
+    useEffect(() => {
+        UserService.loadMyInfo()
+            .then(
+                (data) => setInfo((prevState) => {
+                    return { ...prevState,
+                        id: data.id,
+                        username: data.username,
+                        nickname: data.nickname,
+                        email: data.email,
+                        score: data.score,
+                    }
+                })
+            )
+    }, [])
+
     return (
         <Container>
             <b>User name</b><br/>
-            khsoo2439<br/><br/>
+            {info.username}<br/><br/>
             <b>E-mail</b><br/>
-            khsoo2439@naver.com<br/><br/>
+            {info.email}<br/><br/>
             <b>My score</b><br/>
-            1000<br/><br/>
+            {info.score}<br/><br/>
             <b>My solved</b><br/>
 
         </Container>
