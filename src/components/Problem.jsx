@@ -3,11 +3,11 @@ import styled from "styled-components";
 import ProblemService from "../service/problem";
 import ProblemIcon from "./ProblemIcon";
 
-export default function Pwnable(){
+export default function Problem({field}){
     const [problems, setProblems] = useState([]);
 
     useEffect(() => {
-        ProblemService.pwnableList()
+        ProblemService.problemList(field)
             .then(
                 (data) => setProblems(data)
             )

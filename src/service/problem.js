@@ -4,10 +4,10 @@ import RequestService from "./request";
 const API_URL = "http://15.165.86.75:8080/api/v1/problem"
 
 class ProblemService {
-    pwnableList() {
+    problemList(field) {
         return AuthService.checkSession()
             .then(() =>
-                fetch(API_URL + '/Pwnable', {
+                fetch(API_URL + "/" + field, {
                     method: 'GET',
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token"),

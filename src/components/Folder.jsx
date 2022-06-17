@@ -12,7 +12,7 @@ import {closeFolder, openMypage, openNotice, openPwnable, openRank, openSponsor}
 import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
-import Pwnable from "./Pwnable";
+import Problem from "./Problem";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -63,7 +63,11 @@ export default function Folder(){
             case "sponsor":
                 return <Sponsor />
             case "pwnable":
-                return <Pwnable />
+            case "reversing":
+            case "web":
+            case "forensic":
+            case "misc":
+                return <Problem field={view}/>
             default:
         }
     }
