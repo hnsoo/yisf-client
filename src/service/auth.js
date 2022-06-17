@@ -86,12 +86,17 @@ class AuthService {
         let now = new Date();
 
         // 토큰 유효기간을 지났을 경우
-        if (expires < now.setMinutes(now.getMinutes()+10)) {
+        if (expires < now.setMinutes(now.getMinutes()+15)) {
             // 토큰 재발행 함수 실행
-            this.reissue()
-                .then()
-                .catch()
+            return this.reissue()
+                .then(() => {
+                    return Promise.resolve();
+                })
+                .catch(() => {
+                    return Promise.reject();
+                })
         }
+        return Promise.resolve();
     }
 }
 
