@@ -1,4 +1,5 @@
 import {getCookie, setCookie, removeCookie} from "./cookie";
+import RequestService from "./request";
 
 const API_URL = "http://15.165.86.75:8080/api/v1"
 
@@ -22,28 +23,12 @@ class AuthService {
                     password: password,
                 })
         })
-            .then ((res) => {
-                // reponse가 ok가 아닐 때
-                console.log(res)
-                if (!res.ok) {
-                    console.log(res.json())
-                    throw new Error('400 or 500 에러 발생')
-                }
-                return res.json()
-            })
+            .then((res) => RequestService.checkError(res))
             .then((result) => {
-                if(result.errorCode){
-                    throw new Error(result.detail)
-                }
-                console.log(result)
                 setAuth(result.token, result.tokenExpired, result.refresh);
-                return result;
-            }
-            )
-            .catch((err) => {
-                console.log(err)
-                return Promise.reject();
-            });
+                return RequestService.retResult(result)
+            })
+            .catch((err) => RequestService.handleError(err))
     }
     logout() {
         localStorage.removeItem("token")
@@ -58,28 +43,9 @@ class AuthService {
                 REFRESH: getCookie("refresh"),
             }
         })
-            .then ((res) => {
-            // reponse가 ok가 아닐 때
-                console.log(res)
-                if (!res.ok) {
-                    console.log(res.json())
-                    throw new Error('400 or 500 에러 발생')
-                }
-                return res.json()
-        })
-            .then((result) => {
-                if(result.errorCode){
-                    throw new Error(result.detail)
-                }
-                console.log(result)
-                setAuth(result.token, result.tokenExpired, result.refresh);
-                return result;
-                }
-            )
-            .catch((err) => {
-                console.log(err)
-                return Promise.reject();
-            });
+            .then((res) => RequestService.checkError(res))
+            .then((result) => RequestService.retResult(result))
+            .catch((err) => RequestService.handleError(err))
     }
     checkSession() {
         let expires = new Date(localStorage.getItem("tokenExpired"));
