@@ -1,9 +1,10 @@
-import {setCookie} from "./cookie";
+import AuthService from "../service/auth";
 
 const API_URL = "http://15.165.86.75:8080/api/v1/problem"
 
 class ProblemService {
     pwnableList() {
+        AuthService.checkSession()
         return fetch(API_URL + '/Pwnable', {
             method: 'GET',
             headers: {
