@@ -2,6 +2,17 @@ import {getCookie, setCookie, removeCookie} from "./cookie";
 
 const API_URL = "http://15.165.86.75:8080/api/v1"
 
+function setAuth(token, tokenExpired, refresh) {
+    const expires = new Date(tokenExpired)
+    localStorage.setItem('token', token);
+    localStorage.setItem('tokenExpired', tokenExpired);
+    setCookie('refresh', refresh, {
+        path: "/",
+        expires,
+        // httpOnly: true,
+    });
+}
+
 class AuthService {
     login(id, password) {
         return fetch(API_URL + '/login', {
@@ -24,15 +35,8 @@ class AuthService {
                 if(result.errorCode){
                     throw new Error(result.detail)
                 }
-                const expires = new Date(result.tokenExpired)
                 console.log(result)
-                localStorage.setItem('token', result.token);
-                localStorage.setItem('tokenExpired', result.tokenExpired);
-                setCookie('refresh', result.refresh, {
-                    path: "/",
-                    expires,
-                    // httpOnly: true,
-                });
+                setAuth(result.token, result.tokenExpired, result.refresh);
                 return result;
             }
             )
