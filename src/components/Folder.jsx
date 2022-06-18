@@ -229,7 +229,7 @@ const Container = styled.div`
 const resizer = styled.div`
   width: 20px;
   height: 20px;
-  background: burlywood;
+  background: rgba(0,0,0,0);
   position: absolute;
   z-index: 999;
 `
@@ -255,10 +255,10 @@ const BottomRight = styled(resizer)`
 `
 
 const Line = styled.div`
-  background-color: palevioletred;
+  background-color: rgba(0,0,0,0);
   position: absolute;
   :active {
-    background-color: blue;
+    background-color: rgba(0,0,0,0);
   };
 `
 const TopLine = styled(Line)`
