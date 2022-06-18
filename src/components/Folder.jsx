@@ -56,40 +56,74 @@ export default function Folder(){
     }
 
     const dragEnd = (direction, e) => {
+        let MIN_WIDTH = 1000
+        let MIN_HEIGHT = 500
+        const resizeTop = () => {
+            if(height + (mouseY - e.clientY) < MIN_HEIGHT){
+                setDivY(divY - (MIN_HEIGHT - height));
+                setHeight(MIN_HEIGHT);
+            }
+            else{
+                setHeight(height + (mouseY - e.clientY))
+                setDivY(divY - (mouseY - e.clientY));
+            }
+        }
+        const resizeBottom = () => {
+            if(height - (mouseY - e.clientY) < MIN_HEIGHT){
+                setHeight(MIN_HEIGHT)
+            }
+            else {
+                setHeight(height - (mouseY - e.clientY));
+            }
+        }
+        const resizeLeft = () => {
+            if(width + (mouseX - e.clientX) < MIN_WIDTH){
+                setDivX(divX - (MIN_WIDTH - width));
+                setWidth(MIN_WIDTH);
+            }
+            else{
+                setWidth(width + (mouseX - e.clientX));
+                setDivX(divX - (mouseX - e.clientX))
+            }
+        }
+        const resizeRight = () => {
+            if(width - (mouseX - e.clientX) < MIN_WIDTH){
+                setWidth(MIN_WIDTH)
+            }
+            else {
+                setWidth(width - (mouseX - e.clientX));
+            }
+        }
         switch (direction) {
             case "n":
-                setHeight(height + (mouseY - e.clientY))
-                setDivY(divY - (mouseY - e.clientY));
+                resizeTop();
                 break;
             case "s":
-                setHeight(height - (mouseY - e.clientY));
+                resizeBottom();
                 break;
             case "w":
-                setWidth(width + (mouseX - e.clientX));
-                setDivX(divX - (mouseX - e.clientX))
+                resizeLeft();
                 break;
             case "e":
-                setWidth(width - (mouseX - e.clientX));
+                resizeRight();
                 break;
             case "nw":
-                setHeight(height + (mouseY - e.clientY))
-                setDivY(divY - (mouseY - e.clientY));
-                setWidth(width + (mouseX - e.clientX));
-                setDivX(divX - (mouseX - e.clientX))
+                resizeTop();
+                resizeLeft();
                 break;
             case "ne":
-                setHeight(height + (mouseY - e.clientY))
-                setDivY(divY - (mouseY - e.clientY));
-                setWidth(width - (mouseX - e.clientX));
+                resizeTop();
+                resizeRight();
                 break;
             case "sw":
-                setHeight(height - (mouseY - e.clientY));
-                setWidth(width + (mouseX - e.clientX));
-                setDivX(divX - (mouseX - e.clientX))
+                resizeBottom();
+                resizeLeft();
+                break;
+            case "se":
+                resizeBottom();
+                resizeRight();
                 break;
             default:
-                setHeight(height - (mouseY - e.clientY));
-                setWidth(width - (mouseX - e.clientX));
         }
         setIsMove(true)
     }
