@@ -1,4 +1,4 @@
-import {getCookie, setCookie, removeCookie} from "./cookie";
+import {getCookie, setCookie, delCookie} from "./cookie";
 import RequestService from "./request";
 
 const API_URL = "http://15.165.86.75:8080/api/v1"
@@ -33,7 +33,7 @@ class AuthService {
     logout() {
         localStorage.removeItem("token")
         localStorage.removeItem("tokenExpired")
-        removeCookie("refresh")
+        delCookie("refresh")
     }
     reissue() {
         return fetch(API_URL + '/reissue', {

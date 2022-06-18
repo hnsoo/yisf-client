@@ -15,22 +15,22 @@ export default function Table({ columns, data }) {
 
     return (
         <TableSheet {...getTableProps()}>
-            <TableHead>
+            <thead>
             {headerGroups.map(headerGroup => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map(column => (
-                        <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                        <Th {...column.getHeaderProps()}>{column.render("Header")}</Th>
                     ))}
                 </tr>
             ))}
-            </TableHead>
+            </thead>
             <tbody {...getTableBodyProps()}>
             {rows.map((row, i) => {
                 prepareRow(row);
                 return (
                     <tr {...row.getRowProps()}>
                         {row.cells.map(cell => {
-                            return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                            return <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>;
                         })}
                     </tr>
                 );
@@ -42,7 +42,18 @@ export default function Table({ columns, data }) {
 
 const TableSheet = styled.table`
   text-align: center;
+  border-collapse: collapse;
+  line-height: 1.5;
 `
-const TableHead = styled.thead`
-  
+const Th = styled.th`
+  padding: 20px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+  border-bottom: 3px solid #036;
+`
+const Td = styled.td`
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
 `
