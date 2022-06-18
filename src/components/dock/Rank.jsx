@@ -1,10 +1,48 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import styled from "styled-components";
+import RankTable from "./RankTable"
+import RankService from "../../service/rank";
 
 export default function Rank(){
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        RankService.getRank("5")
+            .then(
+                (data) => setData(data)
+            )
+    }, [])
+
+    const columnData = useMemo(
+        () => [
+            {
+                accessor: 'rank',
+                Header: 'Rank',
+            },
+            {
+                accessor: 'nickname',
+                Header: 'Nickname',
+            },
+            {
+                accessor: 'score',
+                Header: 'Score',
+            },
+            {
+                accessor: 'solvedCount',
+                Header: 'Solved count',
+            },
+            {
+                accessor: 'lastSolvedTime',
+                Header: 'Last solved time',
+            },
+        ]
+    , []);
+
+
     return (
         <Container>
             <b>실시간 유저 랭킹</b>
+            <RankTable columns={columnData} data={data}/>
         </Container>
     );
 }
