@@ -379,6 +379,7 @@ const MenuTitle = styled.div`
 
 // Content
 const Content = styled.div`
+  overflow: auto;
   //display: flex;
   background: white;
   border-right: 2px solid #A9A9A9;

@@ -25,13 +25,16 @@ export default function ProblemIcon({field, title}) {
     return (
         <Container>
             {fieldIcon(field)}
-            <span>{title}</span>
+            <Title>{title}</Title>
         </Container>
     )
 }
 const Container = styled.div`
   display: flex;
-  text-align: center;
   flex-direction: column;
   padding: 1rem;
+`
+const Title = styled.div`
+  text-align: center;
+  width: 100px;
 `

@@ -26,6 +26,7 @@ export default function Problem({field}){
 }
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
   text-align: left;
   padding: 1rem;
 `
