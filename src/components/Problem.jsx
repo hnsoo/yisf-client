@@ -5,13 +5,12 @@ import ProblemIcon from "./ProblemIcon";
 
 export default function Problem({field}){
     const [problems, setProblems] = useState([]);
-
     useEffect(() => {
         ProblemService.problemList(field)
             .then(
                 (data) => setProblems(data)
             )
-    }, [])
+    }, [field])
 
     return (
         <Container>
