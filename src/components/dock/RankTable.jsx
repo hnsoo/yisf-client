@@ -14,8 +14,8 @@ export default function Table({ columns, data }) {
     });
 
     return (
-        <TableContainer {...getTableProps()}>
-            <thead>
+        <TableSheet {...getTableProps()}>
+            <TableHead>
             {headerGroups.map(headerGroup => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map(column => (
@@ -23,7 +23,7 @@ export default function Table({ columns, data }) {
                     ))}
                 </tr>
             ))}
-            </thead>
+            </TableHead>
             <tbody {...getTableBodyProps()}>
             {rows.map((row, i) => {
                 prepareRow(row);
@@ -36,10 +36,13 @@ export default function Table({ columns, data }) {
                 );
             })}
             </tbody>
-        </TableContainer>
+        </TableSheet>
     );
 }
 
-const TableContainer = styled.table`
+const TableSheet = styled.table`
   text-align: center;
+`
+const TableHead = styled.thead`
+  
 `
