@@ -56,8 +56,8 @@ export default function Folder(){
     }
 
     const dragEnd = (direction, e) => {
-        let MIN_WIDTH = 1000
-        let MIN_HEIGHT = 500
+        let MIN_WIDTH = 650
+        let MIN_HEIGHT = 450
         const resizeTop = () => {
             if(height + (mouseY - e.clientY) < MIN_HEIGHT){
                 setDivY(divY - (MIN_HEIGHT - height));
