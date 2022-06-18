@@ -2,6 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import styled from "styled-components";
 import RankTable from "./RankTable"
 import RankService from "../../service/rank";
+import RankChart from "./RankChart";
 
 export default function Rank(){
     const [data, setData] = useState([]);
@@ -42,6 +43,8 @@ export default function Rank(){
     return (
         <Container>
             <b>실시간 유저 랭킹</b>
+            {/*<RankChart data={data}/>*/}
+            <RankChart />
             <RankTable columns={columnData} data={data}/>
         </Container>
     );
