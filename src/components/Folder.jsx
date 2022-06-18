@@ -100,7 +100,7 @@ export default function Folder(){
 
     return (
         <>
-            <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:100, y:100}}>
+            <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:350, y:100}}>
                 <Container ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
                     <TopLeft
