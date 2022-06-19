@@ -1,15 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import Draggable from "react-draggable";
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
-import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
-import {RiUser3Fill} from 'react-icons/ri';
-import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
-import {SiDiscord} from 'react-icons/si';
-import {useDispatch, useSelector} from "react-redux";
-import {closeFolder, openMypage, openNotice, openRank, openSponsor} from "../redux/ations/folder";
+import {useDispatch} from "react-redux";
+import {closeFolder} from "../redux/ations/folder";
 
-export default function Terminal({title, desc, score, author, sovledCount}){
+export default function Terminal(){
     const [width, setWidth] = useState(1000)
     const [height, setHeight] = useState(500)
     const [mouseX, setMouseX] = useState(0)
@@ -167,7 +163,6 @@ export default function Terminal({title, desc, score, author, sovledCount}){
                         <Title>Mike test</Title>
                     </Header>
                     <Content>
-                        im terminal
                     </Content>
                 </Container>
             </Draggable>

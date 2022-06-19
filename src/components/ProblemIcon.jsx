@@ -4,9 +4,12 @@ import forensicIcon from "../assets/img/binary.png";
 import webIcon from "../assets/img/global.png";
 import miscIcon from "../assets/img/puzzle.png";
 import styled from "styled-components";
-import Terminal from "./Terminal";
+import {useDispatch} from "react-redux";
+import {openTerminal} from "../redux/ations/terminal";
 
 export default function ProblemIcon({data}) {
+    const dispatch = useDispatch();
+
     const fieldIcon = (field) => {
         switch (field) {
             case "Pwnable":
@@ -22,11 +25,10 @@ export default function ProblemIcon({data}) {
             default:
         }
     }
-    const clickProblem = () => <Terminal />
 
     return (
         <Container
-        onClick={clickProblem}
+        onClick={() => dispatch(openTerminal())}
         >
             {fieldIcon(data.type)}
             <Title>{data.title}</Title>
