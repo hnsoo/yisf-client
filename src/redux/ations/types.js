@@ -13,3 +13,5 @@ export const OPEN_REVERSING = "OPEN_REVERSING";
 export const OPEN_FORENSIC = "OPEN_FORENSIC";
 export const OPEN_WEB = "OPEN_WEB";
 export const OPEN_MISC = "OPEN_MISC";
+
+export const OPEN_TERMINAL = "OPEN_TERMINAL";
