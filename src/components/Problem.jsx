@@ -17,9 +17,7 @@ export default function Problem({field}){
             {problems.map(problem =>
                 <ProblemIcon
                     key={problem.id}
-                    id={problem.id}
-                    field={problem.type}
-                    title={problem.title}
+                    data={problem}
                 />
             )}
         </Container>

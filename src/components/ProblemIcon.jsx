@@ -4,8 +4,9 @@ import forensicIcon from "../assets/img/binary.png";
 import webIcon from "../assets/img/global.png";
 import miscIcon from "../assets/img/puzzle.png";
 import styled from "styled-components";
+import Terminal from "./Terminal";
 
-export default function ProblemIcon({id, field, title}) {
+export default function ProblemIcon({data}) {
     const fieldIcon = (field) => {
         switch (field) {
             case "Pwnable":
@@ -21,16 +22,14 @@ export default function ProblemIcon({id, field, title}) {
             default:
         }
     }
-    const clickProblem = () => {
-        console.log(id)
-    }
+    const clickProblem = () => <Terminal />
 
     return (
         <Container
         onClick={clickProblem}
         >
-            {fieldIcon(field)}
-            <Title>{title}</Title>
+            {fieldIcon(data.type)}
+            <Title>{data.title}</Title>
         </Container>
     )
 }
