@@ -1,6 +1,6 @@
 import {OPEN_TERMINAL} from "../ations/types";
 
-const initialState = { isTerminalOpened: false }
+const initialState = { isTerminalOpened: true }
 
 export default function (state = initialState, action) {
     const { type } = action;
@@ -11,6 +11,7 @@ export default function (state = initialState, action) {
                 isTerminalOpened: true,
             };
         default:
+            return state;
     }
 
 }

@@ -7,10 +7,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
 import {openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/ations/folder";
+import Terminal from "../components/Terminal";
 
 export default function Main() {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const isOpened = useSelector(state => state.folder.isOpened);
+    const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened);
     const dispatch = useDispatch();
 
     if (!isLoggedIn) {
@@ -28,6 +30,7 @@ export default function Main() {
                 <FolderContainer onClick={()=>dispatch(openPwnable())}><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
                 <FolderContainer onClick={()=>dispatch(openMisc())}><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
                 {isOpened && <Folder />}
+                {isTerminalOpened && <Terminal />}
             </Content>
         </Background>
     );
