@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {openTerminal} from "../redux/ations/terminal";
 
-export default function ProblemIcon({id, type, title}) {
+export default function ProblemIcon({info}) {
     const dispatch = useDispatch();
 
     const fieldIcon = (field) => {
@@ -26,12 +26,17 @@ export default function ProblemIcon({id, type, title}) {
         }
     }
 
+    const clickProblem = () => {
+        console.log(info)
+        dispatch(openTerminal(info))
+    }
+
     return (
         <Container
-        onClick={() => dispatch(openTerminal())}
+        onClick={clickProblem}
         >
-            {fieldIcon(type)}
-            <Title>{title}</Title>
+            {fieldIcon(info.type)}
+            <Title>{info.title}</Title>
         </Container>
     )
 }

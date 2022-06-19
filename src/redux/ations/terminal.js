@@ -6,9 +6,9 @@ import {
 } from "./types";
 import ProblemService from "../../service/problem";
 
-
-export const openTerminal = () => ({
+export const openTerminal = (info) => ({
     type: OPEN_TERMINAL,
+    payload: { problem: info },
 });
 
 export const closeTerminal = () => ({

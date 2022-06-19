@@ -9,6 +9,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isTerminalOpened: true,
+                problem: payload.problem,
             };
         case CLOSE_TERMINAL:
             return {
@@ -28,6 +29,4 @@ export default function (state = initialState, action) {
         default:
             return state;
     }
-
-
 }
