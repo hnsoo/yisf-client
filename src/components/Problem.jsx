@@ -15,6 +15,7 @@ export default function Problem({field}){
             {problems && problems.map(problem =>
                 <ProblemIcon
                     key={problem.id}
+                    id={problem.id}
                     type={problem.type}
                     title={problem.title}
                 />

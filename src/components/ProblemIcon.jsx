@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {openTerminal} from "../redux/ations/terminal";
 
-export default function ProblemIcon({type, title}) {
+export default function ProblemIcon({id, type, title}) {
     const dispatch = useDispatch();
 
     const fieldIcon = (field) => {
