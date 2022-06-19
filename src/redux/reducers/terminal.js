@@ -1,4 +1,4 @@
-import {OPEN_TERMINAL} from "../ations/types";
+import {CLOSE_TERMINAL, OPEN_TERMINAL} from "../ations/types";
 
 const initialState = { isTerminalOpened: false }
 
@@ -10,8 +10,14 @@ export default function (state = initialState, action) {
                 ...state,
                 isTerminalOpened: true,
             };
+        case CLOSE_TERMINAL:
+            return {
+                ...state,
+                isTerminalOpened: false,
+            };
         default:
             return state;
     }
+
 
 }

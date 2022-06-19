@@ -15,3 +15,4 @@ export const OPEN_WEB = "OPEN_WEB";
 export const OPEN_MISC = "OPEN_MISC";
 
 export const OPEN_TERMINAL = "OPEN_TERMINAL";
+export const CLOSE_TERMINAL = "CLOSE_TERMINAL";

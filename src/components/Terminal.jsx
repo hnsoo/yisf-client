@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Draggable from "react-draggable";
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
 import {useDispatch} from "react-redux";
-import {closeFolder} from "../redux/ations/folder";
+import {closeTerminal} from "../redux/ations/terminal";
 
 export default function Terminal(){
     const [width, setWidth] = useState(1000)
@@ -17,7 +17,7 @@ export default function Terminal(){
     const dispatch = useDispatch();
 
     const clickClose = () => {
-        dispatch(closeFolder())
+        dispatch(closeTerminal())
     }
 
     const dragStart = (e) => {
