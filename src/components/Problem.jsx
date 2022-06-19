@@ -1,20 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import ProblemService from "../service/problem";
 import ProblemIcon from "./ProblemIcon";
+import {useDispatch, useSelector} from "react-redux";
+import {getProblems} from "../redux/ations/terminal";
 
 export default function Problem({field}){
-    const [problems, setProblems] = useState([]);
+    const problems = useSelector(state => state.terminal.problems)
+    const dispatch = useDispatch();
     useEffect(() => {
-        ProblemService.problemList(field)
-            .then(
-                (data) => setProblems(data)
-            )
-    }, [field])
-
+        dispatch(getProblems(field))
+    }, [field, dispatch])
     return (
         <Container>
-            {problems.map(problem =>
+            {problems && problems.map(problem =>
                 <ProblemIcon
                     key={problem.id}
                     type={problem.type}
