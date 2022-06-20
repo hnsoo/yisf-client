@@ -193,7 +193,7 @@ export default function Terminal(){
                         {item("Solved", info.solverCount)}
                         <Input>
                             <Mark>&gt;&gt;</Mark>
-                            <Flag></Flag>
+                            <Flag />
                         </Input>
                     </Content>
                 </Container>
@@ -333,7 +333,10 @@ const Mark = styled.div`
   padding: 1px;
   color: #e7faff;
 `
-const Flag = styled.input`
+const Flag = styled.input.attrs(props => ({
+    spellCheck: "false",
+    autoComplete: "off",
+}))`
   grid-area: flag;
   background: rgba(0,0,0,0);
   color: #e7faff;
