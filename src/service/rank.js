@@ -11,15 +11,33 @@ class RankService {
             .then(
                 (result) => {
                     let datas = RequestService.retResult(result)
-                    return datas.nowRank.map((data, index) =>
-                        ({
-                            "rank": index+1,
-                            "nickname": data.nickname,
-                            "score": data.score,
-                            "solvedCount": data.probIdList.length,
-                            "lastSolvedTime": this.parseTime(data.lastAuthTime),
-                        })
+                    let resultDatas = []
+                    resultDatas.push(
+                        {
+                            timestamp: new Date(),
+                            rank: datas.nowRank.map((data, index) =>
+                                ({
+                                    "rank": index+1,
+                                    "nickname": data.nickname,
+                                    "score": data.score,
+                                    "solvedCount": data.probIdList.length,
+                                    "lastSolvedTime": this.parseTime(data.lastAuthTime),
+                                })),
+                        }
                     )
+                    datas.rankListWithTimestamp.map((data, index) =>
+                        (resultDatas.push({
+                            timestamp: data.timestamp,
+                            rank: data.rank.map((data, index) =>
+                                ({
+                                    "rank": index+1,
+                                    "nickname": data.nickname,
+                                    "score": data.score,
+                                    "solvedCount": data.probIdList.length,
+                                    "lastSolvedTime": this.parseTime(data.lastAuthTime),
+                                }))
+                        })))
+                    return resultDatas;
                 }
             )
             .catch((err) => RequestService.handleError(err))
