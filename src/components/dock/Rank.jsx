@@ -10,7 +10,7 @@ export default function Rank(){
     useEffect(() => {
         RankService.getRank("5")
             .then(
-                (data) => setData(data)
+                (data) => setData(data[0].rank)
             )
     }, [])
 
@@ -38,7 +38,6 @@ export default function Rank(){
             },
         ]
     , []);
-
 
     return (
         <Container>
