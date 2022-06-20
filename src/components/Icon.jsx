@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {openNotice, openMypage, openRank, openSponsor} from "../redux/ations/folder";
+import {selectFolder} from "../redux/ations/zIndex";
 
 export default function Icon({role, color, img}){
     const dispatch = useDispatch()
@@ -24,9 +25,14 @@ export default function Icon({role, color, img}){
         }
     }
 
+    const clickIcon = () => {
+        setView(role)
+        dispatch(selectFolder())
+    }
+
     return (
         <Container
-            onClick={()=>{setView(role)}}
+            onClick={clickIcon}
             BackgroundColor={color}
         >
             {img}
