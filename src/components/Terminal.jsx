@@ -4,6 +4,7 @@ import Draggable from "react-draggable";
 import {FiStopCircle, FiXCircle} from 'react-icons/fi';
 import {useDispatch, useSelector} from "react-redux";
 import {closeTerminal} from "../redux/ations/terminal";
+import {selectTerminal} from "../redux/ations/zIndex";
 
 export default function Terminal(){
     const [width, setWidth] = useState(700)
@@ -15,6 +16,7 @@ export default function Terminal(){
     const [divY, setDivY] = useState(0)
 
     const info = useSelector(state => state.terminal.problem);
+    const zIndex = useSelector(state => state.zIndex.terminalZIndex)
     const dispatch = useDispatch();
 
     const clickClose = () => {
@@ -118,10 +120,14 @@ export default function Terminal(){
         </p>)
     }
 
+    const clickTerminal = () => {
+        dispatch(selectTerminal())
+    }
+
     return (
-        <>
+        <div onMouseDown={clickTerminal}>
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:550, y:150}}>
-                <Container ContainerHeight={height + "px"}
+                <Container zIndex={zIndex} ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
                     <TopLeft
                         draggable="true"
@@ -186,12 +192,13 @@ export default function Terminal(){
                     </Content>
                 </Container>
             </Draggable>
-        </>
+        </div>
     );
 }
 
 // Container
 const Container = styled.div`
+  z-index: ${(props) => props.zIndex};;
   display: grid;
   height: ${(props) => props.ContainerHeight};
   width: ${(props) => props.ContainerWidth};

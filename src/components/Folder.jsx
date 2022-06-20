@@ -13,6 +13,7 @@ import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
 import Problem from "./Problem";
+import {selectFolder} from "../redux/ations/zIndex";
 
 export default function Folder(){
     const [width, setWidth] = useState(1000)
@@ -24,6 +25,7 @@ export default function Folder(){
     const [divY, setDivY] = useState(0)
 
     const view = useSelector(state => state.folder.view)
+    const zIndex = useSelector(state => state.zIndex.folderZIndex)
     const dispatch = useDispatch();
 
     const clickClose = () => {
@@ -132,10 +134,14 @@ export default function Folder(){
         return {x: divX, y:divY}
     }
 
+    const clickFolder = () => {
+        dispatch(selectFolder())
+    }
+
     return (
-        <>
+        <div onMouseDown={clickFolder}>
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:350, y:100}}>
-                <Container ContainerHeight={height + "px"}
+                <Container zIndex={zIndex} ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
                     <TopLeft
                         draggable="true"
@@ -206,12 +212,13 @@ export default function Folder(){
                     </Content>
                 </Container>
             </Draggable>
-        </>
+        </div>
     );
 }
 
 // Container
 const Container = styled.div`
+  z-index: ${(props) => props.zIndex};;
   display: grid;
   height: ${(props) => props.ContainerHeight};
   width: ${(props) => props.ContainerWidth};
