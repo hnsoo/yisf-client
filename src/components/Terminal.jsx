@@ -191,6 +191,10 @@ export default function Terminal(){
                         {item("Description", info.description)}
                         {item("Creator", info.writer)}
                         {item("Solved", info.solverCount)}
+                        <Input>
+                            <Mark>&gt;&gt;</Mark>
+                            <Flag></Flag>
+                        </Input>
                     </Content>
                 </Container>
             </Draggable>
@@ -309,9 +313,33 @@ const Content = styled.div`
   overflow: auto;
   background: #002B36;
   grid-area: content;
-  padding: 0.25rem;
+  padding: 0.4rem;
 `
 const Tag = styled.span`
   color: #4adaff
+`
+const Input = styled.div`
+  display: grid;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5px;
+  width: 97%;
+  grid-template-columns: 25px 1fr;
+  grid-template-rows: 25px;
+  grid-template-areas: "mark flag";
+`
+const Mark = styled.div`
+  grid-area: mark;
+  padding: 1px;
+  color: #e7faff;
+`
+const Flag = styled.input`
+  grid-area: flag;
+  background: rgba(0,0,0,0);
+  color: #e7faff;
+  border: none;
+  :focus {
+    outline: none;
+  };
 `
 
