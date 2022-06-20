@@ -6,8 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {closeTerminal} from "../redux/ations/terminal";
 
 export default function Terminal(){
-    const [width, setWidth] = useState(1000)
-    const [height, setHeight] = useState(500)
+    const [width, setWidth] = useState(700)
+    const [height, setHeight] = useState(400)
     const [mouseX, setMouseX] = useState(0)
     const [mouseY, setMouseY] = useState(0)
     const [isMove, setIsMove] = useState(false)
@@ -27,8 +27,8 @@ export default function Terminal(){
     }
 
     const dragEnd = (direction, e) => {
-        let MIN_WIDTH = 650
-        let MIN_HEIGHT = 450
+        let MIN_WIDTH = 450
+        let MIN_HEIGHT = 250
         const resizeTop = () => {
             if(height + (mouseY - e.clientY) < MIN_HEIGHT){
                 setDivY(divY - (MIN_HEIGHT - height));
@@ -120,7 +120,7 @@ export default function Terminal(){
 
     return (
         <>
-            <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:350, y:100}}>
+            <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:550, y:150}}>
                 <Container ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
                     <TopLeft
