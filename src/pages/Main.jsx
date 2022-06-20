@@ -8,15 +8,41 @@ import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
 import {openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/ations/folder";
 import Terminal from "../components/Terminal";
+import {selectFolder} from "../redux/ations/zIndex";
 
 export default function Main() {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const isOpened = useSelector(state => state.folder.isOpened);
     const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened);
+    const folderZInder = useSelector(state => state.zIndex.folderZIndex)
     const dispatch = useDispatch();
 
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
+    }
+
+    const clickFolderIcon = (field) => {
+        switch (field) {
+            case "reversing":
+                dispatch(openReversing())
+                break;
+            case "forensic":
+                dispatch(openForensic())
+                break;
+            case "web":
+                dispatch(openWeb())
+                break;
+            case "pwnable":
+                dispatch(openPwnable())
+                break;
+            case "misc":
+                dispatch(openMisc())
+                break;
+            default:
+        }
+        if(folderZInder < 2){
+            dispatch(selectFolder())
+        }
     }
 
     return (
@@ -24,11 +50,11 @@ export default function Main() {
             <Header><TopBar/></Header>
             <SideBar><Dock/></SideBar>
             <Content>
-                <FolderContainer onClick={()=>dispatch(openReversing())}><img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing</FolderContainer>
-                <FolderContainer onClick={()=>dispatch(openForensic())}><img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic</FolderContainer>
-                <FolderContainer onClick={()=>dispatch(openWeb())}><img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web</FolderContainer>
-                <FolderContainer onClick={()=>dispatch(openPwnable())}><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
-                <FolderContainer onClick={()=>dispatch(openMisc())}><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
+                <FolderContainer onClick={()=>clickFolderIcon("reversing")}><img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing</FolderContainer>
+                <FolderContainer onClick={()=>clickFolderIcon("forensic")}><img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic</FolderContainer>
+                <FolderContainer onClick={()=>clickFolderIcon("web")}><img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web</FolderContainer>
+                <FolderContainer onClick={()=>clickFolderIcon("pwnable")}><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
+                <FolderContainer onClick={()=>clickFolderIcon("misc")}><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
                 {isOpened && <Folder />}
                 {isTerminalOpened && <Terminal />}
             </Content>
