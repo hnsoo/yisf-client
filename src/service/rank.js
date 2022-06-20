@@ -11,7 +11,7 @@ class RankService {
             .then(
                 (result) => {
                     let datas = RequestService.retResult(result)
-                    return datas.map((data, index) =>
+                    return datas.nowRank.map((data, index) =>
                         ({
                             "rank": index+1,
                             "nickname": data.nickname,
