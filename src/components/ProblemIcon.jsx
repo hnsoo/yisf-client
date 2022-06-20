@@ -4,13 +4,13 @@ import forensicIcon from "../assets/img/binary.png";
 import webIcon from "../assets/img/global.png";
 import miscIcon from "../assets/img/puzzle.png";
 import styled from "styled-components";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {openTerminal} from "../redux/ations/terminal";
 import {selectTerminal} from "../redux/ations/zIndex";
 
 export default function ProblemIcon({info}) {
     const dispatch = useDispatch();
-
+    const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const fieldIcon = (field) => {
         switch (field) {
             case "Pwnable":
@@ -28,9 +28,10 @@ export default function ProblemIcon({info}) {
     }
 
     const clickProblem = () => {
-        console.log(info)
         dispatch(openTerminal(info))
-        dispatch(selectTerminal())
+        if(terminalZIndex < 2){
+            dispatch(selectTerminal())
+        }
     }
 
     return (

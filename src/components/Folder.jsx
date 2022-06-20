@@ -25,7 +25,7 @@ export default function Folder(){
     const [divY, setDivY] = useState(0)
 
     const view = useSelector(state => state.folder.view)
-    const zIndex = useSelector(state => state.zIndex.folderZIndex)
+    const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
     const dispatch = useDispatch();
 
     const clickClose = () => {
@@ -135,13 +135,15 @@ export default function Folder(){
     }
 
     const clickFolder = () => {
-        dispatch(selectFolder())
+        if(folderZIndex < 2){
+            dispatch(selectFolder())
+        }
     }
 
     return (
         <div onMouseDown={clickFolder}>
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:350, y:100}}>
-                <Container zIndex={zIndex} ContainerHeight={height + "px"}
+                <Container zIndex={folderZIndex} ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
                     <TopLeft
                         draggable="true"

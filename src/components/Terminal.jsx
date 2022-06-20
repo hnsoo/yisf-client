@@ -16,7 +16,7 @@ export default function Terminal(){
     const [divY, setDivY] = useState(0)
 
     const info = useSelector(state => state.terminal.problem);
-    const zIndex = useSelector(state => state.zIndex.terminalZIndex)
+    const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const dispatch = useDispatch();
 
     const clickClose = () => {
@@ -121,13 +121,15 @@ export default function Terminal(){
     }
 
     const clickTerminal = () => {
-        dispatch(selectTerminal())
+        if(terminalZIndex < 2){
+            dispatch(selectTerminal())
+        }
     }
 
     return (
         <div onMouseDown={clickTerminal}>
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:550, y:150}}>
-                <Container zIndex={zIndex} ContainerHeight={height + "px"}
+                <Container zIndex={terminalZIndex} ContainerHeight={height + "px"}
                            ContainerWidth={width + "px"} x={divX + "px"} y={divY + "px"}>
                     <TopLeft
                         draggable="true"
@@ -198,7 +200,7 @@ export default function Terminal(){
 
 // Container
 const Container = styled.div`
-  z-index: ${(props) => props.zIndex};;
+  z-index: ${(props) => props.zIndex};
   display: grid;
   height: ${(props) => props.ContainerHeight};
   width: ${(props) => props.ContainerWidth};
