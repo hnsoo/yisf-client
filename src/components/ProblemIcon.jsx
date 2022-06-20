@@ -6,6 +6,7 @@ import miscIcon from "../assets/img/puzzle.png";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {openTerminal} from "../redux/ations/terminal";
+import {selectTerminal} from "../redux/ations/zIndex";
 
 export default function ProblemIcon({info}) {
     const dispatch = useDispatch();
@@ -29,6 +30,7 @@ export default function ProblemIcon({info}) {
     const clickProblem = () => {
         console.log(info)
         dispatch(openTerminal(info))
+        dispatch(selectTerminal())
     }
 
     return (
