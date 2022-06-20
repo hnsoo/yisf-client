@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import Draggable from "react-draggable";
-import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
-import {useDispatch} from "react-redux";
+import {FiStopCircle, FiXCircle} from 'react-icons/fi';
+import {useDispatch, useSelector} from "react-redux";
 import {closeTerminal} from "../redux/ations/terminal";
 
 export default function Terminal(){
@@ -14,6 +14,7 @@ export default function Terminal(){
     const [divX, setDivX] = useState(0)
     const [divY, setDivY] = useState(0)
 
+    const info = useSelector(state => state.terminal.problem);
     const dispatch = useDispatch();
 
     const clickClose = () => {
@@ -102,6 +103,21 @@ export default function Terminal(){
         return {x: divX, y:divY}
     }
 
+    const item = (type, content) => {
+        if(type === "Description"){
+            return (<p>
+                <Tag>&lt;{type}&gt;</Tag>
+                <br/>{content}<br/>
+                <Tag>&lt;/{type}&gt;</Tag>
+            </p>)
+        }
+        return (<p>
+            <Tag>&lt;{type}&gt;</Tag>
+            {content}
+            <Tag>&lt;/{type}&gt;</Tag>
+        </p>)
+    }
+
     return (
         <>
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:350, y:100}}>
@@ -160,9 +176,13 @@ export default function Terminal(){
                             />
                             <FiStopCircle size="30" color="#76756E"/>
                         </Ctrl>
-                        <Title>Mike test</Title>
+                        <Title>{info.title}</Title>
                     </Header>
                     <Content>
+                        {item("Title", info.title)}
+                        {item("Description", info.description)}
+                        {item("Creator", info.writer)}
+                        {item("Solved", info.solverCount)}
                     </Content>
                 </Container>
             </Draggable>
@@ -275,10 +295,14 @@ const Ctrl = styled.div`
 
 // Content
 const Content = styled.div`
-  color: white;
+  text-align: left;
+  color: #e7faff;
   overflow: auto;
   background: #002B36;
   grid-area: content;
   padding: 0.25rem;
+`
+const Tag = styled.span`
+  color: #4adaff
 `
 
