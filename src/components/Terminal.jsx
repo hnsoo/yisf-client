@@ -16,6 +16,7 @@ export default function Terminal(){
     const [divX, setDivX] = useState(0)
     const [divY, setDivY] = useState(0)
 
+    const [flagRes, setFlagRes] = useState("")
     const [flag, setFlag] = useState("")
     const onChangeFlag = (e) => {
         setFlag(e.target.value);
@@ -135,8 +136,13 @@ export default function Terminal(){
     const handleOnKeyPress = (e) => {
         if(e.key === "Enter"){
             ProblemService.sendFlag(info.id, flag)
-                .then(()=>console.log('success!'))
-                .catch(()=>console.log('fail!'))
+                .then(()=> {
+                    console.log('success!')
+                    setFlagRes("Flag 인증에 성공했습니다.")
+                })
+                .catch((err)=> {
+                    setFlagRes("Flag 인증에 실패했습니다.")
+                })
         }
     }
 
@@ -205,6 +211,7 @@ export default function Terminal(){
                         {item("Description", info.description)}
                         {item("Creator", info.writer)}
                         {item("Solved", info.solverCount)}
+                        {flagRes}
                         <Input>
                             <Mark>&gt;&gt;</Mark>
                             <Flag

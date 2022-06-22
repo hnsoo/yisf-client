@@ -33,9 +33,13 @@ class ProblemService {
                         flag: flag,
                     })
                 })
-                    .then((res) => RequestService.checkError(res))
-                    .then((result) => RequestService.retResult(result))
-                    .catch((err) => RequestService.handleError(err))
+                    .then((res) => {
+                        if (!res.ok) {
+                            throw new Error(res.errorCode)
+                        }
+                        return Promise.resolve()
+                    })
+                    .catch((err) => Promise.reject(err))
             )
             .catch(() =>
                 Promise.reject()
