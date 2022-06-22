@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import Draggable from "react-draggable";
 import {FiStopCircle, FiXCircle} from 'react-icons/fi';
@@ -14,6 +14,11 @@ export default function Terminal(){
     const [isMove, setIsMove] = useState(false)
     const [divX, setDivX] = useState(0)
     const [divY, setDivY] = useState(0)
+
+    const [flag, setFlag] = useState("")
+    const onChangeFlag = (e) => {
+        setFlag(e.target.value);
+    };
 
     const info = useSelector(state => state.terminal.problem);
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
@@ -193,7 +198,11 @@ export default function Terminal(){
                         {item("Solved", info.solverCount)}
                         <Input>
                             <Mark>&gt;&gt;</Mark>
-                            <Flag />
+                            <Flag
+                                value={flag}
+                                type="text"
+                                onChange={onChangeFlag}
+                            />
                         </Input>
                     </Content>
                 </Container>
@@ -330,7 +339,6 @@ const Input = styled.div`
 `
 const Mark = styled.div`
   grid-area: mark;
-  padding: 1px;
   color: #e7faff;
 `
 const Flag = styled.input.attrs(props => ({
