@@ -5,6 +5,7 @@ import {FiStopCircle, FiXCircle} from 'react-icons/fi';
 import {useDispatch, useSelector} from "react-redux";
 import {closeTerminal} from "../redux/ations/terminal";
 import {selectTerminal} from "../redux/ations/zIndex";
+import ProblemService from "../service/problem"
 
 export default function Terminal(){
     const [width, setWidth] = useState(700)
@@ -131,6 +132,14 @@ export default function Terminal(){
         }
     }
 
+    const handleOnKeyPress = (e) => {
+        if(e.key === "Enter"){
+            ProblemService.sendFlag(info.id, flag)
+                .then(()=>console.log('success!'))
+                .catch(()=>console.log('fail!'))
+        }
+    }
+
     return (
         <div onMouseDown={clickTerminal}>
             <Draggable handle={Header} defaultPosition={ isMove ? move() : {x:550, y:150}}>
@@ -202,6 +211,7 @@ export default function Terminal(){
                                 value={flag}
                                 type="text"
                                 onChange={onChangeFlag}
+                                onKeyPress={handleOnKeyPress}
                             />
                         </Input>
                     </Content>

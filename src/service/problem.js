@@ -21,6 +21,26 @@ class ProblemService {
                 Promise.reject()
             );
     }
+    sendFlag(problemId, flag) {
+        return AuthService.checkSession()
+            .then(() =>
+                fetch(API_URL + "/" + problemId, {
+                    method: 'POST',
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                    body: new URLSearchParams({
+                        flag: flag,
+                    })
+                })
+                    .then((res) => RequestService.checkError(res))
+                    .then((result) => RequestService.retResult(result))
+                    .catch((err) => RequestService.handleError(err))
+            )
+            .catch(() =>
+                Promise.reject()
+            );
+    }
 }
 
 export default new ProblemService()
