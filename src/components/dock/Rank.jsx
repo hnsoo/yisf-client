@@ -42,7 +42,7 @@ export default function Rank(){
                 Header: 'Score',
             },
             {
-                accessor: 'solvedCount',
+                accessor: 'solved',
                 Header: 'Solved count',
             },
             {
