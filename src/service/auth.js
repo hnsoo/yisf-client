@@ -44,11 +44,16 @@ class AuthService {
             }
         })
             .then((res) => RequestService.checkError(res))
-            .then((result) => RequestService.retResult(result))
+            .then((result) => {
+                setAuth(result.token, result.tokenExpired, result.refresh);
+                RequestService.retResult(result)
+            })
             .catch((err) => RequestService.handleError(err))
     }
     checkSession() {
-        let expires = new Date(localStorage.getItem("tokenExpired"));
+        console.log("checkSession called")
+        //todo : 임시 방편으로 해둠 - seonghun
+        let expires = Date.parse(localStorage.getItem("tokenExpired").replace("KST", ""));
         let now = new Date();
 
         // 토큰 유효기간을 지났을 경우
