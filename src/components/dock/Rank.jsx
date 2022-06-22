@@ -5,32 +5,18 @@ import RankService from "../../service/rank";
 import RankChart from "./RankChart";
 
 export default function Rank(){
-    const [rankData, setRankData] = useState([]);
+    const [tableData, setTableData] = useState([]);
+    const [chartData, setChartData] = useState([]);
 
-    // state 불변성을 지키지 않는 코드
     useEffect(() => {
         RankService.getRank("5")
             .then(
-                (data) => setRankData(data)
+                (data) => {
+                    console.log(data)
+                    setTableData(data)
+                }
             )
     }, [])
-
-    // state 불변성을 지키는 코드
-    // useEffect(() => {
-    //     RankService.getRank("5")
-    //         .then(
-    //             (data) => {
-    //                 for(let item of data) {
-    //                     setRankData(prevState => [...prevState,
-    //                         {
-    //                             timestamp: item.timestamp,
-    //                             rank: item.rank,
-    //                         },
-    //                     ])
-    //                 }
-    //             }
-    //         )
-    // }, [])
 
     const columnData = useMemo(
         () => [
@@ -62,9 +48,7 @@ export default function Rank(){
             <b>실시간 유저 랭킹</b>
             {/*<RankChart data={data}/>*/}
             <RankChart />
-            {/*<RankTable columns={columnData} data={rankData[rankData.length - 16] ?*/}
-            {/*    rankData[rankData.length - 16].rank : []}/>*/}
-            <RankTable columns={columnData} data={rankData[0] ? rankData[0].rank : []}/>
+            <RankTable columns={columnData} data={tableData}/>
         </Container>
     );
 }

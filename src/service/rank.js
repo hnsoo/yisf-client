@@ -7,41 +7,27 @@ class RankService {
         return fetch(API_URL + "/" + count, {
             method: 'GET',
         })
-            .then((res) => RequestService.checkError(res))
-            .then(
-                (result) => {
-                    let datas = RequestService.retResult(result)
-                    let resultDatas = []
-                    resultDatas.push(
-                        {
-                            timestamp: new Date(),
-                            rank: datas.nowRank.map((data, index) =>
-                                ({
-                                    "rank": index+1,
-                                    "nickname": data.nickname,
-                                    "score": data.score,
-                                    "solvedCount": data.probIdList.length,
-                                    "lastSolvedTime": this.parseTime(data.lastAuthTime),
-                                })),
-                        }
-                    )
-                    datas.rankListWithTimestamp.map((data, index) =>
-                        (resultDatas.push({
-                            timestamp: data.timestamp,
-                            rank: data.rank.map((data, index) =>
-                                ({
-                                    "rank": index+1,
-                                    "nickname": data.nickname,
-                                    "score": data.score,
-                                    "solvedCount": data.probIdList.length,
-                                    "lastSolvedTime": this.parseTime(data.lastAuthTime),
-                                }))
-                        })))
-                    return resultDatas;
-                }
-            )
-            .catch((err) => RequestService.handleError(err))
+            .then(res => res.json())
+            .then((result) => {
+                return result.map((info, index) => (
+                    {
+                        rank: index + 1,
+                        nickname: info.nickname,
+                        score: info.score,
+                        solved: info.solved.length,
+                        lastSolvedTime: info.lastAuthTime,
+                    }
+                ))
+            })
     }
+
+    getRankHistory(count) {
+        return fetch(API_URL + "/history/" + count, {
+            method: 'GET',
+        })
+            .then((res) => res.json())
+    }
+
     parseTime(time){
         if(time){
             let month = time.slice(5, 7);
