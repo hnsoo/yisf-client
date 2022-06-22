@@ -7,6 +7,7 @@ import RankChart from "./RankChart";
 export default function Rank(){
     const [tableData, setTableData] = useState([]);
     const [chartData, setChartData] = useState([]);
+    const [topPlayer, setTopPlayer] = useState([]);
 
     useEffect(() => {
         RankService.getRank("5")
@@ -14,6 +15,14 @@ export default function Rank(){
                 (data) => {
                     console.log(data)
                     setTableData(data)
+                    setTopPlayer(data.map(item => item.nickname))
+                }
+            )
+        RankService.getRankHistory("5")
+            .then(
+                (data) => {
+                    console.log(data)
+                    setChartData(data)
                 }
             )
     }, [])
@@ -46,8 +55,7 @@ export default function Rank(){
     return (
         <Container>
             <b>실시간 유저 랭킹</b>
-            {/*<RankChart data={data}/>*/}
-            <RankChart />
+            <RankChart data={chartData} player={topPlayer}/>
             <RankTable columns={columnData} data={tableData}/>
         </Container>
     );

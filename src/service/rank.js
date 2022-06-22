@@ -1,5 +1,3 @@
-import RequestService from "./request";
-
 const API_URL = "http://15.165.86.75:8080/api/v1/rank"
 
 class RankService {
@@ -25,17 +23,27 @@ class RankService {
         return fetch(API_URL + "/history/" + count, {
             method: 'GET',
         })
-            .then((res) => res.json())
+            .then(res => res.json())
+            .then((result) => {
+                console.log(result)
+                return result.map((item) => {
+                    let obj = {time: this.parseTime(item.timestamp),}
+                    for(let i=0; i<Number(count); i++){
+                        obj[item.rank[i].nickname] = item.rank[i].score
+                    }
+                    return obj
+            })
+        })
     }
 
     parseTime(time){
         if(time){
-            let month = time.slice(5, 7);
-            let day = time.slice(8, 10);
+            // let month = time.slice(5, 7);
+            // let day = time.slice(8, 10);
             let hour = time.slice(11, 13)
             let minute = time.slice(14, 16)
             let second = time.slice(17, 19)
-            return `${month}월 ${day}일 ${hour}시 ${minute}분 ${second}초`
+            return `${hour}시 ${minute}분 ${second}초`
         }
         return "no solved"
     }
