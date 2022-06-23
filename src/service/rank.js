@@ -13,7 +13,7 @@ class RankService {
                         nickname: info.nickname,
                         score: info.score,
                         solved: info.solved.length,
-                        lastSolvedTime: info.lastAuthTime,
+                        lastSolvedTime: this.parseTime(info.lastAuthTime),
                     }
                 ))
             })
@@ -27,7 +27,7 @@ class RankService {
             .then((result) => {
                 console.log(result)
                 return result.map((item) => {
-                    let obj = {time: this.parseTime(item.timestamp),}
+                    let obj = {time: item.timestamp.slice(11, 13) + "시",}
                     for(let i=0; i<Number(count); i++){
                         obj[item.rank[i].nickname] = item.rank[i].score
                     }
@@ -38,12 +38,12 @@ class RankService {
 
     parseTime(time){
         if(time){
-            // let month = time.slice(5, 7);
-            // let day = time.slice(8, 10);
+            let month = time.slice(5, 7);
+            let day = time.slice(8, 10);
             let hour = time.slice(11, 13)
             let minute = time.slice(14, 16)
             let second = time.slice(17, 19)
-            return `${hour}시 ${minute}분 ${second}초`
+            return `${month}/${day} ${hour}시 ${minute}분`
         }
         return "no solved"
     }
