@@ -92,7 +92,6 @@ export default function Folder() {
                 {SelectView()}
             </Content>
             </Rnd>
-        </div>
 
     );
 };
