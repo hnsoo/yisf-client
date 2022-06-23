@@ -7,7 +7,6 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {openTerminal} from "../redux/ations/terminal";
 import {selectTerminal} from "../redux/ations/zIndex";
-import {useState} from "react";
 
 export default function ProblemIcon({info}) {
 
@@ -63,6 +62,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  :hover {
+    background: #e5f3ff;
+  };
 `
 const Title = styled.div`
   text-align: center;
