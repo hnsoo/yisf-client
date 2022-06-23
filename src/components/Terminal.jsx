@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {closeTerminal} from "../redux/ations/terminal";
 import ProblemService from "../service/problem"
 import {Rnd} from 'react-rnd';
+import {selectTerminal} from "../redux/ations/zIndex";
 
 export default function Terminal(){
 
@@ -14,6 +15,7 @@ export default function Terminal(){
         setFlag(e.target.value);
     };
 
+    const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const info = useSelector(state => state.terminal.problem);
     const dispatch = useDispatch();
 
@@ -49,10 +51,18 @@ export default function Terminal(){
         }
     }
 
+    const clickTerminal = () => {
+        if (terminalZIndex < 2) {
+            dispatch(selectTerminal())
+        }
+    }
+
     return (
         <Rnd
             dragHandleClassName={"header"}
+            onMouseDown={clickTerminal}
             style={{
+                "zIndex": terminalZIndex,
                 "display":"grid",
                 "position": "absolute",
                 "grid-template-areas":
