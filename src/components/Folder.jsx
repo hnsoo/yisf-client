@@ -58,6 +58,7 @@ export default function Folder() {
                 // size={{ width: width,  height: height }}
                 style={{
                      "display":"grid",
+                    "position": "absolute",
                      "grid-template-areas":
                          `
                          "header header"
@@ -68,9 +69,12 @@ export default function Folder() {
                     "grid-template-rows": "50px 1fr"
                 }}
 
+                maxHeight={'80%'}
+                maxWidth={'80%'}
                 minHeight={450}
                 minWidth={650}
-                bounds="window"
+                enableUserSelectHack={true}
+                bounds= "window"
             >
             <Header>
                 <Back><FaAngleLeft/></Back>
