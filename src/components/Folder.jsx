@@ -46,29 +46,37 @@ export default function Folder() {
         }
     }
 
-    return (
-            <Rnd
-                dragHandleClassName={"header"}
-                style={{
-                     "display":"grid",
-                    "position": "absolute",
-                     "grid-template-areas":
-                         `
-                         "header header"
-                         "sidebar content"
-                         `,
-                    "text-align": "center",
-                    "grid-template-columns": "150px 1fr",
-                    "grid-template-rows": "50px 1fr"
-                }}
+    const clickFolder = () => {
+        if (folderZIndex < 2) {
+            dispatch(selectFolder())
+        }
+    }
 
-                maxHeight={'80%'}
-                maxWidth={'80%'}
-                minHeight={450}
-                minWidth={650}
-                enableUserSelectHack={true}
-                bounds= "window"
-            >
+    return (
+        <Rnd
+            dragHandleClassName={"header"}
+            onMouseDown={clickFolder}
+            style={{
+                "zIndex": folderZIndex,
+                "display":"grid",
+                "position": "absolute",
+                "grid-template-areas":
+                    `
+                     "header header"
+                     "sidebar content"
+                     `,
+                "text-align": "center",
+                "grid-template-columns": "150px 1fr",
+                "grid-template-rows": "50px 1fr"
+            }}
+
+            maxHeight={'80%'}
+            maxWidth={'80%'}
+            minHeight={450}
+            minWidth={650}
+            enableUserSelectHack={true}
+            bounds= "window"
+        >
             <Header className="header">
                 <Back><FaAngleLeft/></Back>
                 <Front><FaAngleRight/></Front>
@@ -83,17 +91,16 @@ export default function Folder() {
                 </Ctrl>
             </Header>
             <SideBar>
-                    <Menu onClick={()=>dispatch(openMypage())}><RiUser3Fill size="25" color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
-                    <Menu onClick={()=>dispatch(openRank())}><BsBarChartFill size="25" color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
-                    <Menu><SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
-                    <Menu onClick={()=>dispatch(openNotice())}><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
-                    <Menu onClick={()=>dispatch(openSponsor())}><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
+                <Menu onClick={()=>dispatch(openMypage())}><RiUser3Fill size="25" color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
+                <Menu onClick={()=>dispatch(openRank())}><BsBarChartFill size="25" color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
+                <Menu><SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
+                <Menu onClick={()=>dispatch(openNotice())}><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
+                <Menu onClick={()=>dispatch(openSponsor())}><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
             </SideBar>
             <Content>
                 {SelectView()}
             </Content>
-            </Rnd>
-
+        </Rnd>
     );
 };
 
