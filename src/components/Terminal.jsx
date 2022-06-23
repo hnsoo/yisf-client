@@ -51,6 +51,7 @@ export default function Terminal(){
 
     return (
         <Rnd
+            dragHandleClassName={"header"}
             style={{
                 "display":"grid",
                 "position": "absolute",
@@ -73,7 +74,7 @@ export default function Terminal(){
             minWidth={450}
             bounds="window"
         >
-            <Header>
+            <Header className="header">
                 <Ctrl>
                     <FiXCircle
                         onClick={clickClose}

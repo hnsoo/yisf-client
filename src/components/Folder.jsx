@@ -48,6 +48,7 @@ export default function Folder() {
 
     return (
             <Rnd
+                dragHandleClassName={"header"}
                 style={{
                      "display":"grid",
                     "position": "absolute",
@@ -68,7 +69,7 @@ export default function Folder() {
                 enableUserSelectHack={true}
                 bounds= "window"
             >
-            <Header>
+            <Header className="header">
                 <Back><FaAngleLeft/></Back>
                 <Front><FaAngleRight/></Front>
                 <Address><FiHome/><Route>{view}</Route></Address>
