@@ -43,6 +43,8 @@ const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 10vw;
+  min-width: 6rem;
+  max-width: 10rem;
   height: 95vh;
   background: rgba(54, 9, 45, 0.5);
 `
