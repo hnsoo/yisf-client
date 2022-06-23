@@ -7,9 +7,10 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {openTerminal} from "../redux/ations/terminal";
 import {selectTerminal} from "../redux/ations/zIndex";
+import {useState} from "react";
 
 export default function ProblemIcon({info}) {
-
+    const [isSelected, setIsSelected] = useState(false);
     const dispatch = useDispatch();
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const fieldIcon = (field) => {
@@ -32,10 +33,7 @@ export default function ProblemIcon({info}) {
         switch (e.detail) {
             case 1:
                 //when click once
-                // console.log(e.target.style.backgroundColor)
-                // e.target.style.backgroundColor =
-                //     e.target.style.backgroundColor === "rgb(171,205,239)" ?
-                //         "" : "rgb(171,205,239)"
+                if(!isSelected) setIsSelected(true)
                 break;
             case 2:
                 //when click double~^^
@@ -52,6 +50,7 @@ export default function ProblemIcon({info}) {
     return (
         <Container
         onClick={clickProblem}
+        background={isSelected? "#cce8ff": "white"}
         >
             {fieldIcon(info.type)}
             <Title>{info.title}</Title>
@@ -62,6 +61,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  background: ${(props) => props.background};
   :hover {
     background: #e5f3ff;
   };

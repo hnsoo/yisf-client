@@ -103,7 +103,7 @@ export default function Terminal(){
                 {item("Solved", info.solve)}
                 {flagRes}
                 <Input>
-                    <Mark />
+                    <Mark>&gt;&gt;</Mark>
                     <Flag
                         value={flag}
                         type="text"
