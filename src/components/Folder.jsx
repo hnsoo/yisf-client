@@ -46,16 +46,8 @@ export default function Folder() {
         }
     }
 
-    const clickFolder = () => {
-        if (folderZIndex < 2) {
-            dispatch(selectFolder())
-        }
-    }
-
     return (
-        <div>
             <Rnd
-                // size={{ width: width,  height: height }}
                 style={{
                      "display":"grid",
                     "position": "absolute",
