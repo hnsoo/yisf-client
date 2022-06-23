@@ -14,18 +14,26 @@ export default function Rank(){
             .then(
                 (data) => {
                     setTableData(data)
-                    setTopPlayer(data.map(item => item.nickname))
                     return data
                 }
             )
             .then(
                 (data) => {
-                    RankService.getRankHistory("5")
+                    const count = "5"
+                    RankService.getRankHistory(count)
                         .then(
                             (res) => {
+                                // 최상위 count 명 명단 설정
+                                let name = []
+                                for(let i = 0; i < Number(count); i++){
+                                    name.push(data[i].nickname);
+                                }
+                                setTopPlayer(name)
+
+                                // 현재 차트 설정
                                 let now = new Date()
                                 let obj = {time: now}
-                                for(let i = 0; i < 3; i++){
+                                for(let i = 0; i < Number(count); i++){
                                     obj[data[i].nickname] = data[i].score
                                 }
                                 res.push(obj)
