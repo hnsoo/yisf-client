@@ -106,4 +106,7 @@ const FolderContainer = styled.div`
   align-items: center;
   color: white;
   padding: 20px;
+  :hover {
+    background: #75427e;
+  }
 `
