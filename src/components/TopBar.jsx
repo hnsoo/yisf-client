@@ -38,6 +38,7 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   height: 5vh;
+  min-height: 1.8rem;
   background: #3A2D34;
   justify-content: space-between;
   align-items: center;
