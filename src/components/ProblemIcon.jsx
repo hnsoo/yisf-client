@@ -7,8 +7,10 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {openTerminal} from "../redux/ations/terminal";
 import {selectTerminal} from "../redux/ations/zIndex";
+import {useState} from "react";
 
 export default function ProblemIcon({info}) {
+
     const dispatch = useDispatch();
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const fieldIcon = (field) => {
@@ -27,12 +29,26 @@ export default function ProblemIcon({info}) {
         }
     }
 
-    const clickProblem = () => {
-        dispatch(openTerminal(info))
-        if(terminalZIndex < 2){
-            dispatch(selectTerminal())
+    const clickProblem = (e) => {
+        switch (e.detail) {
+            case 1:
+                //when click once
+                // console.log(e.target.style.backgroundColor)
+                // e.target.style.backgroundColor =
+                //     e.target.style.backgroundColor === "rgb(171,205,239)" ?
+                //         "" : "rgb(171,205,239)"
+                break;
+            case 2:
+                //when click double~^^
+                dispatch(openTerminal(info))
+                if(terminalZIndex < 2){
+                    dispatch(selectTerminal())
+                }
+                break;
+            default:
+                return;
         }
-    }
+    };
 
     return (
         <Container
