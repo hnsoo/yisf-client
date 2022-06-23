@@ -50,7 +50,7 @@ export default function ProblemIcon({info}) {
     return (
         <Container
         onClick={clickProblem}
-        background={isSelected? "#cce8ff": "white"}
+        background={isSelected}
         >
             {fieldIcon(info.type)}
             <Title>{info.title}</Title>
@@ -61,9 +61,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  background: ${(props) => props.background};
+  background: ${(props) => props.background ? "#cce8ff": "white"};
   :hover {
-    background: #e5f3ff;
+    background: ${(props) => props.background ? "#cce8ff": "#e5f3ff"};
   };
 `
 const Title = styled.div`
