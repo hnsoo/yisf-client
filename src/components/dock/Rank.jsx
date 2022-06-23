@@ -32,7 +32,8 @@ export default function Rank(){
 
                                 // 현재 차트 설정
                                 let now = new Date()
-                                let obj = {time: now}
+                                let time = `${now.getHours()}시 ${now.getMinutes()}분`
+                                let obj = {time: time}
                                 for(let i = 0; i < Number(count); i++){
                                     obj[data[i].nickname] = data[i].score
                                 }
