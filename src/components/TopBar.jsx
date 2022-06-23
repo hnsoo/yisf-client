@@ -57,7 +57,7 @@ const LogoutContainer = styled.div`
 const LogoutImg = styled.div`
   width: 20px;
   height: 20px;
-  padding-top: 4px;
+  padding-top: 1px;
   padding-right: 7px;
 `
 const LogoutText = styled.div`
