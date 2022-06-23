@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from "styled-components";
-import Draggable from "react-draggable";
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
 import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
