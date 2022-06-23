@@ -13,16 +13,25 @@ export default function Rank(){
         RankService.getRank("5")
             .then(
                 (data) => {
-                    console.log(data)
                     setTableData(data)
                     setTopPlayer(data.map(item => item.nickname))
+                    return data
                 }
             )
-        RankService.getRankHistory("5")
             .then(
                 (data) => {
-                    console.log(data)
-                    setChartData(data)
+                    RankService.getRankHistory("5")
+                        .then(
+                            (res) => {
+                                let now = new Date()
+                                let obj = {time: now}
+                                for(let i = 0; i < 3; i++){
+                                    obj[data[i].nickname] = data[i].score
+                                }
+                                res.push(obj)
+                                setChartData(res)
+                            }
+                        )
                 }
             )
     }, [])
