@@ -36,12 +36,6 @@ export default function Terminal(){
         </p>)
     }
 
-    const clickTerminal = () => {
-        if(terminalZIndex < 2){
-            dispatch(selectTerminal())
-        }
-    }
-
     const handleOnKeyPress = (e) => {
         if(e.key === "Enter"){
             ProblemService.sendFlag(info.id, flag)
@@ -135,7 +129,6 @@ const Content = styled.div`
   text-align: left;
   color: #e7faff;
   overflow: auto;
-  background: #002B36;
   grid-area: content;
   padding: 0.4rem;
 `
