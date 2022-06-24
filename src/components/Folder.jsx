@@ -178,7 +178,10 @@ const SideBar = styled.div`
 
 const Menu = styled.div`
   display: flex;
-  padding-left: 15px;
+  padding: 8px;
+  :hover{
+    background: #f0f0f0;
+  }
 `
 
 const MenuTitle = styled.div`
