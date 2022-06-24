@@ -9,8 +9,18 @@ import Folder from "../components/Folder";
 import {openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/ations/folder";
 import Terminal from "../components/Terminal";
 import {selectFolder} from "../redux/ations/zIndex";
+import {useState} from "react";
 
 export default function Main() {
+    const initField = {
+        "reversing": false,
+        "forensic": false,
+        "web": false,
+        "pwnable": false,
+        "misc": false,
+    }
+    const [isIconSelected, setIsIconsSelected] = useState(initField);
+
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const isOpened = useSelector(state => state.folder.isOpened);
     const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened);
@@ -22,6 +32,11 @@ export default function Main() {
     }
 
     const clickFolderIcon = (field) => {
+        setIsIconsSelected(initField)
+        const newField = initField;
+        newField[field] = true;
+        setIsIconsSelected(newField);
+
         switch (field) {
             case "reversing":
                 dispatch(openReversing())
@@ -50,11 +65,21 @@ export default function Main() {
             <Header><TopBar/></Header>
             <SideBar><Dock/></SideBar>
             <Content>
-                <FolderContainer onClick={()=>clickFolderIcon("reversing")}><img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing</FolderContainer>
-                <FolderContainer onClick={()=>clickFolderIcon("forensic")}><img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic</FolderContainer>
-                <FolderContainer onClick={()=>clickFolderIcon("web")}><img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web</FolderContainer>
-                <FolderContainer onClick={()=>clickFolderIcon("pwnable")}><img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable</FolderContainer>
-                <FolderContainer onClick={()=>clickFolderIcon("misc")}><img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc</FolderContainer>
+                <FolderContainer background={isIconSelected["reversing"]} onClick={()=>clickFolderIcon("reversing")}>
+                    <img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing
+                </FolderContainer>
+                <FolderContainer background={isIconSelected["forensic"]} onClick={()=>clickFolderIcon("forensic")}>
+                    <img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic
+                </FolderContainer>
+                <FolderContainer background={isIconSelected["web"]} onClick={()=>clickFolderIcon("web")}>
+                    <img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web
+                </FolderContainer>
+                <FolderContainer background={isIconSelected["pwnable"]} onClick={()=>clickFolderIcon("pwnable")}>
+                    <img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable
+                </FolderContainer>
+                <FolderContainer background={isIconSelected["misc"]} onClick={()=>clickFolderIcon("misc")}>
+                    <img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc
+                </FolderContainer>
                 {isOpened && <Folder />}
                 {isTerminalOpened && <Terminal />}
             </Content>
@@ -106,7 +131,8 @@ const FolderContainer = styled.div`
   align-items: center;
   color: white;
   padding: 20px;
+  background: ${(props) => props.background ? "#6a5896": "FFFF00"};
   :hover {
-    background: #75427e;
+    background: ${(props) => props.background ? "#6a5896" : "#75427e"};
   }
 `
