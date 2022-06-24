@@ -3,10 +3,13 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
 } from "../ations/types";
+import {getCookie} from "../../service/cookie"
 
 const token = localStorage.getItem("token");
+const tokenExpired = localStorage.getItem("tokenExpired")
+const refresh = getCookie("refresh")
 
-const initialState = token
+const initialState = (token && tokenExpired && refresh)
     ? { isLoggedIn: true, token}
     : { isLoggedIn: false, token: null};
 
