@@ -8,8 +8,9 @@ import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
 import {openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/ations/folder";
 import Terminal from "../components/Terminal";
-import {selectFolder} from "../redux/ations/zIndex";
+import {selectFolder, selectTerminal} from "../redux/ations/zIndex";
 import {useState} from "react";
+import {openTerminal} from "../redux/ations/terminal";
 
 export default function Main() {
     const initField = {
@@ -31,32 +32,41 @@ export default function Main() {
         return <Navigate to="/login" />;
     }
 
-    const clickFolderIcon = (field) => {
-        setIsIconsSelected(initField)
-        const newField = initField;
-        newField[field] = true;
-        setIsIconsSelected(newField);
-
-        switch (field) {
-            case "reversing":
-                dispatch(openReversing())
+    const clickFolderIcon = (e, field) => {
+        switch (e.detail) {
+            case 1:
+                //when click once
+                setIsIconsSelected(initField)
+                const newField = initField;
+                newField[field] = true;
+                setIsIconsSelected(newField);
                 break;
-            case "forensic":
-                dispatch(openForensic())
-                break;
-            case "web":
-                dispatch(openWeb())
-                break;
-            case "pwnable":
-                dispatch(openPwnable())
-                break;
-            case "misc":
-                dispatch(openMisc())
+            case 2:
+                //when click double~^^
+                switch (field) {
+                    case "reversing":
+                        dispatch(openReversing())
+                        break;
+                    case "forensic":
+                        dispatch(openForensic())
+                        break;
+                    case "web":
+                        dispatch(openWeb())
+                        break;
+                    case "pwnable":
+                        dispatch(openPwnable())
+                        break;
+                    case "misc":
+                        dispatch(openMisc())
+                        break;
+                    default:
+                }
+                if(folderZInder < 2){
+                    dispatch(selectFolder())
+                }
                 break;
             default:
-        }
-        if(folderZInder < 2){
-            dispatch(selectFolder())
+                return;
         }
     }
 
@@ -65,19 +75,19 @@ export default function Main() {
             <Header><TopBar/></Header>
             <SideBar><Dock/></SideBar>
             <Content>
-                <FolderContainer background={isIconSelected["reversing"]} onClick={()=>clickFolderIcon("reversing")}>
+                <FolderContainer background={isIconSelected["reversing"]} onClick={(e)=>clickFolderIcon(e, "reversing")}>
                     <img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing
                 </FolderContainer>
-                <FolderContainer background={isIconSelected["forensic"]} onClick={()=>clickFolderIcon("forensic")}>
+                <FolderContainer background={isIconSelected["forensic"]} onClick={(e)=>clickFolderIcon(e, "forensic")}>
                     <img src={IconFolder} height="100px" width="100px" alt="forensic-folder"/>Forensic
                 </FolderContainer>
-                <FolderContainer background={isIconSelected["web"]} onClick={()=>clickFolderIcon("web")}>
+                <FolderContainer background={isIconSelected["web"]} onClick={(e)=>clickFolderIcon(e, "web")}>
                     <img src={IconFolder} height="100px" width="100px" alt="web-folder"/>Web
                 </FolderContainer>
-                <FolderContainer background={isIconSelected["pwnable"]} onClick={()=>clickFolderIcon("pwnable")}>
+                <FolderContainer background={isIconSelected["pwnable"]} onClick={(e)=>clickFolderIcon(e, "pwnable")}>
                     <img src={IconFolder} height="100px" width="100px" alt="pwnable-folder"/>Pwnable
                 </FolderContainer>
-                <FolderContainer background={isIconSelected["misc"]} onClick={()=>clickFolderIcon("misc")}>
+                <FolderContainer background={isIconSelected["misc"]} onClick={(e)=>clickFolderIcon(e, "misc")}>
                     <img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc
                 </FolderContainer>
                 {isOpened && <Folder />}
