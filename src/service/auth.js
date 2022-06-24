@@ -4,7 +4,7 @@ import RequestService from "./request";
 const API_URL = "http://15.165.86.75:8080/api/v1"
 
 function setAuth(token, tokenExpired, refresh) {
-    const expires = new Date(tokenExpired)
+    const expires = new Date(tokenExpired.replace("KST", ""));
     localStorage.setItem('token', token);
     localStorage.setItem('tokenExpired', tokenExpired);
     setCookie('refresh', refresh, {
@@ -53,7 +53,7 @@ class AuthService {
     checkSession() {
         console.log("checkSession called")
         //todo : 임시 방편으로 해둠 - seonghun
-        let expires = Date.parse(localStorage.getItem("tokenExpired").replace("KST", ""));
+        let expires = new Date(localStorage.getItem("tokenExpired").replace("KST", ""));
         let now = new Date();
 
         // 토큰 유효기간을 지났을 경우
