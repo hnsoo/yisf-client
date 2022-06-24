@@ -82,7 +82,7 @@ export default function Folder() {
                 <Front><FaAngleRight/></Front>
                 <Address><FiHome/><Route>{view}</Route></Address>
                 <Ctrl>
-                    <FiStopCircle size="30" color="#4f4f4f"/>
+                    {/*<FiStopCircle size="30" color="#4f4f4f"/>*/}
                     <FiXCircle
                         onClick={clickClose}
                         size="30"
@@ -106,8 +106,8 @@ export default function Folder() {
 
 // Header
 const Header = styled.div`
-  background: white;
-  border: 2px solid #A9A9A9;
+  background: #ebebeb;
+  border: 2px solid #ececec;
   grid-area: header;
   padding: 6px;
 `
@@ -118,9 +118,9 @@ const Back = styled.div`
   width: 40px;
   height: 34px;
   left: 10px;
-  background: rgba(245, 245, 245, 0.03);
+  background: #fafafa;
   mix-blend-mode: normal;
-  border: 1px solid #A9A9A9;
+  border: 1px solid #cbcbcb;
   border-radius: 10px 0px 0px 10px;
 `
 const Front = styled.div`
@@ -130,9 +130,9 @@ const Front = styled.div`
   width: 40px;
   height: 34px;
   left: 49px;
-  background: rgba(245, 245, 245, 0.03);
+  background: #fafafa;
   mix-blend-mode: normal;
-  border: 1px solid #A9A9A9;
+  border: 1px solid #cbcbcb;
   border-radius: 0px 10px 10px 0px;
 `
 const Address = styled.div`
@@ -146,9 +146,9 @@ const Address = styled.div`
   height: 34px;
   left: 100px;
 
-  background: rgba(245, 245, 245, 0.03);
+  background: #fafafa;
   mix-blend-mode: normal;
-  border: 1px solid #A9A9A9;
+  border: 1px solid #cbcbcb;
   border-radius: 10px;
 `
 
@@ -169,10 +169,10 @@ const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   grid-area: sidebar;
-  background: white;
-  border-left: 2px solid #A9A9A9;
-  border-right: 2px solid #A9A9A9;
-  border-bottom: 2px solid #A9A9A9;
+  background: #fafafa;
+  border-left: 2px solid #ececec;
+  border-right: 2px solid #ececec;
+  border-bottom: 2px solid #ececec;
   padding: 0.5rem;
 `
 
@@ -192,8 +192,8 @@ const Content = styled.div`
   overflow: auto;
   //display: flex;
   background: white;
-  border-right: 2px solid #A9A9A9;
-  border-bottom: 2px solid #A9A9A9;
+  border-right: 2px solid #ececec;
+  border-bottom: 2px solid #ececec;
   grid-area: content;
   padding: 0.25rem;
 `
