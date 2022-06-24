@@ -11,7 +11,7 @@ export default function Problem({field}){
 
     useEffect(() => {
         dispatch(getProblems(field))
-        setIsIconsSelected(Array(problems.length).fill(false))
+        if(problems) setIsIconsSelected(Array(problems.length).fill(false));
     }, [field, dispatch])
 
     const handleClick = idx => {
