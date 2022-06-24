@@ -9,8 +9,7 @@ import {openTerminal} from "../redux/ations/terminal";
 import {selectTerminal} from "../redux/ations/zIndex";
 import {useState} from "react";
 
-export default function ProblemIcon({info}) {
-    const [isSelected, setIsSelected] = useState(false);
+export default function ProblemIcon({info, isSelected, handleClick, elementIndex}) {
     const dispatch = useDispatch();
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const fieldIcon = (field) => {
@@ -33,7 +32,7 @@ export default function ProblemIcon({info}) {
         switch (e.detail) {
             case 1:
                 //when click once
-                if(!isSelected) setIsSelected(true)
+                if(!isSelected) handleClick(elementIndex)
                 break;
             case 2:
                 //when click double~^^

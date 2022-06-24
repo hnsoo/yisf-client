@@ -60,14 +60,14 @@ export default function Folder() {
                 "zIndex": folderZIndex,
                 "display":"grid",
                 "position": "absolute",
-                "grid-template-areas":
+                "gridTemplateAreas":
                     `
                      "header header"
                      "sidebar content"
                      `,
-                "text-align": "center",
-                "grid-template-columns": "150px 1fr",
-                "grid-template-rows": "50px 1fr"
+                "textAlign": "center",
+                "gridTemplateColumns": "150px 1fr",
+                "gridTemplateRows": "50px 1fr"
             }}
 
             maxHeight={'80%'}

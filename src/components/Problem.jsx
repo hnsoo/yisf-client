@@ -7,15 +7,28 @@ import {getProblems} from "../redux/ations/terminal";
 export default function Problem({field}){
     const problems = useSelector(state => state.terminal.problems)
     const dispatch = useDispatch();
+    const [isIconSelected, setIsIconsSelected] = useState([]);
+
     useEffect(() => {
         dispatch(getProblems(field))
+        setIsIconsSelected(Array(problems.length).fill(false))
     }, [field, dispatch])
+
+    const handleClick = idx => {
+        const newArr = Array(problems.length).fill(false);
+        newArr[idx] = true;
+        setIsIconsSelected(newArr);
+    }
+
     return (
         <Container>
-            {problems && problems.map(problem =>
+            {problems && problems.map((problem, idx) =>
                 <ProblemIcon
                     key={problem.id}
                     info={problem}
+                    isSelected={isIconSelected[idx]}
+                    handleClick={handleClick}
+                    elementIndex={idx}
                 />
             )}
         </Container>
