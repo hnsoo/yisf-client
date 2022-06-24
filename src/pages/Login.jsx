@@ -20,6 +20,10 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
+    const onKyePress = (e) => {
+        if(e.key === "Enter") onClickLogin()
+    }
+
     const onClickLogin = () => {
         console.log('로그인 클릭');
         dispatch(login(id, password))
@@ -49,6 +53,7 @@ const Login = () => {
                         onChange={onChangeId}
                     />
                     <PwBox
+                        onKeyPress={onKyePress}
                         placeholder="password"
                         value={password}
                         type={"password"}
