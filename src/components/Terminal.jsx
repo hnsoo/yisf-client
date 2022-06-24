@@ -85,15 +85,15 @@ export default function Terminal(){
             bounds="window"
         >
             <Header className="header">
+                <Title>{info.title}</Title>
                 <Ctrl>
                     <FiXCircle
                         onClick={clickClose}
                         size="30"
                         color="#D94844"
                     />
-                    <FiStopCircle size="30" color="#76756E"/>
+                    {/*<FiStopCircle size="30" color="#76756E"/>*/}
                 </Ctrl>
-                <Title>{info.title}</Title>
             </Header>
             <Content>
                 {item("Title", info.title)}
@@ -119,6 +119,7 @@ export default function Terminal(){
 const Header = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: #44433E;
   grid-area: header;
   padding: 6px;
@@ -133,6 +134,7 @@ const Title = styled.div`
 const Ctrl = styled.div`
   padding-top: 4px;
   padding-left: 3px;
+  padding-right: 5px;
 `
 
 // Content
