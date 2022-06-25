@@ -48,8 +48,9 @@ export default function Terminal(){
                     setFlagRes("Flag 인증에 성공했습니다.")
                 })
                 .catch((err)=> {
-                    console.log(err)
-                    setFlagRes("Flag 인증에 실패했습니다.")
+                    if (err.message === "INCORRECT_FLAG") setFlagRes("Flag가 일치 하지 않습니다.");
+                    else if(err.message === "ALREADY_CORRECT") setFlagRes("이미 맞춘 문제입니다.");
+                    else setFlagRes("관리자는 문제를 맞출 수 없습니다.");
                 })
         }
     }
