@@ -1,5 +1,4 @@
 import AuthService from "./auth";
-import RequestService from "./request"
 
 const API_URL = "http://15.165.86.75:8080/api/v1"
 
