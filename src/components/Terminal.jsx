@@ -61,6 +61,12 @@ export default function Terminal(){
         <Rnd
             dragHandleClassName={"header"}
             onMouseDown={clickTerminal}
+            default={{
+                x: 400,
+                y: 150,
+                width: 750,
+                height: 450,
+            }}
             style={{
                 "zIndex": terminalZIndex,
                 "display":"grid",
@@ -78,8 +84,8 @@ export default function Terminal(){
                 "background": "#002B36"
             }}
 
-            maxHeight={'50%'}
-            maxWidth={'50%'}
+            maxHeight={'80%'}
+            maxWidth={'80%'}
             minHeight={250}
             minWidth={450}
             bounds="window"
