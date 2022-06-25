@@ -4,7 +4,8 @@ import RequestService from "./request";
 const API_URL = "http://15.165.86.75:8080/api/v1"
 
 function setAuth(token, tokenExpired, refresh) {
-    const expires = new Date(tokenExpired.replace("KST", ""));
+    const expires = new Date()
+    expires.setHours(expires.getHours() + 24)
     localStorage.setItem('token', token);
     localStorage.setItem('tokenExpired', tokenExpired);
     setCookie('refresh', refresh, {
