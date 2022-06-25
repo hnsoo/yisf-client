@@ -56,6 +56,12 @@ export default function Folder() {
         <Rnd
             dragHandleClassName={"header"}
             onMouseDown={clickFolder}
+            default={{
+                x: 100,
+                y: 100,
+                width: 750,
+                height: 500,
+            }}
             style={{
                 "zIndex": folderZIndex,
                 "display":"grid",
