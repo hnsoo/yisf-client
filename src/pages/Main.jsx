@@ -9,8 +9,8 @@ import Folder from "../components/Folder";
 import {openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/ations/folder";
 import Terminal from "../components/Terminal";
 import {selectFolder, selectTerminal} from "../redux/ations/zIndex";
-import {useState} from "react";
-import {openTerminal} from "../redux/ations/terminal";
+import {useEffect, useState} from "react";
+import {getProblems} from "../redux/ations/terminal";
 
 export default function Main() {
     const initField = {
@@ -20,13 +20,17 @@ export default function Main() {
         "pwnable": false,
         "misc": false,
     }
-    const [isIconSelected, setIsIconsSelected] = useState(initField);
+    const [isIconSelected, setIsIconsSelected] = useState({});
 
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const isOpened = useSelector(state => state.folder.isOpened);
     const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened);
     const folderZInder = useSelector(state => state.zIndex.folderZIndex)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setIsIconsSelected(initField)
+    }, [])
 
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
