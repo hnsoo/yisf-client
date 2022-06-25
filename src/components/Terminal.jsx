@@ -6,9 +6,12 @@ import {closeTerminal} from "../redux/ations/terminal";
 import ProblemService from "../service/problem"
 import {Rnd} from 'react-rnd';
 import {selectTerminal} from "../redux/ations/zIndex";
+import close from "../assets/img/terClose.png"
+import closeHover from "../assets/img/terCloseHover.png";
+import closeClick from "../assets/img/terCloseDown.png";
 
 export default function Terminal(){
-
+    const [over, setOver] = useState(0);    // close btn mouse over
     const [flagRes, setFlagRes] = useState("")
     const [flag, setFlag] = useState("")
     const onChangeFlag = (e) => {
@@ -57,6 +60,19 @@ export default function Terminal(){
         }
     }
 
+    const closeWithMouse = () => {
+        switch (over) {
+            case 0:
+                return close;
+            case 1:
+                return closeHover;
+            case 2:
+                return closeClick;
+            default:
+                return close;
+        }
+    }
+
     return (
         <Rnd
             dragHandleClassName={"header"}
@@ -92,11 +108,14 @@ export default function Terminal(){
         >
             <Header className="header">
                 <Title>{info.title}</Title>
-                <Ctrl>
-                    <FiXCircle
+                <Ctrl
+                    onMouseOver={() => setOver(1)}
+                    onMouseDown={() => setOver(2)}
+                    onMouseOut={() => setOver(0)}
+                >
+                    <img
+                        src={closeWithMouse()}
                         onClick={clickClose}
-                        size="30"
-                        color="#D94844"
                     />
                     {/*<FiStopCircle size="30" color="#76756E"/>*/}
                 </Ctrl>
