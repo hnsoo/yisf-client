@@ -13,12 +13,15 @@ class ProblemService {
                         Authorization: "Bearer " + localStorage.getItem("token"),
                     }
                 })
-                    .then((res) => RequestService.checkError(res))
-                    .then((result) => RequestService.retResult(result))
-                    .catch((err) => RequestService.handleError(err))
+                    .then((res) => res.json())
+                    .then((result) => {
+                        if(result.errorCode) throw new Error(result);
+                        return result;
+                    })
+                    .catch((err) => Promise.reject(err))
             )
-            .catch(() =>
-                Promise.reject()
+            .catch((err) =>
+                Promise.reject(err)
             );
     }
     sendFlag(problemId, flag) {
@@ -41,8 +44,8 @@ class ProblemService {
                     })
                     .catch((err) => Promise.reject(err))
             )
-            .catch(() =>
-                Promise.reject()
+            .catch((err) =>
+                Promise.reject(err)
             );
     }
 }
