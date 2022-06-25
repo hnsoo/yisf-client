@@ -1,5 +1,4 @@
 import {getCookie, setCookie, delCookie} from "./cookie";
-import RequestService from "./request";
 
 const API_URL = "http://15.165.86.75:8080/api/v1"
 
@@ -24,17 +23,19 @@ class AuthService {
                     password: password,
                 })
         })
-            .then((res) => RequestService.checkError(res))
+            .then((res) => res.json())
             .then((result) => {
+                if(result.errorCode) throw new Error(result);
                 setAuth(result.token, result.tokenExpired, result.refresh);
-                return RequestService.retResult(result)
+                return result;
             })
-            .catch((err) => RequestService.handleError(err))
+            .catch((err) => Promise.reject(err))
     }
     logout() {
         localStorage.removeItem("token")
         localStorage.removeItem("tokenExpired")
         delCookie("refresh")
+        //todo : 로그아웃 api 요청
     }
     reissue() {
         return fetch(API_URL + '/reissue', {
@@ -44,12 +45,13 @@ class AuthService {
                 REFRESH: getCookie("refresh"),
             }
         })
-            .then((res) => RequestService.checkError(res))
+            .then((res) => res.json())
             .then((result) => {
+                if(result.errorCode) throw new Error(result);
                 setAuth(result.token, result.tokenExpired, result.refresh);
-                RequestService.retResult(result)
+                return result;
             })
-            .catch((err) => RequestService.handleError(err))
+            .catch((err) => Promise.reject(err))
     }
     checkSession() {
         console.log("checkSession called")
@@ -64,8 +66,8 @@ class AuthService {
                 .then(() => {
                     return Promise.resolve();
                 })
-                .catch(() => {
-                    return Promise.reject();
+                .catch((err) => {
+                    return Promise.reject(err);
                 })
         }
         return Promise.resolve();
