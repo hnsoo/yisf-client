@@ -18,9 +18,10 @@ export const login = (id, password) => (dispatch) => {
             }
         )
         .catch(
-            () => {
+            (err) => {
                 dispatch({
                     type: LOGIN_FAIL,
+                    payload: { error: err },
                 });
                 return Promise.reject();
             }

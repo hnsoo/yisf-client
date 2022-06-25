@@ -27,6 +27,7 @@ export default function(state = initialState, action) {
                 ...state,
                 isLoggedIn: false,
                 token: null,
+                error: payload.error,
             };
         case LOGOUT_SUCCESS:
             return {
