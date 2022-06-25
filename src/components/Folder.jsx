@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
 import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
@@ -14,10 +14,13 @@ import Sponsor from "./dock/Sponsor";
 import Problem from "./Problem";
 import {selectFolder} from "../redux/ations/zIndex";
 import {Rnd} from 'react-rnd';
+import close from "../assets/img/close.png"
+import closeHover from "../assets/img/closeHover.png"
+import closeClick from "../assets/img/closeDown.png"
 
 
 export default function Folder() {
-
+    const [over, setOver] = useState(0);    // close btn mouse over
     const view = useSelector(state => state.folder.view)
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
     const dispatch = useDispatch();
@@ -52,6 +55,19 @@ export default function Folder() {
         }
     }
 
+    const closeWithMouse = () => {
+        switch (over) {
+            case 0:
+                return close;
+            case 1:
+                return closeHover;
+            case 2:
+                return closeClick;
+            default:
+                return close;
+        }
+    }
+
     return (
         <Rnd
             dragHandleClassName={"header"}
@@ -64,7 +80,7 @@ export default function Folder() {
             }}
             style={{
                 "zIndex": folderZIndex,
-                "display":"grid",
+                "display": "grid",
                 "position": "absolute",
                 "gridTemplateAreas":
                     `
@@ -81,27 +97,34 @@ export default function Folder() {
             minHeight={450}
             minWidth={650}
             enableUserSelectHack={true}
-            bounds= "window"
+            bounds="window"
         >
             <Header className="header">
                 <Back><FaAngleLeft/></Back>
                 <Front><FaAngleRight/></Front>
                 <Address><FiHome/><Route>{view}</Route></Address>
-                <Ctrl>
+                <Ctrl
+                    onMouseOver={() => setOver(1)}
+                    onMouseDown={() => setOver(2)}
+                    onMouseOut={() => setOver(0)}
+                >
                     {/*<FiStopCircle size="30" color="#4f4f4f"/>*/}
-                    <FiXCircle
+                    <img
+                        src={closeWithMouse()}
                         onClick={clickClose}
-                        size="30"
-                        color="#4f4f4f"
                     />
                 </Ctrl>
             </Header>
             <SideBar>
-                <Menu onClick={()=>dispatch(openMypage())}><RiUser3Fill size="25" color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
-                <Menu onClick={()=>dispatch(openRank())}><BsBarChartFill size="25" color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
+                <Menu onClick={() => dispatch(openMypage())}><RiUser3Fill size="25"
+                                                                          color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
+                <Menu onClick={() => dispatch(openRank())}><BsBarChartFill size="25"
+                                                                           color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
                 <Menu><SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
-                <Menu onClick={()=>dispatch(openNotice())}><BsMegaphoneFill size="25" color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
-                <Menu onClick={()=>dispatch(openSponsor())}><FaHandshake size="25" color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
+                <Menu onClick={() => dispatch(openNotice())}><BsMegaphoneFill size="25"
+                                                                              color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
+                <Menu onClick={() => dispatch(openSponsor())}><FaHandshake size="25"
+                                                                           color="#4f4f4f"/><MenuTitle>Sponsor</MenuTitle></Menu>
             </SideBar>
             <Content>
                 {SelectView()}
