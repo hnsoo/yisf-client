@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {FiStopCircle, FiXCircle} from 'react-icons/fi';
 import {useDispatch, useSelector} from "react-redux";
 import {closeTerminal} from "../redux/ations/terminal";
 import ProblemService from "../service/problem"
@@ -49,6 +48,7 @@ export default function Terminal(){
                     setFlagRes("Flag 인증에 성공했습니다.")
                 })
                 .catch((err)=> {
+                    console.log(err)
                     setFlagRes("Flag 인증에 실패했습니다.")
                 })
         }
@@ -116,6 +116,7 @@ export default function Terminal(){
                     <img
                         src={closeWithMouse()}
                         onClick={clickClose}
+                        alt="close"
                     />
                     {/*<FiStopCircle size="30" color="#76756E"/>*/}
                 </Ctrl>
@@ -187,7 +188,7 @@ const Mark = styled.div`
   grid-area: mark;
   color: #e7faff;
 `
-const Flag = styled.input.attrs(props => ({
+const Flag = styled.input.attrs(() => ({
     spellCheck: "false",
     autoComplete: "off",
 }))`

@@ -36,8 +36,12 @@ class ProblemService {
                     })
                 })
                     .then((res) => {
-                        if (!res.ok) {
-                            throw new Error(res.errorCode)
+                        if(res.ok) return false
+                        return res.json()
+                    })
+                    .then(result => {
+                        if(result){
+                            throw new Error(result.message)
                         }
                         return Promise.resolve()
                     })
