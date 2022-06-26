@@ -108,7 +108,7 @@ export default function Terminal(){
             bounds="window"
         >
             <Header className="header">
-                <Title>{info.title}</Title>
+                <Title>{"[" + info.type + "] "}{info.title}</Title>
                 <Ctrl
                     onMouseOver={() => setOver(1)}
                     onMouseDown={() => setOver(2)}
