@@ -1,4 +1,4 @@
-import {SELECT_FOLDER, SELECT_TERMINAL} from "../ations/types";
+import {SELECT_FOLDER, SELECT_TERMINAL} from "../actions/types";
 
 const initialState = { folderZIndex: 1, terminalZIndex: 2}
 

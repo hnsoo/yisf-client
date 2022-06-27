@@ -10,7 +10,7 @@ import {
     OPEN_FORENSIC,
     OPEN_WEB,
     OPEN_MISC
-} from "../ations/types";
+} from "../actions/types";
 
 const initialState = { isOpened: false }
 

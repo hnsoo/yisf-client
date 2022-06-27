@@ -2,7 +2,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
-} from "../ations/types";
+} from "../actions/types";
 import {getCookie} from "../../service/cookie"
 
 const token = localStorage.getItem("token");

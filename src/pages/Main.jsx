@@ -6,11 +6,11 @@ import IconFolder from "../assets/img/folder.png"
 import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
-import {openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/ations/folder";
+import {openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/actions/folder";
 import Terminal from "../components/Terminal";
-import {selectFolder, selectTerminal} from "../redux/ations/zIndex";
+import {selectFolder, selectTerminal} from "../redux/actions/zIndex";
 import {useEffect, useState} from "react";
-import {getProblems} from "../redux/ations/terminal";
+import {getProblems} from "../redux/actions/terminal";
 
 export default function Main() {
     const initField = {

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {closeTerminal} from "../redux/ations/terminal";
+import {closeTerminal} from "../redux/actions/terminal";
 import ProblemService from "../service/problem"
 import {Rnd} from 'react-rnd';
-import {selectTerminal} from "../redux/ations/zIndex";
+import {selectTerminal} from "../redux/actions/zIndex";
 import close from "../assets/img/terClose.png"
 import closeHover from "../assets/img/terCloseHover.png";
 import closeClick from "../assets/img/terCloseDown.png";

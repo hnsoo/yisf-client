@@ -1,4 +1,4 @@
-import {CLOSE_TERMINAL, LOAD_PROBLEM_FAIL, LOAD_PROBLEM_SUCCESS, OPEN_TERMINAL} from "../ations/types";
+import {CLOSE_TERMINAL, LOAD_PROBLEM_FAIL, LOAD_PROBLEM_SUCCESS, OPEN_TERMINAL} from "../actions/types";
 
 const initialState = { isTerminalOpened: false, problems: null, problem: null }
 

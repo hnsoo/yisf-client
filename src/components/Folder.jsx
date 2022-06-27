@@ -7,12 +7,12 @@ import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
 import {useDispatch, useSelector} from "react-redux";
 import Notice from "./dock/Notice";
-import {closeFolder, openMypage, openNotice, openRank, openSponsor} from "../redux/ations/folder";
+import {closeFolder, openMypage, openNotice, openRank, openSponsor} from "../redux/actions/folder";
 import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
 import Problem from "./Problem";
-import {selectFolder} from "../redux/ations/zIndex";
+import {selectFolder} from "../redux/actions/zIndex";
 import {Rnd} from 'react-rnd';
 import close from "../assets/img/close.png"
 import closeHover from "../assets/img/closeHover.png"

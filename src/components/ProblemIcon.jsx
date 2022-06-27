@@ -5,8 +5,8 @@ import webIcon from "../assets/img/global.png";
 import miscIcon from "../assets/img/puzzle.png";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {openTerminal} from "../redux/ations/terminal";
-import {selectTerminal} from "../redux/ations/zIndex";
+import {openTerminal} from "../redux/actions/terminal";
+import {selectTerminal} from "../redux/actions/zIndex";
 import {useState} from "react";
 
 export default function ProblemIcon({info, isSelected, handleClick, elementIndex}) {

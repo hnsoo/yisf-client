@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import ProblemIcon from "./ProblemIcon";
 import {useDispatch, useSelector} from "react-redux";
-import {getProblems} from "../redux/ations/terminal";
+import {getProblems} from "../redux/actions/terminal";
 
 export default function Problem({field}){
     const problems = useSelector(state => state.terminal.problems)

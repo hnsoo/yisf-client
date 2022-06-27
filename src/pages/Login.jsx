@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector} from "react-redux"
 import WallPaper from '../assets/img/wallPaper.jpg';
 import { Navigate } from 'react-router-dom';
-import { login } from "../redux/ations/auth";
+import { login } from "../redux/actions/auth";
 
 const Login = () => {
     const [id, setId] = useState('');
