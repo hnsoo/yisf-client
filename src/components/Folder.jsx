@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
 import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
@@ -24,6 +24,23 @@ export default function Folder() {
     const view = useSelector(state => state.folder.view)
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const keyDownHandler = event => {
+            console.log('User pressed: ', event.key);
+
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                clickClose();
+            }
+        };
+
+        document.addEventListener('keydown', keyDownHandler);
+
+        return () => {
+            document.removeEventListener('keydown', keyDownHandler);
+        };
+    }, [])
 
     const clickClose = () => {
         dispatch(closeFolder())
