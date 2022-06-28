@@ -132,6 +132,7 @@ export default function Terminal(){
                 <Input>
                     <Mark>&gt;&gt;</Mark>
                     <Flag
+                        placeholder="YISF{FLAG}"
                         value={flag}
                         type="text"
                         onChange={onChangeFlag}
