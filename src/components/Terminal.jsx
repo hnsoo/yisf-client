@@ -52,6 +52,7 @@ export default function Terminal(){
                     else if(err.message === "ALREADY_CORRECT") setFlagRes("이미 맞춘 문제입니다.");
                     else setFlagRes("관리자는 문제를 맞출 수 없습니다.");
                 })
+            setFlag("")
         }
     }
 
