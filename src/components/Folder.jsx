@@ -12,7 +12,7 @@ import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
 import Problem from "./Problem";
-import {selectFolder} from "../redux/actions/zIndex";
+import {selectFolder, selectTerminal} from "../redux/actions/zIndex";
 import {Rnd} from 'react-rnd';
 import close from "../assets/img/close.png"
 import closeHover from "../assets/img/closeHover.png"
@@ -23,27 +23,12 @@ export default function Folder() {
     const [over, setOver] = useState(0);    // close btn mouse over
     const view = useSelector(state => state.folder.view)
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
+    const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened)
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        const keyDownHandler = event => {
-            console.log('User pressed: ', event.key);
-
-            if (event.key === 'Escape') {
-                event.preventDefault();
-                clickClose();
-            }
-        };
-
-        document.addEventListener('keydown', keyDownHandler);
-
-        return () => {
-            document.removeEventListener('keydown', keyDownHandler);
-        };
-    }, [])
 
     const clickClose = () => {
         dispatch(closeFolder())
+        if(isTerminalOpened) dispatch(selectTerminal())
     }
 
     const SelectView = () => {

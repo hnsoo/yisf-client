@@ -6,11 +6,11 @@ import IconFolder from "../assets/img/folder.png"
 import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
-import {openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/actions/folder";
+import {closeFolder, openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/actions/folder";
 import Terminal from "../components/Terminal";
 import {selectFolder, selectTerminal} from "../redux/actions/zIndex";
 import {useEffect, useState} from "react";
-import {getProblems} from "../redux/actions/terminal";
+import {closeTerminal, getProblems} from "../redux/actions/terminal";
 
 export default function Main() {
     const initField = {
@@ -26,11 +26,38 @@ export default function Main() {
     const isOpened = useSelector(state => state.folder.isOpened);
     const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened);
     const folderZInder = useSelector(state => state.zIndex.folderZIndex)
+    const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const dispatch = useDispatch();
 
     useEffect(() => {
         setIsIconsSelected(initField)
     }, [])
+
+    useEffect(() => {
+        const keyDownHandler = event => {
+            console.log('User pressed: ', event.key);
+
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                console.log(isOpened, folderZInder)
+                console.log(isTerminalOpened, terminalZIndex)
+                if(isOpened && folderZInder > 1) {
+                    dispatch(closeFolder())
+                    if(isTerminalOpened) dispatch(selectTerminal())
+                }
+                else if(isTerminalOpened && terminalZIndex > 1){
+                    dispatch(closeTerminal())
+                    if(isOpened) dispatch(selectFolder())
+                }
+            }
+        };
+
+        document.addEventListener('keydown', keyDownHandler);
+
+        return () => {
+            document.removeEventListener('keydown', keyDownHandler);
+        };
+    }, [isOpened, isTerminalOpened, folderZInder, terminalZIndex])
 
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
