@@ -1,5 +1,5 @@
 import pwnIcon from "../assets/img/gear.png";
-import reversingIcon from "../assets/img/fun.png";
+import reversingIcon from "../assets/img/reversing.png";
 import forensicIcon from "../assets/img/binary.png";
 import webIcon from "../assets/img/global.png";
 import miscIcon from "../assets/img/puzzle.png";
