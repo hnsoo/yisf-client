@@ -14,17 +14,41 @@ export default function Mypage(){
     useEffect(() => {
         UserService.loadMyInfo()
             .then(
-                (data) => setInfo((prevState) => {
-                    return { ...prevState,
-                        id: data.id,
-                        username: data.username,
-                        nickname: data.nickname,
-                        email: data.email,
-                        score: data.score,
-                    }
-                })
+                (data) => {
+                    const solved = getSolved(data.solved)
+                    console.log(solved.Web)
+                    setInfo((prevState) => {
+                        return {
+                            ...prevState,
+                            id: data.id,
+                            username: data.username,
+                            nickname: data.nickname,
+                            email: data.email,
+                            score: data.score,
+                            reversing: solved.Reversing,
+                            forensic: solved.Forensic,
+                            web: solved.Web,
+                            pwnable: solved.Pwnable,
+                            misc: solved.Misc,
+                        }
+                    })
+                }
             )
     }, [])
+
+    const getSolved = (data) => {
+        const solved = {
+            Reversing: [],
+            Forensic: [],
+            Web: [],
+            Pwnable: [],
+            Misc: [],
+        }
+        data.map(item => {
+            if(item.type !== "Crypto") solved[item.type].push(item.title)
+        })
+        return solved
+    }
 
     return (
         <Container>
@@ -35,7 +59,16 @@ export default function Mypage(){
             <b>My score</b><br/>
             {info.score}<br/><br/>
             <b>My solved</b><br/>
-
+            Reversing<br/>
+            {info.reversing.join(", ")}<br/><br/>
+            Forensic<br/>
+            {info.forensic.join(", ")}<br/><br/>
+            Web<br/>
+            {info.web.join(", ")}<br/><br/>
+            Pwnable<br/>
+            {info.pwnable.join(", ")}<br/><br/>
+            Misc<br/>
+            {info.misc.join(", ")}<br/><br/>
         </Container>
     );
 }
