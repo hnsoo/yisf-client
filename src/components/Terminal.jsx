@@ -126,12 +126,15 @@ export default function Terminal(){
                 </Ctrl>
             </Header>
             <Content>
-                {item("Title", info.title)}
-                {item("Description", info.description)}
-                {item("Creator", info.writer)}
-                {item("Score", info.calculatedScore)}
-                {item("Solved", info.solve)}
-                {flagRes}
+                <Info>
+                    {item("Title", info.title)}
+                    {item("Description", info.description)}
+                    {item("Creator", info.writer)}
+                    {item("Score", info.calculatedScore)}
+                    {item("Solved", info.solve)}
+                    {flagRes}
+                    <br/><br/>
+                </Info>
                 <Input>
                     <Mark>&gt;&gt;</Mark>
                     <Flag
@@ -170,19 +173,23 @@ const Ctrl = styled.div`
 
 // Content
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   text-align: left;
   color: #e7faff;
   overflow: auto;
   grid-area: content;
   padding: 0.4rem;
 `
+const Info = styled.div`
+  
+`
+
 const Tag = styled.span`
   color: #4adaff
 `
 const Input = styled.div`
   display: grid;
-  position: absolute;
-  bottom: 0;
   margin-bottom: 5px;
   width: 97%;
   grid-template-columns: 25px 1fr;
