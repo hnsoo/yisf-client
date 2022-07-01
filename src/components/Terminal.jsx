@@ -8,6 +8,8 @@ import {selectFolder, selectTerminal} from "../redux/actions/zIndex";
 import close from "../assets/img/terClose.png"
 import closeHover from "../assets/img/terCloseHover.png";
 import closeClick from "../assets/img/terCloseDown.png";
+import {logout} from "../redux/actions/auth";
+import AuthService from "../service/auth";
 
 export default function Terminal(){
     const [over, setOver] = useState(0);    // close btn mouse over
@@ -52,7 +54,12 @@ export default function Terminal(){
                 .catch((err)=> {
                     if (err.message === "INCORRECT_FLAG") setFlagRes("Flag가 일치 하지 않습니다.");
                     else if(err.message === "ALREADY_CORRECT") setFlagRes("이미 맞춘 문제입니다.");
-                    else setFlagRes("관리자는 문제를 맞출 수 없습니다.");
+                    else if(err.message === "ONLY_ACCESS_USER") setFlagRes("관리자는 문제를 맞출 수 없습니다.");
+                    else {
+                        // 세션 관련 에러
+                        dispatch(logout())
+                        AuthService.logout()
+                    }   
                 })
             setFlag("")
         }
