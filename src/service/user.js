@@ -19,8 +19,8 @@ class UserService {
                     })
                     .catch((err) => Promise.reject(err))
             )
-            .catch(() =>
-                Promise.reject()
+            .catch((err) =>
+                Promise.reject(err)
             );
     }
 }
