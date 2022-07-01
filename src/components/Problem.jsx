@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ProblemIcon from "./ProblemIcon";
 import {useDispatch, useSelector} from "react-redux";
 import {getProblems} from "../redux/actions/terminal";
+import {logout} from "../redux/actions/auth";
+import AuthService from "../service/auth";
 
 export default function Problem({field}){
     const problems = useSelector(state => state.terminal.problems)
@@ -11,6 +13,12 @@ export default function Problem({field}){
 
     useEffect(() => {
         dispatch(getProblems(field))
+            .then()
+            .catch((err)=> {
+                // 세션 관련 에러
+                dispatch(logout())
+                AuthService.logout()
+            })
         if(problems) setIsIconsSelected(Array(problems.length).fill(false));
     }, [field, dispatch])
 

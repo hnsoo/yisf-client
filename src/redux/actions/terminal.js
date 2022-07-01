@@ -27,11 +27,11 @@ export const getProblems = (field) => (dispatch) => {
             }
         )
         .catch(
-            () => {
+            (err) => {
                 dispatch({
                     type: LOAD_PROBLEM_FAIL,
                 });
-                return Promise.reject();
+                return Promise.reject(err);
             }
         );
 };
