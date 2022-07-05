@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import styled from "styled-components";
-import RankTable from "./RankTable"
+import RankTable from "./Table"
 import RankService from "../../service/rank";
 import RankChart from "./RankChart";
 
