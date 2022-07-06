@@ -10,6 +10,8 @@ import closeHover from "../assets/img/terCloseHover.png";
 import closeClick from "../assets/img/terCloseDown.png";
 import {logout} from "../redux/actions/auth";
 import AuthService from "../service/auth";
+import {AiOutlineLink} from "react-icons/ai"
+import {RiFlag2Fill} from "react-icons/ri"
 
 export default function Terminal(){
     const [over, setOver] = useState(0);    // close btn mouse over
@@ -29,20 +31,20 @@ export default function Terminal(){
         if(isFolderOpened) dispatch(selectFolder())
     }
 
-    const item = (type, content) => {
-        if(type === "Description"){
-            return (<p>
-                <Tag>&lt;{type}&gt;</Tag>
-                <br/>{content}<br/>
-                <Tag>&lt;/{type}&gt;</Tag>
-            </p>)
-        }
-        return (<p>
-            <Tag>&lt;{type}&gt;</Tag>
-            {content}
-            <Tag>&lt;/{type}&gt;</Tag>
-        </p>)
-    }
+    // const item = (type, content) => {
+    //     if(type === "Description"){
+    //         return (<p>
+    //             <Tag>&lt;{type}&gt;</Tag>
+    //             <br/>{content}<br/>
+    //             <Tag>&lt;/{type}&gt;</Tag>
+    //         </p>)
+    //     }
+    //     return (<p>
+    //         <Tag>&lt;{type}&gt;</Tag>
+    //         {content}
+    //         <Tag>&lt;/{type}&gt;</Tag>
+    //     </p>)
+    // }
 
     const handleOnKeyPress = (e) => {
         if(e.key === "Enter"){
@@ -98,17 +100,16 @@ export default function Terminal(){
                 "zIndex": terminalZIndex,
                 "display":"grid",
                 "position": "absolute",
-                "grid-template-areas":
+                "gridTemplateAreas":
                 `
-                     "header    header"
-                     "content   content"
-                     "content   content"
-                     "mark      input"
-                     `,
-                "text-align": "center",
-                "grid-template-columns": "1fr",
-                "grid-template-rows": "50px",
-                "background": "#002B36"
+                     "header"
+                     "address"
+                     "content"
+                 `,
+                "textAlign": "center",
+                "gridTemplateColumns": "1fr",
+                "gridTemplateRows": "50px 40px 1fr",
+                "background": "#fafafa"
             }}
 
             maxHeight={'80%'}
@@ -118,7 +119,7 @@ export default function Terminal(){
             bounds="window"
         >
             <Header className="header">
-                <Title>{"[" + info.type + "] "}{info.title}</Title>
+                <Name>Mic Test</Name>
                 <Ctrl
                     onMouseOver={() => setOver(1)}
                     onMouseDown={() => setOver(2)}
@@ -129,29 +130,40 @@ export default function Terminal(){
                         onClick={clickClose}
                         alt="close"
                     />
-                    {/*<FiStopCircle size="30" color="#76756E"/>*/}
                 </Ctrl>
             </Header>
+            <Address>
+                <AddressBox>
+                    <AiOutlineLink/>
+                    reversing/Mic Test
+                </AddressBox>
+            </Address>
             <Content>
-                <Info>
-                    {item("Title", info.title)}
-                    {item("Description", info.description)}
-                    {item("Creator", info.writer)}
-                    {item("Score", info.calculatedScore)}
-                    {item("Solved", info.solve)}
-                    {flagRes}
-                    <br/><br/>
-                </Info>
-                <Input>
-                    <Mark>&gt;&gt;</Mark>
-                    <Flag
+                <Top>
+                    <Title>Mic Test</Title>
+                    <Gray>writer </Gray>
+                    <Black>hnsoo</Black>
+                    <Gray> | </Gray>
+                    <Gray>score </Gray>
+                    <Black>1000</Black>
+                    <Gray> | </Gray>
+                    <Gray>solved </Gray>
+                    <Black>10</Black>
+                </Top>
+                <Description>
+                    <Title>Description</Title>
+                    <DescContent></DescContent>
+                </Description>
+                <Flag>
+                    <RiFlag2Fill size="30" color="#AC3652"/>
+                    <Title style={{"marginLeft": "10px"}}>FLAG</Title>
+                    <InputFlag
                         placeholder="YISF{FLAG}"
-                        value={flag}
-                        type="text"
-                        onChange={onChangeFlag}
-                        onKeyPress={handleOnKeyPress}
-                    />
-                </Input>
+                        spellCheck="false"
+                        autoComplete="off"
+                    ></InputFlag>
+                    <SubmitFlag>Submit</SubmitFlag>
+                </Flag>
             </Content>
         </Rnd>
     );
@@ -161,13 +173,13 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #44433E;
+  background: #302F2F;
   grid-area: header;
   padding: 6px;
 `
-
-const Title = styled.div`
+const Name = styled.div`
   color: white;
+  font-size: large;
   padding-left: 15px;
   padding-bottom: 2px;
 `
@@ -178,45 +190,79 @@ const Ctrl = styled.div`
   padding-right: 5px;
 `
 
+const Address = styled.div`
+  grid-area: address;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+  border-bottom: 1px solid #d1d1d1;
+`
+const AddressBox = styled.div`
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  width: 95%;
+  height: 70%;
+  text-align: left;
+  padding-left: 10px;
+`
 // Content
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  color: #e7faff;
   overflow: auto;
   grid-area: content;
-  padding: 0.4rem;
+  padding: 0.5rem;
 `
-const Info = styled.div`
-  
+const Title = styled.div`
+  font-size: large;
+  color: #AC3652;
 `
-
-const Tag = styled.span`
-  color: #4adaff
+const Top = styled.div`
+  margin: 10px;
 `
-const Input = styled.div`
-  display: grid;
-  margin-bottom: 5px;
-  width: 97%;
-  grid-template-columns: 25px 1fr;
-  grid-template-rows: 25px;
-  grid-template-areas: "mark flag";
+const Gray = styled.span`
+  color: #7c7c7d;
 `
-const Mark = styled.div`
-  grid-area: mark;
-  color: #e7faff;
+const Black = styled.span`
+  color: black;
 `
-const Flag = styled.input.attrs(() => ({
-    spellCheck: "false",
-    autoComplete: "off",
-}))`
-  grid-area: flag;
-  background: rgba(0,0,0,0);
-  color: #e7faff;
+const Description = styled.div`
+  margin: 10px;
+`
+const DescContent = styled.div`
+  border-radius: 10px;
+  width: 100%;
+  height: 100px;
+  background: #E0E0E1;
+  margin-top: 10px;
+`
+const Flag = styled.div`
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+`
+const InputFlag = styled.input`
   border: none;
-  :focus {
-    outline: none;
-  };
+  border-radius: 50px;
+  background: #E0E0E1;
+  outline-color: #FE6B8B;
+  width: 100%;
+  height: 100%;
+  padding-left: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
 `
-
+const SubmitFlag = styled.button`
+  border: none;
+  border-radius: 50px;
+  background: #AC3652;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+`
