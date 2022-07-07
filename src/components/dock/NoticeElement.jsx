@@ -17,7 +17,6 @@ export default function NoticeElement({elementIndex, info}) {
     )
 }
 const Row = styled.tr`
-  padding: 0.5rem;
   border-bottom: 1px solid lightgray;
   // background: ${(props) => props.background ? "#cce8ff": "white"};
   // :hover {

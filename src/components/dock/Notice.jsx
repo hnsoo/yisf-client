@@ -45,7 +45,7 @@ const Container = styled.div`
   //display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 0.25rem;
+  padding: 1rem;
 `
 const Table = styled.table`
   width: 100%;
