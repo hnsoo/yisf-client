@@ -112,7 +112,7 @@ export default function Terminal(){
             bounds="window"
         >
             <Header className="header">
-                <Name>Mic Test</Name>
+                <Name>{info.title}</Name>
                 <Ctrl
                     onMouseOver={() => setOver(1)}
                     onMouseDown={() => setOver(2)}
