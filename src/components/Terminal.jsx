@@ -32,7 +32,16 @@ export default function Terminal(){
 
     const handleOnKeyPress = (e) => {
         if(e.key === "Enter"){
-            if(flag === "") alert("Flag를 입력해주세요.")
+            sendFlag()
+            setFlag("")
+        }
+    }
+
+    const sendFlag = () => {
+        if(flag === "") {
+            alert("Flag를 입력해주세요.")
+        }
+        else {
             ProblemService.sendFlag(info.id, flag)
                 .then(()=> {
                     console.log('success!')
@@ -48,7 +57,6 @@ export default function Terminal(){
                         AuthService.logout()
                     }
                 })
-            setFlag("")
         }
     }
 
