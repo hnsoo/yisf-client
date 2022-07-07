@@ -160,7 +160,10 @@ export default function Terminal(){
                         spellCheck="false"
                         autoComplete="off"
                     ></InputFlag>
-                    <SubmitFlag>Submit</SubmitFlag>
+                    <SubmitFlag
+                        onClick={sendFlag}
+                    >Submit
+                    </SubmitFlag>
                 </Flag>
             </Content>
         </Rnd>
