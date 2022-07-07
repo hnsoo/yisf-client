@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import UserService from "../../service/user";
+import {logout} from "../../redux/actions/auth";
+import AuthService from "../../service/auth";
+import {useDispatch} from "react-redux";
 
 export default function Mypage(){
+    const dispatch = useDispatch()
     const [info, setInfo] = useState({
         id: 0,
         username: "",
@@ -15,8 +19,8 @@ export default function Mypage(){
         UserService.loadMyInfo()
             .then(
                 (data) => {
-                    const solved = getSolved(data.solved)
-                    console.log(solved.Web)
+                    // const solved = getSolved(data.solved)
+                    // console.log(solved.Web)
                     setInfo((prevState) => {
                         return {
                             ...prevState,
@@ -25,30 +29,38 @@ export default function Mypage(){
                             nickname: data.nickname,
                             email: data.email,
                             score: data.score,
-                            reversing: solved.Reversing,
-                            forensic: solved.Forensic,
-                            web: solved.Web,
-                            pwnable: solved.Pwnable,
-                            misc: solved.Misc,
+                            // reversing: solved.Reversing,
+                            // forensic: solved.Forensic,
+                            // web: solved.Web,
+                            // pwnable: solved.Pwnable,
+                            // misc: solved.Misc,
                         }
                     })
                 }
             )
+            .catch(
+                err => {
+                    // 세션 관련 에러
+                    console.log(err)
+                    // dispatch(logout())
+                    // AuthService.logout()
+                }
+            )
     }, [])
 
-    const getSolved = (data) => {
-        const solved = {
-            Reversing: [],
-            Forensic: [],
-            Web: [],
-            Pwnable: [],
-            Misc: [],
-        }
-        data.map(item => {
-            if(item.type !== "Crypto") solved[item.type].push(item.title)
-        })
-        return solved
-    }
+    // const getSolved = (data) => {
+    //     const solved = {
+    //         Reversing: [],
+    //         Forensic: [],
+    //         Web: [],
+    //         Pwnable: [],
+    //         Misc: [],
+    //     }
+    //     data.map(item => {
+    //         if(item.type !== "Crypto") solved[item.type].push(item.title)
+    //     })
+    //     return solved
+    // }
 
     return (
         <Container>
@@ -59,16 +71,16 @@ export default function Mypage(){
             <b>My score</b><br/>
             {info.score}<br/><br/>
             <b>My solved</b><br/>
-            Reversing<br/>
-            {info.reversing.join(", ")}<br/><br/>
-            Forensic<br/>
-            {info.forensic.join(", ")}<br/><br/>
-            Web<br/>
-            {info.web.join(", ")}<br/><br/>
-            Pwnable<br/>
-            {info.pwnable.join(", ")}<br/><br/>
-            Misc<br/>
-            {info.misc.join(", ")}<br/><br/>
+            {/*Reversing<br/>*/}
+            {/*/!*{info.reversing.join(", ")}<br/><br/>*!/*/}
+            {/*Forensic<br/>*/}
+            {/*/!*{info.forensic.join(", ")}<br/><br/>*!/*/}
+            {/*Web<br/>*/}
+            {/*/!*{info.web.join(", ")}<br/><br/>*!/*/}
+            {/*Pwnable<br/>*/}
+            {/*/!*{info.pwnable.join(", ")}<br/><br/>*!/*/}
+            {/*Misc<br/>*/}
+            {/*/!*{info.misc.join(", ")}<br/><br/>*!/*/}
         </Container>
     );
 }
