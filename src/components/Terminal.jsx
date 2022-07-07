@@ -15,7 +15,6 @@ import {RiFlag2Fill} from "react-icons/ri"
 
 export default function Terminal(){
     const [over, setOver] = useState(0);    // close btn mouse over
-    const [flagRes, setFlagRes] = useState("")
     const [flag, setFlag] = useState("")
     const onChangeFlag = (e) => {
         setFlag(e.target.value);
@@ -31,37 +30,23 @@ export default function Terminal(){
         if(isFolderOpened) dispatch(selectFolder())
     }
 
-    // const item = (type, content) => {
-    //     if(type === "Description"){
-    //         return (<p>
-    //             <Tag>&lt;{type}&gt;</Tag>
-    //             <br/>{content}<br/>
-    //             <Tag>&lt;/{type}&gt;</Tag>
-    //         </p>)
-    //     }
-    //     return (<p>
-    //         <Tag>&lt;{type}&gt;</Tag>
-    //         {content}
-    //         <Tag>&lt;/{type}&gt;</Tag>
-    //     </p>)
-    // }
-
     const handleOnKeyPress = (e) => {
         if(e.key === "Enter"){
+            if(flag === "") alert("Flag를 입력해주세요.")
             ProblemService.sendFlag(info.id, flag)
                 .then(()=> {
                     console.log('success!')
-                    setFlagRes("Flag 인증에 성공했습니다.")
+                    alert('Flag 인증에 성공했습니다.')
                 })
                 .catch((err)=> {
-                    if (err.message === "INCORRECT_FLAG") setFlagRes("Flag가 일치 하지 않습니다.");
-                    else if(err.message === "ALREADY_CORRECT") setFlagRes("이미 맞춘 문제입니다.");
-                    else if(err.message === "ONLY_ACCESS_USER") setFlagRes("관리자는 문제를 맞출 수 없습니다.");
+                    if (err.message === "INCORRECT_FLAG") alert("Flag가 일치 하지 않습니다.");
+                    else if(err.message === "ALREADY_CORRECT") alert("이미 맞춘 문제입니다.");
+                    else if(err.message === "ONLY_ACCESS_USER") alert("관리자는 문제를 맞출 수 없습니다.");
                     else {
                         // 세션 관련 에러
                         dispatch(logout())
                         AuthService.logout()
-                    }   
+                    }
                 })
             setFlag("")
         }
@@ -135,29 +120,34 @@ export default function Terminal(){
             <Address>
                 <AddressBox>
                     <AiOutlineLink/>
-                    reversing/Mic Test
+                    {`${info.type.toLowerCase()}/${info.title}`}
                 </AddressBox>
             </Address>
             <Content>
                 <Top>
-                    <Title>Mic Test</Title>
+                    <Title>{info.title}</Title>
                     <Gray>writer </Gray>
-                    <Black>hnsoo</Black>
+                    <Black>{info.author}</Black>
                     <Gray> | </Gray>
                     <Gray>score </Gray>
-                    <Black>1000</Black>
+                    <Black>{info.calculatedScore}</Black>
                     <Gray> | </Gray>
                     <Gray>solved </Gray>
-                    <Black>10</Black>
+                    <Black>0</Black>
                 </Top>
                 <Description>
                     <Title>Description</Title>
-                    <DescContent></DescContent>
+                    <DescContent>
+                        <div dangerouslySetInnerHTML={{__html: info.description}}/>
+                    </DescContent>
                 </Description>
                 <Flag>
                     <RiFlag2Fill size="30" color="#AC3652"/>
                     <Title style={{"marginLeft": "10px"}}>FLAG</Title>
                     <InputFlag
+                        value={flag}
+                        onChange={onChangeFlag}
+                        onKeyPress={handleOnKeyPress}
                         placeholder="YISF{FLAG}"
                         spellCheck="false"
                         autoComplete="off"
@@ -236,10 +226,9 @@ const Description = styled.div`
 `
 const DescContent = styled.div`
   border-radius: 10px;
-  width: 100%;
-  height: 100px;
   background: #E0E0E1;
   margin-top: 10px;
+  padding: 15px;
 `
 const Flag = styled.div`
   display: flex;
