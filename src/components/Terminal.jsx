@@ -102,7 +102,8 @@ export default function Terminal(){
                 "textAlign": "center",
                 "gridTemplateColumns": "1fr",
                 "gridTemplateRows": "50px 40px 1fr",
-                "background": "#fafafa"
+                "background": "#fafafa",
+                "boxShadow": "0 3px 6px rgba(0,0,0,0.19), 0 3px 6px rgba(0,0,0,0.23)"
             }}
 
             maxHeight={'80%'}

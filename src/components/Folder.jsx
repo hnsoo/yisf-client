@@ -91,7 +91,8 @@ export default function Folder() {
                      `,
                 "textAlign": "center",
                 "gridTemplateColumns": "150px 1fr",
-                "gridTemplateRows": "50px 1fr"
+                "gridTemplateRows": "50px 1fr",
+                "boxShadow": "0 3px 6px rgba(0,0,0,0.19), 0 3px 6px rgba(0,0,0,0.23)"
             }}
 
             maxHeight={'80%'}
