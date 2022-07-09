@@ -5,19 +5,25 @@ import NoticeService from "../../service/notice";
 import {useState} from "react";
 import NoticeElement from "./NoticeElement";
 import "react-table";
+import {logout} from "../../redux/actions/auth";
+import AuthService from "../../service/auth";
+import {getProblems} from "../../redux/actions/terminal";
+import {useDispatch, useSelector} from "react-redux";
+import {getNotices} from "../../redux/actions/notice";
 
 export default function Notice() {
-    const [noticeData, setNoticeData] = useState([]);
+    const notices = useSelector(state => state.notice.notices)
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        NoticeService.getNotice()
-            .then(
-                (data) => {
-                    setNoticeData(data)
-                    return data
-                }
-            )
-    }, [])
+        dispatch(getNotices())
+            .then()
+            .catch((err) => {
+                // 세션 관련 에러
+                dispatch(logout)
+                AuthService.logout()
+            })
+    }, [dispatch])
 
     return (
         <Container>
@@ -27,7 +33,7 @@ export default function Notice() {
                 <Th>제목</Th>
                 <Th>작성시간</Th>
                 <Th>수정시간</Th>
-                {noticeData && noticeData.map((notice, idx) =>
+                {notices && notices.map((notice, idx) =>
                     <NoticeElement
                         key={notice.id}
                         elementIndex={idx}
