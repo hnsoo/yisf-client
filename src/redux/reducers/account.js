@@ -28,9 +28,11 @@ export default function(state = initialState, action) {
                 score: payload.info.score,
                 role: payload.info.role,
             }
-            for(let problem of payload.info.solved){
-                console.log(problem.type.toLowerCase())
-                result[problem.type.toLowerCase()].push({id: problem.id, title: problem.title})
+            if (payload.info.solved){
+                for(let problem of payload.info.solved){
+                    console.log(problem.type.toLowerCase())
+                    result[problem.type.toLowerCase()].push({id: problem.id, title: problem.title})
+                }
             }
             return result;
         case LOAD_MYPAGE_FAIL:
