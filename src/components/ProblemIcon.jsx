@@ -1,8 +1,8 @@
 import pwnIcon from "../assets/img/gear.png";
-import reversingIcon from "../assets/img/reversing.png";
-import forensicIcon from "../assets/img/binary.png";
+import reversingIcon from "../assets/img/leaf.png";
+import forensicIcon from "../assets/img/fingerprint.png";
 import webIcon from "../assets/img/global.png";
-import miscIcon from "../assets/img/puzzle.png";
+import miscIcon from "../assets/img/light.png";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {openTerminal} from "../redux/actions/terminal";
