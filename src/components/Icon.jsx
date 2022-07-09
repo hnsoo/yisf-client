@@ -6,7 +6,7 @@ import {selectFolder} from "../redux/actions/zIndex";
 
 export default function Icon({role, color, img}){
     const dispatch = useDispatch()
-    const folderZInder = useSelector(state => state.zIndex.folderZIndex)
+    const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
 
     const setView = (role) => {
         switch (role) {
@@ -28,7 +28,7 @@ export default function Icon({role, color, img}){
 
     const clickIcon = () => {
         setView(role)
-        if(folderZInder < 2){
+        if(folderZIndex < 3){
             dispatch(selectFolder())
         }
     }

@@ -7,7 +7,6 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {openTerminal} from "../redux/actions/terminal";
 import {selectTerminal} from "../redux/actions/zIndex";
-import {useState} from "react";
 
 export default function ProblemIcon({info, isSelected, handleClick, elementIndex}) {
     const dispatch = useDispatch();
@@ -37,7 +36,7 @@ export default function ProblemIcon({info, isSelected, handleClick, elementIndex
             case 2:
                 //when click double~^^
                 dispatch(openTerminal(info))
-                if(terminalZIndex < 2){
+                if(terminalZIndex < 3){
                     dispatch(selectTerminal())
                 }
                 break;

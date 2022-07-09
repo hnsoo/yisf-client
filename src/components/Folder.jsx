@@ -23,12 +23,12 @@ export default function Folder() {
     const [over, setOver] = useState(0);    // close btn mouse over
     const view = useSelector(state => state.folder.view)
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
-    const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened)
+    // const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened)
     const dispatch = useDispatch();
 
     const clickClose = () => {
         dispatch(closeFolder())
-        if(isTerminalOpened) dispatch(selectTerminal())
+        // if(isTerminalOpened) dispatch(selectTerminal())
     }
 
     const SelectView = () => {
@@ -52,7 +52,7 @@ export default function Folder() {
     }
 
     const clickFolder = () => {
-        if (folderZIndex < 2) {
+        if (folderZIndex < 3) {
             dispatch(selectFolder())
         }
     }
@@ -110,7 +110,6 @@ export default function Folder() {
                     onMouseDown={() => setOver(2)}
                     onMouseOut={() => setOver(0)}
                 >
-                    {/*<FiStopCircle size="30" color="#4f4f4f"/>*/}
                     <img
                         src={closeWithMouse()}
                         onClick={clickClose}

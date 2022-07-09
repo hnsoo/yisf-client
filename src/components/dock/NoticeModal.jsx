@@ -8,12 +8,19 @@ import closeClick from "../../assets/img/terCloseDown.png";
 import {AiOutlineLink} from "react-icons/ai"
 import {closeNoticeModal} from "../../redux/actions/notice";
 import moment from "moment";
+import {selectNoticeModal} from "../../redux/actions/zIndex";
 
 export default function NoticeModal(){
     const [over, setOver] = useState(0);    // close btn mouse over
-
+    const noticeModalZIndex = useSelector(state => state.zIndex.noticeModalZIndex)
     const info = useSelector(state => state.notice.notice);
     const dispatch = useDispatch();
+
+    const clickNoticeModal = () => {
+        if (noticeModalZIndex < 3) {
+            dispatch(selectNoticeModal())
+        }
+    }
 
     const clickClose = () => {
         dispatch(closeNoticeModal())
@@ -34,6 +41,7 @@ export default function NoticeModal(){
 
     return (
         <Rnd
+            onMouseDown={clickNoticeModal}
             dragHandleClassName={"header"}
             default={{
                 x: 400,
@@ -44,6 +52,7 @@ export default function NoticeModal(){
             style={{
                 "display":"grid",
                 "position": "absolute",
+                "zIndex": noticeModalZIndex,
                 "gridTemplateAreas":
                 `
                      "header"

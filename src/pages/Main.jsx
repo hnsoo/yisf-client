@@ -27,7 +27,7 @@ export default function Main() {
     const isOpened = useSelector(state => state.folder.isOpened);
     const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened);
     const isNoticeModalOpened = useSelector(state => state.notice.isNoticeModalOpened)
-    const folderZInder = useSelector(state => state.zIndex.folderZIndex)
+    const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const dispatch = useDispatch();
 
@@ -41,9 +41,9 @@ export default function Main() {
 
             if (event.key === 'Escape') {
                 event.preventDefault();
-                console.log(isOpened, folderZInder)
+                console.log(isOpened, folderZIndex)
                 console.log(isTerminalOpened, terminalZIndex)
-                if(isOpened && folderZInder > 1) {
+                if(isOpened && folderZIndex > 1) {
                     dispatch(closeFolder())
                     if(isTerminalOpened) dispatch(selectTerminal())
                 }
@@ -59,7 +59,7 @@ export default function Main() {
         return () => {
             document.removeEventListener('keydown', keyDownHandler);
         };
-    }, [isOpened, isTerminalOpened, folderZInder, terminalZIndex])
+    }, [isOpened, isTerminalOpened, folderZIndex, terminalZIndex])
 
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
@@ -94,7 +94,7 @@ export default function Main() {
                         break;
                     default:
                 }
-                if(folderZInder < 2){
+                if(folderZIndex < 3){
                     dispatch(selectFolder())
                 }
                 break;
