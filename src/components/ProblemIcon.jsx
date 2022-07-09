@@ -1,8 +1,13 @@
 import pwnIcon from "../assets/img/gear.png";
+import solvedPwnIcon from "../assets/img/gear-solved.png"
 import reversingIcon from "../assets/img/leaf.png";
+import solvedReversingIcon from "../assets/img/leaf-solved.png"
 import forensicIcon from "../assets/img/fingerprint.png";
+import solvedForensicIcon from "../assets/img/fingerprint-solved.png"
 import webIcon from "../assets/img/global.png";
+import solvedWebIcon from "../assets/img/global-solved.png"
 import miscIcon from "../assets/img/light.png";
+import solvedMiscIcon from "../assets/img/light-solved.png"
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {openTerminal} from "../redux/actions/terminal";
@@ -11,18 +16,39 @@ import {selectTerminal} from "../redux/actions/zIndex";
 export default function ProblemIcon({info, isSelected, handleClick, elementIndex}) {
     const dispatch = useDispatch();
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
+    const solvedPwnable = useSelector(state => state.account.pwnable)
+    const solvedWeb = useSelector(state => state.account.web)
+    const solvedForensic = useSelector(state => state.account.forensic)
+    const solvedReversing = useSelector(state => state.account.reversing)
+    const solvedMisc = useSelector(state => state.account.misc)
+
     const fieldIcon = (field) => {
         switch (field) {
             case "Pwnable":
-                return <img src={pwnIcon} height="100px"/>
+                for(let problem of solvedPwnable){
+                    if(problem.id === info.id) return <img src={solvedPwnIcon} />
+                }
+                return <img src={pwnIcon} />
             case "Reversing":
-                return <img src={reversingIcon} height="100px"/>
+                for(let problem of solvedReversing){
+                    if(problem.id === info.id) return <img src={solvedReversingIcon} />
+                }
+                return <img src={reversingIcon} />
             case "Forensic":
-                return <img src={forensicIcon} height="100px"/>
+                for(let problem of solvedForensic){
+                    if(problem.id === info.id) return <img src={solvedForensicIcon} />
+                }
+                return <img src={forensicIcon} />
             case "Web":
-                return <img src={webIcon} height="100px"/>
+                for(let problem of solvedWeb){
+                    if(problem.id === info.id) return <img src={solvedWebIcon} />
+                }
+                return <img src={webIcon} />
             case "Misc":
-                return <img src={miscIcon} height="100px"/>
+                for(let problem of solvedMisc){
+                    if(problem.id === info.id) return <img src={solvedMiscIcon} />
+                }
+                return <img src={miscIcon} />
             default:
         }
     }
