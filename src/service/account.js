@@ -2,8 +2,8 @@ import AuthService from "./auth";
 
 const API_URL = "http://15.165.86.75:8080/api/v1"
 
-class UserService {
-    loadMyInfo() {
+class AccountService {
+    getMyInfo() {
         return AuthService.checkSession()
             .then(() =>
                 fetch(API_URL + '/account', {
@@ -25,4 +25,4 @@ class UserService {
     }
 }
 
-export default new UserService();
+export default new AccountService();

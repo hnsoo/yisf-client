@@ -4,6 +4,7 @@ import folder from "./folder";
 import terminal from "./terminal";
 import zIndex from "./zIndex"
 import notice from "./notice";
+import account from "./account";
 
 export default combineReducers({
     auth,
@@ -11,4 +12,5 @@ export default combineReducers({
     terminal,
     zIndex,
     notice,
+    account,
 });
