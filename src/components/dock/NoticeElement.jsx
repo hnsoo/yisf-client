@@ -1,13 +1,18 @@
 import styled from "styled-components";
 import moment from "moment";
+import {useDispatch} from "react-redux";
+import {openNoticeModal} from "../../redux/actions/notice";
 
 export default function NoticeElement({elementIndex, info}) {
+    const dispatch = useDispatch()
 
+    const clickNoticeElement = () => {
+        dispatch(openNoticeModal(info))
+    }
 
     return (
         <Row
-            // onClick={clickProblem}
-            // background={isSelected}
+            onClick={clickNoticeElement}
         >
             <Col>{elementIndex + 1}</Col>
             <Col>{info.title}</Col>

@@ -10,7 +10,8 @@ import {closeFolder, openForensic, openMisc, openPwnable, openReversing, openWeb
 import Terminal from "../components/Terminal";
 import {selectFolder, selectTerminal} from "../redux/actions/zIndex";
 import {useEffect, useState} from "react";
-import {closeTerminal, getProblems} from "../redux/actions/terminal";
+import {closeTerminal} from "../redux/actions/terminal";
+import NoticeModal from "../components/dock/NoticeModal";
 
 export default function Main() {
     const initField = {
@@ -25,6 +26,7 @@ export default function Main() {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const isOpened = useSelector(state => state.folder.isOpened);
     const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened);
+    const isNoticeModalOpened = useSelector(state => state.notice.isNoticeModalOpened)
     const folderZInder = useSelector(state => state.zIndex.folderZIndex)
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
     const dispatch = useDispatch();
@@ -123,6 +125,7 @@ export default function Main() {
                 </FolderContainer>
                 {isOpened && <Folder />}
                 {isTerminalOpened && <Terminal />}
+                {isNoticeModalOpened && <NoticeModal />}
             </Content>
         </Background>
     );
