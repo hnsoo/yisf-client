@@ -72,7 +72,7 @@ export default function Rank(){
 
     return (
         <Container>
-            <b>실시간 유저 랭킹</b>
+            <Title>실시간 유저 랭킹</Title>
             <RankChart data={chartData} player={topPlayer}/>
             <RankTable columns={columnData} data={tableData}/>
         </Container>
@@ -82,5 +82,9 @@ const Container = styled.div`
   //display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 1rem;
+`
+const Title = styled.div`
+  font-size: large;
+  font-family: NotoBold, sans-serif;
 `

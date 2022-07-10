@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
 import {useEffect} from "react";
-import NoticeService from "../../service/notice";
-import {useState} from "react";
 import NoticeElement from "./NoticeElement";
 import "react-table";
 import {logout} from "../../redux/actions/auth";
 import AuthService from "../../service/auth";
-import {getProblems} from "../../redux/actions/terminal";
 import {useDispatch, useSelector} from "react-redux";
 import {getNotices} from "../../redux/actions/notice";
 
@@ -27,7 +24,7 @@ export default function Notice() {
 
     return (
         <Container>
-            <b>YISF 공지사항</b><br/>
+            <Title>YISF 공지사항</Title>
             <Table>
                 <Th>번호</Th>
                 <Th>제목</Th>
@@ -51,8 +48,13 @@ const Container = styled.div`
   //display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 1rem;
 `
+const Title = styled.div`
+  font-size: large;
+  font-family: "NotoBold", sans-serif;
+`
+
 const Table = styled.table`
   width: 100%;
   text-align: center;

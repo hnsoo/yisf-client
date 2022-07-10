@@ -77,7 +77,7 @@ export default function Folder() {
             default={{
                 x: 100,
                 y: 100,
-                width: 750,
+                width: 900,
                 height: 500,
             }}
             style={{

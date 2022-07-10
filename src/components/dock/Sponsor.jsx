@@ -15,23 +15,27 @@ import ktIcon from '../../assets/img/sponsor/kt.png'
 export default function Sponsor(){
     return (
         <Container>
-                <Title>주 최</Title>
-                <Logo src={schIcon} />
-                <Title>주 관</Title>
-                <Logo src={schIcon} />
-                <Logo src={centerIcon} />
-                <Title>후 원</Title>
-                <Logo src={moisIcon} />
-                <Logo src={msitIcon} />
-                <Logo src={kisaIcon} />
-                <Title>미디어 협력</Title>
-                <Logo src={newsIcon} />
-                <Title>기관 협력</Title>
-                <Logo src={kiiscIcon} />
-                <Logo src={kisiaIcon} />
-                <Logo src={ahnlab} />
-                <Logo src={ktIcon} />
-                <Logo src={estIcon} />
+            <Title>주 최</Title>
+            <Logo src={schIcon} />
+            <Line />
+            <Title>주 관</Title>
+            <Logo src={schIcon} />
+            <Logo src={centerIcon} />
+            <Line/>
+            <Title>후 원</Title>
+            <Logo src={moisIcon} />
+            <Logo src={msitIcon} />
+            <Logo src={kisaIcon} />
+            <Line/>
+            <Title>미디어 협력</Title>
+            <Logo src={newsIcon} />
+            <Line/>
+            <Title>기관 협력</Title>
+            <Logo src={kiiscIcon} />
+            <Logo src={kisiaIcon} />
+            <Logo src={ahnlab} />
+            <Logo src={ktIcon} />
+            <Logo src={estIcon} />
         </Container>
     );
 }
@@ -40,7 +44,7 @@ const Container = styled.div`
   //display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 1rem;
 `
 const Title = styled.div`
   font-size: large;
@@ -49,6 +53,13 @@ const Title = styled.div`
 const Logo = styled.img`
   margin-top: 5px;
   margin-right: 30px;
-  margin-bottom: 15px;
+  //margin-bottom: 15px;
   height: 40px;
+`
+const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background: #cbcbcb;
+  margin-top: 15px;
+  margin-bottom: 15px;
 `
