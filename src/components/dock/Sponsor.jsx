@@ -40,13 +40,15 @@ const Container = styled.div`
   //display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 0.25rem;
+  padding: 0.5rem;
 `
-const Title = styled.p`
+const Title = styled.div`
   font-size: large;
   font-family: "NotoBold", sans-serif;
 `
 const Logo = styled.img`
+  margin-top: 5px;
   margin-right: 30px;
+  margin-bottom: 15px;
   height: 40px;
 `

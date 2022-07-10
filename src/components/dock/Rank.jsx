@@ -82,5 +82,5 @@ const Container = styled.div`
   //display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 0.25rem;
+  padding: 0.5rem;
 `
