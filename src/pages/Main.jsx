@@ -135,7 +135,7 @@ const Background = styled.div`
   display: grid;
   position: absolute;
   grid-template-rows: 40px 1fr;
-  grid-template-columns: 10vw 1fr;
+  grid-template-columns: 150px 1fr;
   grid-template-areas: 
       "header header"
       "sidebar content";

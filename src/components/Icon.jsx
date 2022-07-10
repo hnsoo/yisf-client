@@ -46,9 +46,9 @@ export default function Icon({role, color, img}){
 const Container = styled.div`
   border-radius: 20px;
   background-color: ${(props) => props.BackgroundColor};
-  max-width: 100%;
-  width: 80%;
-  height: 17%;
+  //max-width: 100%;
+  width: 120px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
