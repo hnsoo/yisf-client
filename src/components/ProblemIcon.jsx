@@ -92,5 +92,6 @@ const Container = styled.div`
 `
 const Title = styled.div`
   text-align: center;
+  margin-top: 5px;
   width: 100px;
 `
