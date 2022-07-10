@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {closeTerminal} from "../redux/actions/terminal";
 import ProblemService from "../service/problem"
 import {Rnd} from 'react-rnd';
-import {selectTerminal} from "../redux/actions/zIndex";
+import {deselectTerminal, selectTerminal} from "../redux/actions/zIndex";
 import close from "../assets/img/terClose.png"
 import closeHover from "../assets/img/terCloseHover.png";
 import closeClick from "../assets/img/terCloseDown.png";
@@ -20,14 +20,13 @@ export default function Terminal(){
         setFlag(e.target.value);
     };
 
-    // const isFolderOpened = useSelector(state => state.folder.isOpened);
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex);
     const info = useSelector(state => state.terminal.problem);
     const dispatch = useDispatch();
 
     const clickClose = () => {
         dispatch(closeTerminal())
-        // if(isFolderOpened) dispatch(selectFolder())
+        dispatch(deselectTerminal())
     }
 
     const handleOnKeyPress = (e) => {

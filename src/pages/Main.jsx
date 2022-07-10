@@ -8,10 +8,16 @@ import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
 import {closeFolder, openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/actions/folder";
 import Terminal from "../components/Terminal";
-import {selectFolder, selectTerminal} from "../redux/actions/zIndex";
+import {
+    deselectFolder,
+    deselectNoticeModal,
+    deselectTerminal,
+    selectFolder,
+} from "../redux/actions/zIndex";
 import {useEffect, useState} from "react";
 import {closeTerminal} from "../redux/actions/terminal";
 import NoticeModal from "../components/dock/NoticeModal";
+import {closeNoticeModal} from "../redux/actions/notice";
 
 export default function Main() {
     const initField = {
@@ -29,6 +35,7 @@ export default function Main() {
     const isNoticeModalOpened = useSelector(state => state.notice.isNoticeModalOpened)
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
     const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
+    const noticeModalZIndex = useSelector(state => state.zIndex.noticeModalZIndex)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -37,19 +44,19 @@ export default function Main() {
 
     useEffect(() => {
         const keyDownHandler = event => {
-            console.log('User pressed: ', event.key);
-
             if (event.key === 'Escape') {
                 event.preventDefault();
-                console.log(isOpened, folderZIndex)
-                console.log(isTerminalOpened, terminalZIndex)
-                if(isOpened && folderZIndex > 1) {
+                if(isOpened && folderZIndex > terminalZIndex && folderZIndex > noticeModalZIndex) {
                     dispatch(closeFolder())
-                    if(isTerminalOpened) dispatch(selectTerminal())
+                    dispatch(deselectFolder())
                 }
-                else if(isTerminalOpened && terminalZIndex > 1){
+                else if(isTerminalOpened && terminalZIndex > folderZIndex && terminalZIndex > noticeModalZIndex){
                     dispatch(closeTerminal())
-                    if(isOpened) dispatch(selectFolder())
+                    dispatch(deselectTerminal())
+                }
+                else if(isNoticeModalOpened && noticeModalZIndex > folderZIndex && noticeModalZIndex > terminalZIndex){
+                    dispatch(closeNoticeModal())
+                    dispatch(deselectNoticeModal())
                 }
             }
         };
@@ -59,7 +66,7 @@ export default function Main() {
         return () => {
             document.removeEventListener('keydown', keyDownHandler);
         };
-    }, [isOpened, isTerminalOpened, folderZIndex, terminalZIndex])
+    }, [isOpened, isTerminalOpened, isNoticeModalOpened, folderZIndex, terminalZIndex, noticeModalZIndex])
 
     if (!isLoggedIn) {
         return <Navigate to="/login" />;

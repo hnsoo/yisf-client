@@ -1,4 +1,10 @@
-import {SELECT_FOLDER, SELECT_NOTICE_MODAL, SELECT_TERMINAL} from "../actions/types";
+import {
+    DESELECT_FOLDER, DESELECT_NOTICE_MODAL,
+    DESELECT_TERMINAL,
+    SELECT_FOLDER,
+    SELECT_NOTICE_MODAL,
+    SELECT_TERMINAL
+} from "../actions/types";
 
 const initialState = { folderZIndex: 0, terminalZIndex: 0, noticeModalZIndex: 0}
 
@@ -24,7 +30,22 @@ export default function (state = initialState, action) {
         case SELECT_TERMINAL:
             return changeZIndex("terminalZIndex");
         case SELECT_NOTICE_MODAL:
-            return changeZIndex("noticeModalZIndex")
+            return changeZIndex("noticeModalZIndex");
+        case DESELECT_FOLDER:
+            return {
+                ...state,
+                folderZIndex: 0,
+            }
+        case DESELECT_TERMINAL:
+            return {
+                ...state,
+                terminalZIndex: 0,
+            }
+        case DESELECT_NOTICE_MODAL:
+            return {
+                ...state,
+                noticeModalZIndex: 0,
+            }
         default:
             return state;
     }

@@ -8,7 +8,7 @@ import closeClick from "../../assets/img/terCloseDown.png";
 import {AiOutlineLink} from "react-icons/ai"
 import {closeNoticeModal} from "../../redux/actions/notice";
 import moment from "moment";
-import {selectNoticeModal} from "../../redux/actions/zIndex";
+import {deselectNoticeModal, selectNoticeModal} from "../../redux/actions/zIndex";
 
 export default function NoticeModal(){
     const [over, setOver] = useState(0);    // close btn mouse over
@@ -24,6 +24,7 @@ export default function NoticeModal(){
 
     const clickClose = () => {
         dispatch(closeNoticeModal())
+        dispatch(deselectNoticeModal())
     }
 
     const closeWithMouse = () => {
