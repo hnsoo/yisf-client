@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {HiOutlineLogout} from 'react-icons/hi'
 import AuthService from "../service/auth";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {logout} from "../redux/actions/auth";
 
 export default function TopBar() {

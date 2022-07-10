@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
-import {FiStopCircle, FiXCircle, FiHome} from 'react-icons/fi';
+import {FiHome} from 'react-icons/fi';
 import {FaAngleLeft, FaAngleRight, FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
@@ -12,7 +12,7 @@ import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
 import Problem from "./Problem";
-import {selectFolder, selectTerminal} from "../redux/actions/zIndex";
+import {selectFolder} from "../redux/actions/zIndex";
 import {Rnd} from 'react-rnd';
 import close from "../assets/img/close.png"
 import closeHover from "../assets/img/closeHover.png"
@@ -114,6 +114,7 @@ export default function Folder() {
                     <img
                         src={closeWithMouse()}
                         onClick={clickClose}
+                        alt="close"
                     />
                 </Ctrl>
             </Header>
@@ -152,7 +153,7 @@ const Back = styled.div`
   background: #fafafa;
   mix-blend-mode: normal;
   border: 1px solid #cbcbcb;
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 10px 0 0 10px;
 `
 const Front = styled.div`
   padding: 6px;
@@ -164,7 +165,7 @@ const Front = styled.div`
   background: #fafafa;
   mix-blend-mode: normal;
   border: 1px solid #cbcbcb;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0 10px 10px 0;
 `
 const Address = styled.div`
   display: flex;
