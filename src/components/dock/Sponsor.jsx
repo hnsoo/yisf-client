@@ -51,9 +51,8 @@ const Title = styled.div`
   font-family: "NotoBold", sans-serif;
 `
 const Logo = styled.img`
-  margin-top: 5px;
+  margin-top: 10px;
   margin-right: 30px;
-  //margin-bottom: 15px;
   height: 40px;
 `
 const Line = styled.div`
