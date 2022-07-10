@@ -88,8 +88,8 @@ export default function NoticeModal(){
             </Header>
             <Address>
                 <AddressBox>
-                    <AiOutlineLink/>
-                    {`notice/${info.title}`}
+                    <AiOutlineLink style={{marginRight: "7px"}}/>
+                    {`notice > ${info.title}`}
                 </AddressBox>
             </Address>
             <Content>

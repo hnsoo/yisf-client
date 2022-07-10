@@ -128,8 +128,8 @@ export default function Terminal(){
             </Header>
             <Address>
                 <AddressBox>
-                    <AiOutlineLink/>
-                    {`${info.type.toLowerCase()}/${info.title}`}
+                    <AiOutlineLink style={{marginRight: "7px"}}/>
+                    {`${info.type.toLowerCase()} > ${info.title}`}
                 </AddressBox>
             </Address>
             <Content>
