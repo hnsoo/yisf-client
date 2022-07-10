@@ -37,7 +37,7 @@ export default function TopBar() {
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 5vh;
+  height: 100%;
   min-height: 1.8rem;
   background: #3A2D34;
   justify-content: space-between;
@@ -50,20 +50,20 @@ const Timer = styled.div`
 
 const LogoutContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
   padding: 3px;
 `
 
 const LogoutImg = styled.div`
   width: 20px;
   height: 20px;
-  padding-top: 1px;
   padding-right: 7px;
 `
 const LogoutText = styled.div`
   color: white;
   font-size: 1.1rem;
   padding-right: 15px;
+  padding-bottom: 1px;
   :hover{
    cursor: pointer; 
   }
