@@ -11,7 +11,7 @@ export default function RankChart({data, player}){
             height={300}
             data={data}
             margin={{
-                top: 30, right: 30, left: 20, bottom: 5,
+                top: 30, right: 30, left: 0, bottom: 5,
             }}
         >
             <CartesianGrid strokeDasharray="3 3" />

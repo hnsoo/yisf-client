@@ -44,6 +44,8 @@ const TableSheet = styled.table`
   text-align: center;
   border-collapse: collapse;
   line-height: 1.5;
+  margin-top: 1rem;
+  margin-left: 2.5rem;
 `
 const Th = styled.th`
   padding: 20px;
