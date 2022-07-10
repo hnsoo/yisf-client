@@ -187,7 +187,7 @@ const Address = styled.div`
 const Route = styled.div`
   position: absolute;
   left: 31px;
-  bottom: 7px;
+  bottom: 5px;
 `
 
 const Ctrl = styled.div`
