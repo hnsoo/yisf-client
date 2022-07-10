@@ -9,26 +9,28 @@ import kiiscIcon from '../../assets/img/sponsor/kiisc.png'
 import kisiaIcon from '../../assets/img/sponsor/kisia.png'
 import ahnlab from '../../assets/img/sponsor/ahnlab.png'
 import estIcon from '../../assets/img/sponsor/est.png'
+import centerIcon from '../../assets/img/sponsor/center.png'
 
 
 export default function Sponsor(){
     return (
         <Container>
-            <b>주최</b><br/>
-            <img src={schIcon} /><br/>
-            <b>주관</b><br/>
-            <img src={schIcon} /><br/>
-            <b>후원</b><br/>
-            <img src={moisIcon} />
-            <img src={msitIcon} />
-            <img src={kisaIcon} /><br/>
-            <b>미디어 협력</b><br/>
-            <img src={newsIcon} /><br/>
-            <b>기관 협력</b><br/>
-            <img src={kiiscIcon} />
-            <img src={kisiaIcon} />
-            <img src={ahnlab} />
-            <img src={estIcon} /><br/>
+            <Title>주최</Title>
+            <Logo src={schIcon} />
+            <Title>주관</Title>
+            <Logo src={schIcon} />
+            <Logo src={centerIcon} />
+            <Title>후원</Title>
+            <Logo src={moisIcon} />
+            <Logo src={msitIcon} />
+            <Logo src={kisaIcon} />
+            <Title>미디어 협력</Title>
+            <Logo src={newsIcon} />
+            <Title>기관 협력</Title>
+            <Logo src={kiiscIcon} />
+            <Logo src={kisiaIcon} />
+            <Logo src={ahnlab} />
+            <Logo src={estIcon} />
         </Container>
     );
 }
@@ -38,4 +40,11 @@ const Container = styled.div`
   text-align: left;
   flex-direction: column;
   padding: 0.25rem;
+`
+const Title = styled.p`
+  font-family: "NotoBold", sans-serif;
+`
+const Logo = styled.img`
+  margin-right: 15px;
+  height: 40px;
 `
