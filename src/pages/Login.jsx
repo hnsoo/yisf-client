@@ -83,7 +83,9 @@ const Background = styled.div`
 
 const Title = styled.div`
   color: white;
-  padding: 0.7em;
+  font-size: large;
+  padding-bottom: 0.7em;
+  padding-left: 0.4em;
 `
 
 const MainText = styled.div`
@@ -93,7 +95,7 @@ const MainText = styled.div`
 
 const Container = styled.div`
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 10%;
 `;
 
@@ -105,8 +107,7 @@ const LoginContainer = styled.div`
   border-radius: 10px;
   padding: 0.7em;
 `
-
-const IdBox = styled.input`
+const Box = styled.input`
   height: 25px;
   border: 2px solid #FFFFFF;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -114,25 +115,20 @@ const IdBox = styled.input`
   background-color: rgba(0, 0, 0, 0.1);
   color: white;
   margin-bottom: 10px;
-  
-  :focus {
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.1);
-  }  
-`
-
-const PwBox = styled.input`
-  display: ${(props) => props.Show};
-  height: 25px;
-  border: 2px solid #FFFFFF;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: white;
-  margin-bottom: 10px;
+  padding-left: 7px;
+  padding-bottom: 5px;
   :focus {
     outline: none;
   }
+`
+
+const IdBox = styled(Box)`
+
+`
+
+const PwBox = styled(Box)`
+  display: ${(props) => props.Show};
+
 `
 
 const LoginBtn = styled.button`
