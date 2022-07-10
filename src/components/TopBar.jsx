@@ -63,7 +63,7 @@ const LogoutText = styled.div`
   color: white;
   font-size: 1.1rem;
   padding-right: 15px;
-  padding-bottom: 1px;
+  padding-bottom: 3px;
   :hover{
    cursor: pointer; 
   }
