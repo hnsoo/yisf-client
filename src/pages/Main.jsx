@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import WallPaper from '../assets/img/wallPaper.jpg';
+import WallPaper from '../assets/img/wallpaper.jpg';
 import DockBar from "../components/dock/DockBar";
 import TopBar from "../components/TopBar";
 import IconFolder from "../assets/img/folder.png"

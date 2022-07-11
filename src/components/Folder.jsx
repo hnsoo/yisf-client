@@ -14,9 +14,9 @@ import Sponsor from "./dock/Sponsor";
 import Problem from "./Problem";
 import {deselectFolder, selectFolder} from "../redux/actions/zIndex";
 import {Rnd} from 'react-rnd';
-import close from "../assets/img/close.png"
-import closeHover from "../assets/img/closeHover.png"
-import closeClick from "../assets/img/closeDown.png"
+import close from "../assets/img/close/folder-close.png"
+import closeHover from "../assets/img/close/folder-close-hover.png"
+import closeClick from "../assets/img/close/folder-close-down.png"
 
 
 export default function Folder() {

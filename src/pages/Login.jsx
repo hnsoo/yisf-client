@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector} from "react-redux"
-import WallPaper from '../assets/img/wallPaper.jpg';
+import WallPaper from '../assets/img/wallpaper.jpg';
 import { Navigate } from 'react-router-dom';
 import { login } from "../redux/actions/auth";
 

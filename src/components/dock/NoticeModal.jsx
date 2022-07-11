@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {Rnd} from 'react-rnd';
-import close from "../../assets/img/terClose.png"
-import closeHover from "../../assets/img/terCloseHover.png";
-import closeClick from "../../assets/img/terCloseDown.png";
+import close from "../../assets/img/close/web-close.png"
+import closeHover from "../../assets/img/close/web-close-hover.png";
+import closeClick from "../../assets/img/close/web-close-down.png";
 import {AiOutlineLink} from "react-icons/ai"
 import {closeNoticeModal} from "../../redux/actions/notice";
 import moment from "moment";

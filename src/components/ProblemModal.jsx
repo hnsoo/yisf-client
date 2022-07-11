@@ -5,9 +5,9 @@ import {closeProblemModal} from "../redux/actions/problem";
 import ProblemService from "../service/problem"
 import {Rnd} from 'react-rnd';
 import {deselectProblemModal, selectProblemModal} from "../redux/actions/zIndex";
-import close from "../assets/img/terClose.png"
-import closeHover from "../assets/img/terCloseHover.png";
-import closeClick from "../assets/img/terCloseDown.png";
+import close from "../assets/img/close/web-close.png"
+import closeHover from "../assets/img/close/web-close-hover.png";
+import closeClick from "../assets/img/close/web-close-down.png";
 import {logout} from "../redux/actions/auth";
 import AuthService from "../service/auth";
 import {AiOutlineLink} from "react-icons/ai"
