@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getProblems} from "../redux/actions/terminal";
 import {logout} from "../redux/actions/auth";
 import AuthService from "../service/auth";
+import {getMyInfo} from "../redux/actions/account";
 
 export default function Problem({field}){
     const problems = useSelector(state => state.terminal.problems)
@@ -12,6 +13,14 @@ export default function Problem({field}){
     const [isIconSelected, setIsIconsSelected] = useState([]);
 
     useEffect(() => {
+        dispatch(getMyInfo())
+            .then()
+            .catch((err) => {
+                // 세션 관련 에러
+                dispatch(logout)
+                AuthService.logout()
+            })
+
         dispatch(getProblems(field))
             .then()
             .catch((err)=> {
