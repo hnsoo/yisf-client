@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import WallPaper from '../assets/img/wallPaper.jpg';
-import Dock from "../components/dock/Dock";
+import DockBar from "../components/dock/DockBar";
 import TopBar from "../components/TopBar";
 import IconFolder from "../assets/img/folder.png"
 import {useDispatch, useSelector} from "react-redux";
@@ -113,7 +113,7 @@ export default function Main() {
     return (
         <Background>
             <Header><TopBar/></Header>
-            <SideBar><Dock/></SideBar>
+            <SideBar><DockBar/></SideBar>
             <Content>
                 <FolderContainer background={isIconSelected["reversing"]} onClick={(e)=>clickFolderIcon(e, "reversing")}>
                     <img src={IconFolder} height="100px" width="100px" alt="reversing-folder"/>Reversing

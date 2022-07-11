@@ -1,34 +1,34 @@
 import React from 'react';
 import styled from "styled-components";
-import Icon from "../Icon";
+import DockIcon from "./DockIcon";
 import {FaHandshake} from 'react-icons/fa';
 import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
 
-export default function Dock(){
+export default function DockBar(){
     return (
       <Container>
-        <Icon
+        <DockIcon
             role={"mypage"}
             color={"#37AB45"}
             img={<RiUser3Fill size= "70px" color="white"/>}
         />
-        <Icon
+        <DockIcon
             role={"rank"}
             color={"#A7AC36"}
             img={<BsBarChartFill size= "70px" color="white"/>}
         />
-        <Icon
+        <DockIcon
             color={"#3684AC"}
             img={<SiDiscord size= "70px" color="white"/>}
         />
-        <Icon
+        <DockIcon
             role={"notice"}
             color={"#AC3652"}
             img={<BsMegaphoneFill size= "70px" color="white" />}
         />
-        <Icon
+        <DockIcon
             role={"sponsor"}
             color={"#AC7636"}
             img={<FaHandshake size= "70px" color="white"/>}

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {openNotice, openMypage, openRank, openSponsor} from "../redux/actions/folder";
-import {selectFolder} from "../redux/actions/zIndex";
+import {openNotice, openMypage, openRank, openSponsor} from "../../redux/actions/folder";
+import {selectFolder} from "../../redux/actions/zIndex";
 
-export default function Icon({role, color, img}){
+export default function DockIcon({role, color, img}){
     const dispatch = useDispatch()
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
 
