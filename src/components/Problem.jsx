@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import ProblemIcon from "./ProblemIcon";
+import ProblemElement from "./ProblemElement";
 import {useDispatch, useSelector} from "react-redux";
 import {getProblems} from "../redux/actions/problem";
 import {logout} from "../redux/actions/auth";
@@ -40,7 +40,7 @@ export default function Problem({field}){
     return (
         <Container>
             {problems && problems.map((problem, idx) =>
-                <ProblemIcon
+                <ProblemElement
                     key={problem.id}
                     info={problem}
                     isSelected={isIconSelected[idx]}

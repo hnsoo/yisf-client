@@ -13,7 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {openProblemModal} from "../redux/actions/problem";
 import {selectProblemModal} from "../redux/actions/zIndex";
 
-export default function ProblemIcon({info, isSelected, handleClick, elementIndex}) {
+export default function ProblemElement({info, isSelected, handleClick, elementIndex}) {
     const dispatch = useDispatch();
     const problemModalZIndex = useSelector(state => state.zIndex.problemModalZIndex)
     const solvedPwnable = useSelector(state => state.account.pwnable)
