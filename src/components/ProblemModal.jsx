@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {closeTerminal} from "../redux/actions/terminal";
+import {closeProblemModal} from "../redux/actions/problem";
 import ProblemService from "../service/problem"
 import {Rnd} from 'react-rnd';
-import {deselectTerminal, selectTerminal} from "../redux/actions/zIndex";
+import {deselectProblemModal, selectProblemModal} from "../redux/actions/zIndex";
 import close from "../assets/img/terClose.png"
 import closeHover from "../assets/img/terCloseHover.png";
 import closeClick from "../assets/img/terCloseDown.png";
@@ -13,20 +13,20 @@ import AuthService from "../service/auth";
 import {AiOutlineLink} from "react-icons/ai"
 import {RiFlag2Fill} from "react-icons/ri"
 
-export default function Terminal(){
+export default function ProblemModal(){
     const [over, setOver] = useState(0);    // close btn mouse over
     const [flag, setFlag] = useState("")
     const onChangeFlag = (e) => {
         setFlag(e.target.value);
     };
 
-    const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex);
-    const info = useSelector(state => state.terminal.problem);
+    const problemModalZIndex = useSelector(state => state.zIndex.problemModalZIndex);
+    const info = useSelector(state => state.problem.problem);
     const dispatch = useDispatch();
 
     const clickClose = () => {
-        dispatch(closeTerminal())
-        dispatch(deselectTerminal())
+        dispatch(closeProblemModal())
+        dispatch(deselectProblemModal())
     }
 
     const handleOnKeyPress = (e) => {
@@ -59,9 +59,9 @@ export default function Terminal(){
         }
     }
 
-    const clickTerminal = () => {
-        if (terminalZIndex < 3) {
-            dispatch(selectTerminal())
+    const clickProblemModal = () => {
+        if (problemModalZIndex < 3) {
+            dispatch(selectProblemModal())
         }
     }
 
@@ -81,7 +81,7 @@ export default function Terminal(){
     return (
         <Rnd
             dragHandleClassName={"header"}
-            onMouseDown={clickTerminal}
+            onMouseDown={clickProblemModal}
             default={{
                 x: 400,
                 y: 150,
@@ -89,7 +89,7 @@ export default function Terminal(){
                 height: 450,
             }}
             style={{
-                "zIndex": terminalZIndex,
+                "zIndex": problemModalZIndex,
                 "display":"grid",
                 "position": "absolute",
                 "gridTemplateAreas":

@@ -10,12 +10,12 @@ import miscIcon from "../assets/img/light.png";
 import solvedMiscIcon from "../assets/img/light-solved.png"
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {openTerminal} from "../redux/actions/terminal";
-import {selectTerminal} from "../redux/actions/zIndex";
+import {openProblemModal} from "../redux/actions/problem";
+import {selectProblemModal} from "../redux/actions/zIndex";
 
 export default function ProblemIcon({info, isSelected, handleClick, elementIndex}) {
     const dispatch = useDispatch();
-    const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
+    const problemModalZIndex = useSelector(state => state.zIndex.problemModalZIndex)
     const solvedPwnable = useSelector(state => state.account.pwnable)
     const solvedWeb = useSelector(state => state.account.web)
     const solvedForensic = useSelector(state => state.account.forensic)
@@ -61,9 +61,9 @@ export default function ProblemIcon({info, isSelected, handleClick, elementIndex
                 break;
             case 2:
                 //when click double~^^
-                dispatch(openTerminal(info))
-                if(terminalZIndex < 3){
-                    dispatch(selectTerminal())
+                dispatch(openProblemModal(info))
+                if(problemModalZIndex < 3){
+                    dispatch(selectProblemModal())
                 }
                 break;
             default:

@@ -1,20 +1,20 @@
-import {CLOSE_TERMINAL, LOAD_PROBLEM_FAIL, LOAD_PROBLEM_SUCCESS, OPEN_TERMINAL} from "../actions/types";
+import {CLOSE_PROBLEM_MODAL, LOAD_PROBLEM_FAIL, LOAD_PROBLEM_SUCCESS, OPEN_PROBLEM_MODAL} from "../actions/types";
 
-const initialState = { isTerminalOpened: false, problems: null, problem: null }
+const initialState = { isProblemModalOpened: false, problems: null, problem: null }
 
 export default function (state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
-        case OPEN_TERMINAL:
+        case OPEN_PROBLEM_MODAL:
             return {
                 ...state,
-                isTerminalOpened: true,
+                isProblemModalOpened: true,
                 problem: payload.problem,
             };
-        case CLOSE_TERMINAL:
+        case CLOSE_PROBLEM_MODAL:
             return {
                 ...state,
-                isTerminalOpened: false,
+                isProblemModalOpened: false,
             };
         case LOAD_PROBLEM_SUCCESS:
             return {

@@ -1,18 +1,18 @@
 import {
-    OPEN_TERMINAL,
-    CLOSE_TERMINAL,
+    OPEN_PROBLEM_MODAL,
+    CLOSE_PROBLEM_MODAL,
     LOAD_PROBLEM_SUCCESS,
     LOAD_PROBLEM_FAIL,
 } from "./types";
 import ProblemService from "../../service/problem";
 
-export const openTerminal = (info) => ({
-    type: OPEN_TERMINAL,
+export const openProblemModal = (info) => ({
+    type: OPEN_PROBLEM_MODAL,
     payload: { problem: info },
 });
 
-export const closeTerminal = () => ({
-    type: CLOSE_TERMINAL,
+export const closeProblemModal = () => ({
+    type: CLOSE_PROBLEM_MODAL,
 });
 
 export const getProblems = (field) => (dispatch) => {

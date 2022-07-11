@@ -1,12 +1,12 @@
 import {
     DESELECT_FOLDER, DESELECT_NOTICE_MODAL,
-    DESELECT_TERMINAL,
+    DESELECT_PROBLEM_MODAL,
     SELECT_FOLDER,
     SELECT_NOTICE_MODAL,
-    SELECT_TERMINAL
+    SELECT_PROBLEM_MODAL
 } from "../actions/types";
 
-const initialState = { folderZIndex: 0, terminalZIndex: 0, noticeModalZIndex: 0}
+const initialState = { folderZIndex: 0, problemModalZIndex: 0, noticeModalZIndex: 0}
 
 export default function (state = initialState, action) {
     const changeZIndex = (type) => {
@@ -27,8 +27,8 @@ export default function (state = initialState, action) {
     switch (type) {
         case SELECT_FOLDER:
             return changeZIndex("folderZIndex");
-        case SELECT_TERMINAL:
-            return changeZIndex("terminalZIndex");
+        case SELECT_PROBLEM_MODAL:
+            return changeZIndex("problemModalZIndex");
         case SELECT_NOTICE_MODAL:
             return changeZIndex("noticeModalZIndex");
         case DESELECT_FOLDER:
@@ -36,10 +36,10 @@ export default function (state = initialState, action) {
                 ...state,
                 folderZIndex: 0,
             }
-        case DESELECT_TERMINAL:
+        case DESELECT_PROBLEM_MODAL:
             return {
                 ...state,
-                terminalZIndex: 0,
+                problemModalZIndex: 0,
             }
         case DESELECT_NOTICE_MODAL:
             return {

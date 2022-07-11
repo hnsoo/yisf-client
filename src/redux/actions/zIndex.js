@@ -1,18 +1,18 @@
 import {
     DESELECT_FOLDER,
     DESELECT_NOTICE_MODAL,
-    DESELECT_TERMINAL,
+    DESELECT_PROBLEM_MODAL,
     SELECT_FOLDER,
     SELECT_NOTICE_MODAL,
-    SELECT_TERMINAL
+    SELECT_PROBLEM_MODAL
 } from "./types";
 
 export const selectFolder = () => ({
     type: SELECT_FOLDER,
 });
 
-export const selectTerminal = () => ({
-    type: SELECT_TERMINAL,
+export const selectProblemModal = () => ({
+    type: SELECT_PROBLEM_MODAL,
 });
 
 export const selectNoticeModal = () => ({
@@ -27,8 +27,8 @@ export const deselectFolder = () => ({
     type: DESELECT_FOLDER,
 });
 
-export const deselectTerminal = () => ({
-    type: DESELECT_TERMINAL,
+export const deselectProblemModal = () => ({
+    type: DESELECT_PROBLEM_MODAL,
 });
 
 

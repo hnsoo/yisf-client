@@ -7,15 +7,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
 import {closeFolder, openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/actions/folder";
-import Terminal from "../components/Terminal";
+import ProblemModal from "../components/ProblemModal";
 import {
     deselectFolder,
     deselectNoticeModal,
-    deselectTerminal,
+    deselectProblemModal,
     selectFolder,
 } from "../redux/actions/zIndex";
 import {useEffect, useState} from "react";
-import {closeTerminal} from "../redux/actions/terminal";
+import {closeProblemModal} from "../redux/actions/problem";
 import NoticeModal from "../components/dock/NoticeModal";
 import {closeNoticeModal} from "../redux/actions/notice";
 
@@ -31,10 +31,10 @@ export default function Main() {
 
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const isOpened = useSelector(state => state.folder.isOpened);
-    const isTerminalOpened = useSelector(state => state.terminal.isTerminalOpened);
+    const isProblemModalOpened = useSelector(state => state.problem.isProblemModalOpened);
     const isNoticeModalOpened = useSelector(state => state.notice.isNoticeModalOpened)
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
-    const terminalZIndex = useSelector(state => state.zIndex.terminalZIndex)
+    const problemModalZIndex = useSelector(state => state.zIndex.problemModalZIndex)
     const noticeModalZIndex = useSelector(state => state.zIndex.noticeModalZIndex)
     const dispatch = useDispatch();
 
@@ -46,15 +46,15 @@ export default function Main() {
         const keyDownHandler = event => {
             if (event.key === 'Escape') {
                 event.preventDefault();
-                if(isOpened && folderZIndex > terminalZIndex && folderZIndex > noticeModalZIndex) {
+                if(isOpened && folderZIndex > problemModalZIndex && folderZIndex > noticeModalZIndex) {
                     dispatch(closeFolder())
                     dispatch(deselectFolder())
                 }
-                else if(isTerminalOpened && terminalZIndex > folderZIndex && terminalZIndex > noticeModalZIndex){
-                    dispatch(closeTerminal())
-                    dispatch(deselectTerminal())
+                else if(isProblemModalOpened && problemModalZIndex > folderZIndex && problemModalZIndex > noticeModalZIndex){
+                    dispatch(closeProblemModal())
+                    dispatch(deselectProblemModal())
                 }
-                else if(isNoticeModalOpened && noticeModalZIndex > folderZIndex && noticeModalZIndex > terminalZIndex){
+                else if(isNoticeModalOpened && noticeModalZIndex > folderZIndex && noticeModalZIndex > problemModalZIndex){
                     dispatch(closeNoticeModal())
                     dispatch(deselectNoticeModal())
                 }
@@ -66,7 +66,7 @@ export default function Main() {
         return () => {
             document.removeEventListener('keydown', keyDownHandler);
         };
-    }, [isOpened, isTerminalOpened, isNoticeModalOpened, folderZIndex, terminalZIndex, noticeModalZIndex])
+    }, [isOpened, isProblemModalOpened, isNoticeModalOpened, folderZIndex, problemModalZIndex, noticeModalZIndex])
 
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
@@ -131,7 +131,7 @@ export default function Main() {
                     <img src={IconFolder} height="100px" width="100px" alt="misc-folder"/>Misc
                 </FolderContainer>
                 {isOpened && <Folder />}
-                {isTerminalOpened && <Terminal />}
+                {isProblemModalOpened && <ProblemModal />}
                 {isNoticeModalOpened && <NoticeModal />}
             </Content>
         </Background>
