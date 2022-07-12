@@ -28,13 +28,30 @@ export default function(state = initialState, action) {
                 score: payload.info.score,
                 role: payload.info.role,
             }
-            if (payload.info.solved){
-                for(let problem of payload.info.solved){
-                    console.log(problem.type.toLowerCase())
-                    result[problem.type.toLowerCase()].push({id: problem.id, title: problem.title})
-                }
+            if(payload.info.role === "ADMIN"){
+                return result
             }
+            const obj = {
+                reversing: [],
+                forensic: [],
+                web: [],
+                pwnable: [],
+                misc: [],
+                crypto: [],
+            }
+            console.log(payload.info)
+            for(let problem of payload.info.solved){
+                console.log(obj)
+                console.log(problem.type)
+                obj[problem.type.toLowerCase()].push({id: problem.id, title: problem.title})
+            }
+            result['reversing'] = obj['reversing']
+            result['forensic'] = obj['forensic']
+            result['pwnable'] = obj['pwnable']
+            result['web'] = obj['web']
+            result['misc'] = obj['misc']
             return result;
+
         case LOAD_MYPAGE_FAIL:
             return {
                 ...state,
