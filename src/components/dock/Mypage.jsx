@@ -39,7 +39,7 @@ export default function Mypage(){
             }
             return result;
         }
-        else return (<span style={{color: "gray"}}>no solved</span>)
+        else return (<span style={{color: "gray", textAlign: "center"}}>no solved</span>)
     }
 
     return (
@@ -63,33 +63,43 @@ export default function Mypage(){
             <Solved>
                 <Section>
                     Reversing
-                    <List>
-                        {Mysolved(solvedReversing)}
-                    </List>
+                    <ListContainer>
+                        <ul>
+                            {Mysolved(solvedReversing)}
+                        </ul>
+                    </ListContainer>
                 </Section>
                 <Section>
                     Forensic
-                    <List>
-                        {Mysolved(solvedForensic)}
-                    </List>
+                    <ListContainer>
+                        <ul>
+                            {Mysolved(solvedForensic)}
+                        </ul>
+                    </ListContainer>
                 </Section>
                 <Section>
                     Web
-                    <List>
-                        {Mysolved(solvedWeb)}
-                    </List>
+                    <ListContainer>
+                        <ul>
+                            {Mysolved(solvedWeb)}
+                        </ul>
+                    </ListContainer>
                 </Section>
                 <Section>
                     Pwnable
-                    <List>
-                        {Mysolved(solvedPwnable)}
-                    </List>
+                    <ListContainer>
+                        <ul>
+                            {Mysolved(solvedPwnable)}
+                        </ul>
+                    </ListContainer>
                 </Section>
                 <Section>
                     Misc
-                    <List>
-                        {Mysolved(solvedMisc)}
-                    </List>
+                    <ListContainer>
+                        <ul>
+                            {Mysolved(solvedMisc)}
+                        </ul>
+                    </ListContainer>
                 </Section>
             </Solved>
         </Container>
@@ -118,16 +128,17 @@ const Line = styled.div`
 `
 const Solved = styled.div`
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
 `
 const Section = styled.div`
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
   flex-direction: column;
 `
-const List = styled.ul`
+const ListContainer = styled.div`
   background: lightpink;
-  width: 100px;
-  text-align: center;
   border-radius: 15px;
+  min-height: 100px;
+  padding: 10px;
 `
