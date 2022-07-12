@@ -58,7 +58,7 @@ const Logo = styled.img`
 const Line = styled.div`
   width: 100%;
   height: 1px;
-  background: #cbcbcb;
+  background: rgba(203,203,203,0.5);
   margin-top: 15px;
   margin-bottom: 15px;
 `
