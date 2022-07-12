@@ -1,86 +1,97 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
-import UserService from "../../service/user";
 import {logout} from "../../redux/actions/auth";
 import AuthService from "../../service/auth";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getMyInfo} from "../../redux/actions/account";
 
 export default function Mypage(){
     const dispatch = useDispatch()
-    const [info, setInfo] = useState({
-        id: 0,
-        username: "",
-        nickname: "",
-        email: "",
-        score: 0,
-    })
+
+    const username = useSelector(state => state.account.username)
+    const nickname = useSelector(state => state.account.nickname)
+    const realName = useSelector(state => state.account.realName)
+    const email = useSelector(state => state.account.email)
+    const score = useSelector(state => state.account.score)
+
+    const solvedPwnable = useSelector(state => state.account.pwnable)
+    const solvedWeb = useSelector(state => state.account.web)
+    const solvedForensic = useSelector(state => state.account.forensic)
+    const solvedReversing = useSelector(state => state.account.reversing)
+    const solvedMisc = useSelector(state => state.account.misc)
 
     useEffect(() => {
-        UserService.loadMyInfo()
-            .then(
-                (data) => {
-                    // const solved = getSolved(data.solved)
-                    // console.log(solved.Web)
-                    setInfo((prevState) => {
-                        return {
-                            ...prevState,
-                            id: data.id,
-                            username: data.username,
-                            nickname: data.nickname,
-                            email: data.email,
-                            score: data.score,
-                            // reversing: solved.Reversing,
-                            // forensic: solved.Forensic,
-                            // web: solved.Web,
-                            // pwnable: solved.Pwnable,
-                            // misc: solved.Misc,
-                        }
-                    })
-                }
-            )
-            .catch(
-                err => {
-                    // 세션 관련 에러
-                    console.log(err)
-                    // dispatch(logout())
-                    // AuthService.logout()
-                }
-            )
-    }, [])
+        dispatch(getMyInfo())
+            .then()
+            .catch((err) => {
+                // 세션 관련 에러
+                dispatch(logout)
+                AuthService.logout()
+            })
+        console.log(solvedPwnable)
+    }, [dispatch])
 
-    // const getSolved = (data) => {
-    //     const solved = {
-    //         Reversing: [],
-    //         Forensic: [],
-    //         Web: [],
-    //         Pwnable: [],
-    //         Misc: [],
-    //     }
-    //     data.map(item => {
-    //         if(item.type !== "Crypto") solved[item.type].push(item.title)
-    //     })
-    //     return solved
-    // }
+    const Mysolved = (problems) => {
+        if(problems.length > 0){
+            let result = []
+            for(let problem of problems){
+                result.push(<li>{problem.title}</li>);
+            }
+            return result;
+        }
+        else return (<span style={{color: "gray"}}>no solved</span>)
+    }
 
     return (
         <Container>
-            <b>User name</b><br/>
-            {info.username}<br/><br/>
-            <b>E-mail</b><br/>
-            {info.email}<br/><br/>
-            <b>My score</b><br/>
-            {info.score}<br/><br/>
-            <b>My solved</b><br/>
-            {/*Reversing<br/>*/}
-            {/*/!*{info.reversing.join(", ")}<br/><br/>*!/*/}
-            {/*Forensic<br/>*/}
-            {/*/!*{info.forensic.join(", ")}<br/><br/>*!/*/}
-            {/*Web<br/>*/}
-            {/*/!*{info.web.join(", ")}<br/><br/>*!/*/}
-            {/*Pwnable<br/>*/}
-            {/*/!*{info.pwnable.join(", ")}<br/><br/>*!/*/}
-            {/*Misc<br/>*/}
-            {/*/!*{info.misc.join(", ")}<br/><br/>*!/*/}
+            <Title>ID</Title>
+            <Description>{username}</Description>
+            <Line />
+            <Title>Name</Title>
+            <Description>{realName}</Description>
+            <Line />
+            <Title>Nickname</Title>
+            <Description>{nickname}</Description>
+            <Line />
+            <Title>E-mail</Title>
+            <Description>{email}</Description>
+            <Line />
+            <Title>My score</Title>
+            <Description>{score}</Description>
+            <Line />
+            <Title>My solved</Title>
+            <Solved>
+                <Section>
+                    Reversing
+                    <List>
+                        {Mysolved(solvedReversing)}
+                    </List>
+                </Section>
+                <Section>
+                    Forensic
+                    <List>
+                        {Mysolved(solvedForensic)}
+                    </List>
+                </Section>
+                <Section>
+                    Web
+                    <List>
+                        {Mysolved(solvedWeb)}
+                    </List>
+                </Section>
+                <Section>
+                    Pwnable
+                    <List>
+                        {Mysolved(solvedPwnable)}
+                    </List>
+                </Section>
+                <Section>
+                    Misc
+                    <List>
+                        {Mysolved(solvedMisc)}
+                    </List>
+                </Section>
+            </Solved>
         </Container>
     );
 }
@@ -88,6 +99,35 @@ const Container = styled.div`
   //display: flex;
   text-align: left;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 1rem;
 `
-
+const Title = styled.div`
+  font-size: large;
+  font-family: "NotoBold", sans-serif;
+`
+const Description = styled.div`
+  margin-top: 2px;
+  margin-bottom: 15px;
+`
+const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background: rgba(203,203,203,0.5);
+  margin-top: 15px;
+  margin-bottom: 15px;
+`
+const Solved = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const Section = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`
+const List = styled.ul`
+  background: lightpink;
+  width: 100px;
+  text-align: center;
+  border-radius: 15px;
+`
