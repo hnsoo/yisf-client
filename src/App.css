@@ -21,4 +21,8 @@ body {
     /*모달이 화면 밖으로 이동시 스크롤바가 생기는 현상 해결*/
     overflow: hidden;
     color: #111111;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
