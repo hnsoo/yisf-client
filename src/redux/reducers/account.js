@@ -27,6 +27,12 @@ export default function(state = initialState, action) {
                 email: payload.info.email,
                 score: payload.info.score,
                 role: payload.info.role,
+                reversing: [],
+                forensic: [],
+                web: [],
+                pwnable: [],
+                misc: [],
+                crypto: [],
             }
             if(payload.info.role === "ADMIN"){
                 return result
