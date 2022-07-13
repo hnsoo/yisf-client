@@ -31,7 +31,7 @@ export default function ProblemModal(){
             )
         }
         else{
-            return <div>No notification</div>
+            return <NoContent>No notification</NoContent>
         }
     }
     return (
@@ -79,4 +79,12 @@ const Time = styled.span`
 `
 const Content = styled.div`
   color: #aaaaaa;
+`
+const NoContent = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: #eaeaea;
+  align-items: center;
+  justify-content: center;
 `
