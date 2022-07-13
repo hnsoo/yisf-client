@@ -4,6 +4,7 @@ import {logout} from "../../redux/actions/auth";
 import AuthService from "../../service/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {getMyInfo} from "../../redux/actions/account";
+import SolvedList from "./SolvedList"
 
 export default function Mypage(){
     const dispatch = useDispatch()
@@ -31,17 +32,6 @@ export default function Mypage(){
         console.log(solvedPwnable)
     }, [dispatch])
 
-    const Mysolved = (problems) => {
-        if(problems.length > 0){
-            let result = []
-            for(let problem of problems){
-                result.push(<li>{problem.title}</li>);
-            }
-            return result;
-        }
-        else return (<span style={{color: "gray", textAlign: "center"}}>no solved</span>)
-    }
-
     return (
         <Container>
             <Title>ID</Title>
@@ -64,41 +54,31 @@ export default function Mypage(){
                 <Section>
                     Reversing
                     <ListContainer>
-                        <ul>
-                            {Mysolved(solvedReversing)}
-                        </ul>
+                        <SolvedList problems={solvedReversing} />
                     </ListContainer>
                 </Section>
                 <Section>
                     Forensic
                     <ListContainer>
-                        <ul>
-                            {Mysolved(solvedForensic)}
-                        </ul>
+                        <SolvedList problems={solvedForensic} />
                     </ListContainer>
                 </Section>
                 <Section>
                     Web
                     <ListContainer>
-                        <ul>
-                            {Mysolved(solvedWeb)}
-                        </ul>
+                        <SolvedList problems={solvedWeb} />
                     </ListContainer>
                 </Section>
                 <Section>
                     Pwnable
                     <ListContainer>
-                        <ul>
-                            {Mysolved(solvedPwnable)}
-                        </ul>
+                        <SolvedList problems={solvedPwnable} />
                     </ListContainer>
                 </Section>
                 <Section>
                     Misc
                     <ListContainer>
-                        <ul>
-                            {Mysolved(solvedMisc)}
-                        </ul>
+                        <SolvedList problems={solvedMisc} />
                     </ListContainer>
                 </Section>
             </Solved>
@@ -135,10 +115,16 @@ const Section = styled.div`
   width: 100%;
   padding: 10px;
   flex-direction: column;
+  text-align: center;
 `
 const ListContainer = styled.div`
-  background: lightpink;
+  background: rgba(220,80,80,0.1);
   border-radius: 15px;
   min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
+  margin-top: 10px;
 `
