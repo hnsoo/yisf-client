@@ -5,6 +5,7 @@ import problem from "./problem";
 import zIndex from "./zIndex"
 import notice from "./notice";
 import account from "./account";
+import notification from "./notification";
 
 export default combineReducers({
     auth,
@@ -13,4 +14,5 @@ export default combineReducers({
     zIndex,
     notice,
     account,
+    notification,
 });
