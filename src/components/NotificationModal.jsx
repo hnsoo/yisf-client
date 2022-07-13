@@ -1,32 +1,33 @@
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {MdOutlineClose} from "react-icons/md"
 import moment from "moment";
+import {removeNotification} from "../redux/actions/notification";
 
-export default function ProblemModal(){
+export default function NotificationModal(){
     const notifications = useSelector(state => state.notification.notifications)
-    const removeNotification = () => {
+    const dispatch = useDispatch();
 
+    const clickRemoveNotification = (notificationId) => {
+        dispatch(removeNotification(notificationId))
     }
 
     const showNotifications = () => {
         if(notifications && notifications.length > 0){
             return notifications.map((item, idx) =>
                 <Element>
-                    <NotificationContainer>
                         <Top>
                             <Title>{item.title}</Title>
                             <div>
                                 <Time>
                                     {moment(item.createTime).format("HH:mm")}
                                 </Time>
-                                <MdOutlineClose onClick={removeNotification} style={{marginLeft: "15px"}}/>
+                                <MdOutlineClose onClick={() => clickRemoveNotification(item.id)} style={{marginLeft: "15px"}}/>
                             </div>
                         </Top>
                         <Content>
                             {item.content}
                         </Content>
-                    </NotificationContainer>
                 </Element>
             )
         }
@@ -64,7 +65,6 @@ const Element = styled.div`
   font-size: 0.9rem;
   //border: 2px solid floralwhite;
 `
-const NotificationContainer = styled.div``
 
 const Top = styled.div`
   display: flex;

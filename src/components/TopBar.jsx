@@ -1,21 +1,26 @@
 import React from 'react';
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 import {HiOutlineLogout} from 'react-icons/hi'
 import AuthService from "../service/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../redux/actions/auth";
-import {IoMdNotifications} from "react-icons/io"
-import {closeNotification, openNotification} from "../redux/actions/notification";
+import notificationIcon from "../assets/img/bell.png";
+import newNotificationIcon from "../assets/img/notification.png";
+import {closeNotification, getNotifications, openNotification, readNotifications} from "../redux/actions/notification";
 
 export default function TopBar() {
 
     const dispatch = useDispatch()
     const isNotificationOpened = useSelector(state => state.notification.isNotificationOpened)
+    const isNewNotification = useSelector(state => state.notification.isNewNotification)
+
     const clickNotification = () => {
+        dispatch(readNotifications())
         if(isNotificationOpened){
             dispatch(closeNotification())
         }
         else{
+            dispatch(getNotifications())
             dispatch(openNotification())
         }
     }
@@ -34,7 +39,11 @@ export default function TopBar() {
             35:24:50
           </Timer>
           <CtrlContainer>
-            <IoMdNotifications size="20px" color="white"/>
+            {
+                isNewNotification ?
+                <img src={newNotificationIcon} height="20px" alt="new notification"/>
+                : <img src={notificationIcon} height="16px" alt="notification"/>
+            }
             <CtrlText onClick={clickNotification}>
                 Notification
             </CtrlText>

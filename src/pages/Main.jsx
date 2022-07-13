@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 import WallPaper from '../assets/img/wallpaper.jpg';
 import DockBar from "../components/dock/DockBar";
 import TopBar from "../components/TopBar";
@@ -20,8 +20,8 @@ import {closeProblemModal} from "../redux/actions/problem";
 import NoticeModal from "../components/dock/NoticeModal";
 import {closeNoticeModal} from "../redux/actions/notice";
 import {getNotifications} from "../redux/actions/notification";
-// import {ToastContainer, toast} from "react-toastify";
-// import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer, toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Main() {
@@ -42,6 +42,7 @@ export default function Main() {
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
     const problemModalZIndex = useSelector(state => state.zIndex.problemModalZIndex)
     const noticeModalZIndex = useSelector(state => state.zIndex.noticeModalZIndex)
+    const isNewNotification = useSelector(state => state.notification.isNewNotification)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -76,23 +77,29 @@ export default function Main() {
 
     useEffect(() => {
         let id = setInterval(() => {
-            dispatch(getNotifications());
-        }, 10000);
+            dispatch(getNotifications())
+        }, 60000);
         return () => clearInterval(id);
     }, []);
+
+    useEffect(() => {
+        if(isNewNotification){
+            notify();
+        }
+    }, [isNewNotification])
 
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
     }
 
-    // const notify = () => toast.info('새로운 알림이 존재합니다!', {
-    //     toastId: 'notice-notify',
-    //     position: "bottom-right",
-    //     autoClose: false,
-    //     hideProgressBar: true,
-    //     closeOnClick: true,
-    //     draggable: false,
-    // });
+    const notify = () => toast.info('새로운 알림이 존재합니다!', {
+        toastId: 'notice-notify',
+        position: "bottom-right",
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: true,
+        draggable: false,
+    });
 
     const clickFolderIcon = (e, field) => {
         switch (e.detail) {
@@ -156,15 +163,14 @@ export default function Main() {
                 {isOpened && <Folder />}
                 {isProblemModalOpened && <ProblemModal />}
                 {isNoticeModalOpened && <NoticeModal />}
-                {/*<button onClick={notify}>NOTIFY</button>*/}
-                {/*<ToastContainer*/}
-                {/*    position="bottom-right"*/}
-                {/*    autoClose={false}*/}
-                {/*    newestOnTop={false}*/}
-                {/*    closeOnClick*/}
-                {/*    rtl={false}*/}
-                {/*    draggable={false}*/}
-                {/*/>*/}
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    draggable={false}
+                />
             </Content>
         </Background>
         <Notification>
