@@ -39,10 +39,7 @@ export default function(state = initialState, action) {
                 misc: [],
                 crypto: [],
             }
-            console.log(payload.info)
             for(let problem of payload.info.solved){
-                console.log(obj)
-                console.log(problem.type)
                 obj[problem.type.toLowerCase()].push({id: problem.id, title: problem.title})
             }
             result['reversing'] = obj['reversing']
