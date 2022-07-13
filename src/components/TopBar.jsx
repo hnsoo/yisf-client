@@ -1,13 +1,24 @@
 import React from 'react';
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {HiOutlineLogout} from 'react-icons/hi'
 import AuthService from "../service/auth";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../redux/actions/auth";
+import {IoMdNotifications} from "react-icons/io"
+import {closeNotification, openNotification} from "../redux/actions/notification";
 
 export default function TopBar() {
 
     const dispatch = useDispatch()
+    const isNotificationOpened = useSelector(state => state.notification.isNotificationOpened)
+    const clickNotification = () => {
+        if(isNotificationOpened){
+            dispatch(closeNotification())
+        }
+        else{
+            dispatch(openNotification())
+        }
+    }
 
     const clickLogout = () => {
         // 로컬스토리지, 쿠키 제거
@@ -22,14 +33,16 @@ export default function TopBar() {
           <Timer>
             35:24:50
           </Timer>
-          <LogoutContainer>
-            <LogoutImg>
-                <HiOutlineLogout size="20px" color="white"/>
-            </LogoutImg>
-            <LogoutText
-            onClick={clickLogout}
-            >Log out</LogoutText>
-          </LogoutContainer>
+          <CtrlContainer>
+            <IoMdNotifications size="20px" color="white"/>
+            <CtrlText onClick={clickNotification}>
+                Notification
+            </CtrlText>
+            <HiOutlineLogout size="20px" color="white"/>
+            <CtrlText onClick={clickLogout}>
+                Log out
+            </CtrlText>
+          </CtrlContainer>
       </Container>
     );
 }
@@ -48,22 +61,17 @@ const Timer = styled.div`
   font-size: 1.1rem;
 `
 
-const LogoutContainer = styled.div`
+const CtrlContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 3px;
 `
-
-const LogoutImg = styled.div`
-  width: 20px;
-  height: 20px;
-  padding-right: 7px;
-`
-const LogoutText = styled.div`
+const CtrlText = styled.div`
   color: white;
   font-size: 1.1rem;
-  padding-right: 15px;
-  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 20px;
+  padding-bottom: 1px;
   :hover{
    cursor: pointer; 
   }

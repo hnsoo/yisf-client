@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import WallPaper from '../assets/img/wallpaper.jpg';
 import DockBar from "../components/dock/DockBar";
 import TopBar from "../components/TopBar";
@@ -6,6 +6,7 @@ import IconFolder from "../assets/img/folder.png"
 import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
+import NotificationModal from "../components/NotificationModal"
 import {closeFolder, openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/actions/folder";
 import ProblemModal from "../components/ProblemModal";
 import {
@@ -18,6 +19,10 @@ import {useEffect, useState} from "react";
 import {closeProblemModal} from "../redux/actions/problem";
 import NoticeModal from "../components/dock/NoticeModal";
 import {closeNoticeModal} from "../redux/actions/notice";
+import {getNotifications} from "../redux/actions/notification";
+// import {ToastContainer, toast} from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Main() {
     const initField = {
@@ -33,6 +38,7 @@ export default function Main() {
     const isOpened = useSelector(state => state.folder.isOpened);
     const isProblemModalOpened = useSelector(state => state.problem.isProblemModalOpened);
     const isNoticeModalOpened = useSelector(state => state.notice.isNoticeModalOpened)
+    const isNotificationOpened = useSelector(state => state.notification.isNotificationOpened)
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
     const problemModalZIndex = useSelector(state => state.zIndex.problemModalZIndex)
     const noticeModalZIndex = useSelector(state => state.zIndex.noticeModalZIndex)
@@ -68,9 +74,25 @@ export default function Main() {
         };
     }, [isOpened, isProblemModalOpened, isNoticeModalOpened, folderZIndex, problemModalZIndex, noticeModalZIndex])
 
+    useEffect(() => {
+        let id = setInterval(() => {
+            dispatch(getNotifications());
+        }, 10000);
+        return () => clearInterval(id);
+    }, []);
+
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
     }
+
+    // const notify = () => toast.info('새로운 알림이 존재합니다!', {
+    //     toastId: 'notice-notify',
+    //     position: "bottom-right",
+    //     autoClose: false,
+    //     hideProgressBar: true,
+    //     closeOnClick: true,
+    //     draggable: false,
+    // });
 
     const clickFolderIcon = (e, field) => {
         switch (e.detail) {
@@ -111,6 +133,7 @@ export default function Main() {
     }
 
     return (
+        <>
         <Background>
             <Header><TopBar/></Header>
             <SideBar><DockBar/></SideBar>
@@ -133,8 +156,21 @@ export default function Main() {
                 {isOpened && <Folder />}
                 {isProblemModalOpened && <ProblemModal />}
                 {isNoticeModalOpened && <NoticeModal />}
+                {/*<button onClick={notify}>NOTIFY</button>*/}
+                {/*<ToastContainer*/}
+                {/*    position="bottom-right"*/}
+                {/*    autoClose={false}*/}
+                {/*    newestOnTop={false}*/}
+                {/*    closeOnClick*/}
+                {/*    rtl={false}*/}
+                {/*    draggable={false}*/}
+                {/*/>*/}
             </Content>
         </Background>
+        <Notification>
+            <NotificationModal isNotificationOpened={isNotificationOpened}/>
+        </Notification>
+        </>
     );
 }
 
@@ -160,7 +196,6 @@ const SideBar = styled.div`
   grid-area: sidebar;
 `
 const Content = styled.div`
-  width: 90vw;
   height: 95vh;
   grid-area: content;
   display: flex;
@@ -187,3 +222,14 @@ const FolderContainer = styled.div`
     background: ${(props) => props.background ? "#6a5896" : "#75427e"};
   }
 `
+
+const Notification = styled.div`
+  position: absolute;
+  z-index: 10;
+  width: 300px;
+  height: calc(100% - 40px);
+  top: 40px;
+  transition: 0.5s;
+  right: ${(props) => props.children.props.isNotificationOpened ? "0px": "-300px" };
+`
+
