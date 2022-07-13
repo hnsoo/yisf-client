@@ -208,13 +208,6 @@ const Content = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-start;
-  //disable Drag
-  user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
 `
 
 const FolderContainer = styled.div`
