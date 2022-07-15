@@ -11,6 +11,7 @@ import ahnlab from '../../assets/img/sponsor/ahnlab.png'
 import estIcon from '../../assets/img/sponsor/est.png'
 import centerIcon from '../../assets/img/sponsor/center.png'
 import ktIcon from '../../assets/img/sponsor/kt.png'
+import securityFirstIcon from "../../assets/img/sponsor/security-first.png"
 
 export default function Sponsor(){
     return (
@@ -21,6 +22,7 @@ export default function Sponsor(){
             <Title>주 관</Title>
             <Logo src={schIcon} />
             <Logo src={centerIcon} />
+            <Logo src={securityFirstIcon}/>
             <Line/>
             <Title>후 원</Title>
             <Logo src={moisIcon} />
