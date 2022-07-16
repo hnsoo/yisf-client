@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {closeProblemModal} from "../redux/actions/problem";
-import ProblemService from "../service/problem"
+import {closeProblemModal} from "../../redux/actions/problem";
+import ProblemService from "../../service/problem"
 import {Rnd} from 'react-rnd';
-import {deselectProblemModal, selectProblemModal} from "../redux/actions/zIndex";
-import close from "../assets/img/close/web-close.png"
-import closeHover from "../assets/img/close/web-close-hover.png";
-import closeClick from "../assets/img/close/web-close-down.png";
-import {logout} from "../redux/actions/auth";
-import AuthService from "../service/auth";
+import {deselectProblemModal, selectProblemModal} from "../../redux/actions/zIndex";
+import close from "../../assets/img/close/web-close.png"
+import closeHover from "../../assets/img/close/web-close-hover.png";
+import closeClick from "../../assets/img/close/web-close-down.png";
+import {logout} from "../../redux/actions/auth";
+import AuthService from "../../service/auth";
 import {AiOutlineLink} from "react-icons/ai"
 import {RiFlag2Fill} from "react-icons/ri"
 

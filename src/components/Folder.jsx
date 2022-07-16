@@ -11,7 +11,7 @@ import {closeFolder, openMypage, openNotice, openRank, openSponsor} from "../red
 import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";
 import Sponsor from "./dock/Sponsor";
-import Problem from "./Problem";
+import Problem from "./problem/Problem";
 import {deselectFolder, selectFolder} from "../redux/actions/zIndex";
 import {Rnd} from 'react-rnd';
 import close from "../assets/img/close/folder-close.png"

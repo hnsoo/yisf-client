@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import ProblemElement from "./ProblemElement";
 import {useDispatch, useSelector} from "react-redux";
-import {getProblems} from "../redux/actions/problem";
-import {logout} from "../redux/actions/auth";
-import AuthService from "../service/auth";
-import {getMyInfo} from "../redux/actions/account";
+import {getProblems} from "../../redux/actions/problem";
+import {logout} from "../../redux/actions/auth";
+import AuthService from "../../service/auth";
+import {getMyInfo} from "../../redux/actions/account";
 
 export default function Problem({field}){
     const problems = useSelector(state => state.problem.problems)

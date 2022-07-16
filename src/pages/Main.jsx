@@ -8,7 +8,7 @@ import {Navigate} from "react-router-dom";
 import Folder from "../components/Folder";
 import NotificationModal from "../components/NotificationModal"
 import {closeFolder, openForensic, openMisc, openPwnable, openReversing, openWeb} from "../redux/actions/folder";
-import ProblemModal from "../components/ProblemModal";
+import ProblemModal from "../components/problem/ProblemModal";
 import {
     deselectFolder,
     deselectNoticeModal,

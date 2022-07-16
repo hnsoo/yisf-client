@@ -1,17 +1,17 @@
-import pwnIcon from "../assets/img/problem/gear.png";
-import solvedPwnIcon from "../assets/img/problem/gear-solved.png"
-import reversingIcon from "../assets/img/problem/leaf.png";
-import solvedReversingIcon from "../assets/img/problem/leaf-solved.png"
-import forensicIcon from "../assets/img/problem/fingerprint.png";
-import solvedForensicIcon from "../assets/img/problem/fingerprint-solved.png"
-import webIcon from "../assets/img/problem/global.png";
-import solvedWebIcon from "../assets/img/problem/global-solved.png"
-import miscIcon from "../assets/img/problem/light.png";
-import solvedMiscIcon from "../assets/img/problem/light-solved.png"
+import pwnIcon from "../../assets/img/problem/gear.png";
+import solvedPwnIcon from "../../assets/img/problem/gear-solved.png"
+import reversingIcon from "../../assets/img/problem/leaf.png";
+import solvedReversingIcon from "../../assets/img/problem/leaf-solved.png"
+import forensicIcon from "../../assets/img/problem/fingerprint.png";
+import solvedForensicIcon from "../../assets/img/problem/fingerprint-solved.png"
+import webIcon from "../../assets/img/problem/global.png";
+import solvedWebIcon from "../../assets/img/problem/global-solved.png"
+import miscIcon from "../../assets/img/problem/light.png";
+import solvedMiscIcon from "../../assets/img/problem/light-solved.png"
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {openProblemModal} from "../redux/actions/problem";
-import {selectProblemModal} from "../redux/actions/zIndex";
+import {openProblemModal} from "../../redux/actions/problem";
+import {selectProblemModal} from "../../redux/actions/zIndex";
 
 export default function ProblemElement({info, isSelected, handleClick, elementIndex}) {
     const dispatch = useDispatch();
