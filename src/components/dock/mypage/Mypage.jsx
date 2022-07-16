@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import {logout} from "../../redux/actions/auth";
-import AuthService from "../../service/auth";
+import {logout} from "../../../redux/actions/auth";
+import AuthService from "../../../service/auth";
 import {useDispatch, useSelector} from "react-redux";
-import {getMyInfo} from "../../redux/actions/account";
+import {getMyInfo} from "../../../redux/actions/account";
 import SolvedList from "./SolvedList"
 
 export default function Mypage(){
