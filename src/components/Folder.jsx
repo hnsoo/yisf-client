@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Notice from "./dock/notice/Notice";
 import {closeFolder, openMypage, openNotice, openRank, openSponsor} from "../redux/actions/folder";
 import Mypage from "./dock/Mypage";
-import Rank from "./dock/Rank";
+import Rank from "./dock/rank/Rank";
 import Sponsor from "./dock/Sponsor";
 import Problem from "./problem/Problem";
 import {deselectFolder, selectFolder} from "../redux/actions/zIndex";
