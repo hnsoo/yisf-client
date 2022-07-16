@@ -3,10 +3,10 @@ import styled from "styled-components";
 import {useEffect} from "react";
 import NoticeElement from "./NoticeElement";
 import "react-table";
-import {logout} from "../../redux/actions/auth";
-import AuthService from "../../service/auth";
+import {logout} from "../../../redux/actions/auth";
+import AuthService from "../../../service/auth";
 import {useDispatch, useSelector} from "react-redux";
-import {getNotices} from "../../redux/actions/notice";
+import {getNotices} from "../../../redux/actions/notice";
 
 export default function Notice() {
     const notices = useSelector(state => state.notice.notices)

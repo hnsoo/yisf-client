@@ -6,7 +6,7 @@ import {RiUser3Fill} from 'react-icons/ri';
 import {BsBarChartFill, BsMegaphoneFill} from 'react-icons/bs';
 import {SiDiscord} from 'react-icons/si';
 import {useDispatch, useSelector} from "react-redux";
-import Notice from "./dock/Notice";
+import Notice from "./dock/notice/Notice";
 import {closeFolder, openMypage, openNotice, openRank, openSponsor} from "../redux/actions/folder";
 import Mypage from "./dock/Mypage";
 import Rank from "./dock/Rank";

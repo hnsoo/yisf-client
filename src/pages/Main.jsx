@@ -17,7 +17,7 @@ import {
 } from "../redux/actions/zIndex";
 import {useEffect, useState} from "react";
 import {closeProblemModal} from "../redux/actions/problem";
-import NoticeModal from "../components/dock/NoticeModal";
+import NoticeModal from "../components/dock/notice/NoticeModal";
 import {closeNoticeModal} from "../redux/actions/notice";
 import {getNotifications} from "../redux/actions/notification";
 import {ToastContainer, toast} from "react-toastify";

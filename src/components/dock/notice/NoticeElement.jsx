@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
-import {openNoticeModal} from "../../redux/actions/notice";
-import {selectNoticeModal} from "../../redux/actions/zIndex";
+import {openNoticeModal} from "../../../redux/actions/notice";
+import {selectNoticeModal} from "../../../redux/actions/zIndex";
 
 export default function NoticeElement({elementIndex, info}) {
     const dispatch = useDispatch()

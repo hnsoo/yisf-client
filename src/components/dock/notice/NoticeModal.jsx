@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {Rnd} from 'react-rnd';
-import close from "../../assets/img/close/web-close.png"
-import closeHover from "../../assets/img/close/web-close-hover.png";
-import closeClick from "../../assets/img/close/web-close-down.png";
+import close from "../../../assets/img/close/web-close.png"
+import closeHover from "../../../assets/img/close/web-close-hover.png";
+import closeClick from "../../../assets/img/close/web-close-down.png";
 import {AiOutlineLink} from "react-icons/ai"
-import {closeNoticeModal} from "../../redux/actions/notice";
+import {closeNoticeModal} from "../../../redux/actions/notice";
 import moment from "moment";
-import {deselectNoticeModal, selectNoticeModal} from "../../redux/actions/zIndex";
+import {deselectNoticeModal, selectNoticeModal} from "../../../redux/actions/zIndex";
 
 export default function NoticeModal(){
     const [over, setOver] = useState(0);    // close btn mouse over
