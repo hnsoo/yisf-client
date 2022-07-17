@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function SolvedList({problems}){
-    const Mysolved = () => {
+    const solvedList = () => {
         if(problems.length > 0){
             let result = []
             for(let problem of problems){
@@ -12,5 +12,5 @@ export default function SolvedList({problems}){
         else return (<div style={{color: "gray"}}>no solved</div>)
     }
 
-    return (Mysolved())
+    return (solvedList())
 }
