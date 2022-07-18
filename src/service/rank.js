@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const API_URL = "http://15.165.86.75:8080/api/v1/rank"
 
 class RankService {
@@ -13,7 +15,7 @@ class RankService {
                         nickname: info.nickname,
                         score: info.score,
                         solved: info.solved.length,
-                        lastSolvedTime: this.parseTime(info.lastAuthTime),
+                        lastSolvedTime: moment(info.lastAuthTime).format("MM/DD HH:mm"),
                     }
                 ))
             })
@@ -34,18 +36,6 @@ class RankService {
                     return obj
             })
         })
-    }
-
-    parseTime(time){
-        if(time){
-            let month = time.slice(5, 7);
-            let day = time.slice(8, 10);
-            let hour = time.slice(11, 13)
-            let minute = time.slice(14, 16)
-            let second = time.slice(17, 19)
-            return `${month}/${day} ${hour}시 ${minute}분`
-        }
-        return "no solved"
     }
 }
 
