@@ -34,7 +34,7 @@ export default function TopBar() {
 
     return (
       <Container>
-          <div/>
+          <div style={{width: "245px", height: "20px"}}/>
           <Timer>
             35:24:50
           </Timer>
