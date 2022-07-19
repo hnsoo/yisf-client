@@ -227,9 +227,11 @@ const Top = styled.div`
   margin: 10px;
 `
 const Gray = styled.span`
+  font-size: 0.9rem;
   color: #7c7c7d;
 `
 const Black = styled.span`
+  font-size: 0.9rem;
   color: black;
 `
 const Description = styled.div`
