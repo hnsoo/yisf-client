@@ -92,7 +92,7 @@ export default function Main() {
         }
     }, [isNewNotification])
 
-    // 로그인 되지 않을 경우 /login 으로 경로 이동
+    // 로그인 상태가 아닐 경우 /login 으로 경로 이동
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
     }
