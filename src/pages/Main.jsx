@@ -45,10 +45,12 @@ export default function Main() {
     const isNewNotification = useSelector(state => state.notification.isNewNotification)
     const dispatch = useDispatch();
 
+    // 메인 폴더 선택 해제
     useEffect(() => {
         setIsIconsSelected(initField)
     }, [])
 
+    // ESC 키다운시 가장 위에 있는 모달 종료
     useEffect(() => {
         const keyDownHandler = event => {
             if (event.key === 'Escape') {
@@ -75,6 +77,7 @@ export default function Main() {
         };
     }, [isOpened, isProblemModalOpened, isNoticeModalOpened, folderZIndex, problemModalZIndex, noticeModalZIndex])
 
+    // 주기적으로 notification 로드
     useEffect(() => {
         let id = setInterval(() => {
             dispatch(getNotifications())
@@ -82,16 +85,19 @@ export default function Main() {
         return () => clearInterval(id);
     }, []);
 
+    // 만약 새로운 notification 수신시 토스트 알림 생성
     useEffect(() => {
         if(isNewNotification){
             notify();
         }
     }, [isNewNotification])
 
+    // 로그인 되지 않을 경우 /login 으로 경로 이동
     if (!isLoggedIn) {
         return <Navigate to="/login" />;
     }
 
+    // 토스트 알림 설정
     const notify = () => toast.info('새로운 알림이 존재합니다!', {
         toastId: 'notice-notify',
         position: "bottom-right",
@@ -101,6 +107,7 @@ export default function Main() {
         draggable: false,
     });
 
+    // 폴더 아이콘과 마우스 간의 상호작용
     const clickFolderIcon = (e, field) => {
         switch (e.detail) {
             case 1:
