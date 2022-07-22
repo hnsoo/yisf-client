@@ -25,11 +25,13 @@ export default function Folder() {
     const folderZIndex = useSelector(state => state.zIndex.folderZIndex)
     const dispatch = useDispatch();
 
+    // close handle
     const clickClose = () => {
         dispatch(closeFolder())
         dispatch(deselectFolder())
     }
 
+    // 폴더에서 보여줄 요소
     const SelectView = () => {
         switch (view) {
             case "notice":
@@ -50,12 +52,14 @@ export default function Folder() {
         }
     }
 
+    // 폴더 클릭시 z-index를 최상위로 이동
     const clickFolder = () => {
         if (folderZIndex < 3) {
             dispatch(selectFolder())
         }
     }
 
+    // close 버튼의 마우스와 상호작용에 따른 아이콘 변경
     const closeWithMouse = () => {
         switch (over) {
             case 0:
