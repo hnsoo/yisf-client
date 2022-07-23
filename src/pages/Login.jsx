@@ -12,18 +12,22 @@ const Login = () => {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
     const dispatch = useDispatch();
 
+    // 아이디 입력 감지
     const onChangeId = (e) => {
         setId(e.target.value);
     };
 
+    // 패스워드 입력 감지
     const onChangePassword = (e) => {
         setPassword(e.target.value);
     };
 
+    // 엔터 누를시 로그인 핸들링
     const onKyePress = (e) => {
         if(e.key === "Enter") onClickLogin()
     }
 
+    // 로그인 버튼 핸들러
     const onClickLogin = () => {
         console.log('로그인 클릭');
         dispatch(login(id, password))
@@ -36,6 +40,7 @@ const Login = () => {
             });
     };
 
+    // 로그인 되어 있다면 경로 "/"로 이동
     if (isLoggedIn) {
         return <Navigate to="/" />;
     }
