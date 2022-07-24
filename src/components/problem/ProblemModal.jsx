@@ -150,8 +150,8 @@ export default function ProblemModal(){
                     </DescContent>
                 </Description>
                 <Flag>
-                    <RiFlag2Fill size="30" color="#AC3652"/>
-                    <Title style={{"marginLeft": "10px"}}>FLAG</Title>
+                    <RiFlag2Fill size="30" color="#AC3652" />
+                    <Title style={{"marginLeft": "10px", "paddingTop": "4px"}}>FLAG</Title>
                     <InputFlag
                         value={flag}
                         onChange={onChangeFlag}
