@@ -35,17 +35,12 @@ export default function Mypage(){
 
     return (
         <Container>
-            <Title>ID</Title>
-            <Description>{username}</Description>
-            <Line />
-            <Title>Name</Title>
-            <Description>{realName}</Description>
-            <Line />
-            <Title>Nickname</Title>
-            <Description>{nickname}</Description>
-            <Line />
-            <Title>E-mail</Title>
-            <Description>{email}</Description>
+            <Title>My Info</Title>
+            <Description>아이디 : {username}</Description>
+            <Description>닉네임 : {nickname}</Description>
+            <Description>이름 : {realName}</Description>
+            <Description>이메일 : {email}</Description>
+            <ChangePwWord>비밀번호 변경</ChangePwWord>
             <Line />
             <Title>My score</Title>
             <Description>{score}</Description>
@@ -95,11 +90,17 @@ const Container = styled.div`
 const Title = styled.div`
   font-size: large;
   font-family: "NotoBold", sans-serif;
-`
-const Description = styled.div`
-  margin-top: 2px;
   margin-bottom: 15px;
 `
+const Description = styled.div`
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+`
+const ChangePwWord = styled(Description)`
+  color: #f43232;
+`
+
 const Line = styled.div`
   width: 100%;
   height: 1px;
