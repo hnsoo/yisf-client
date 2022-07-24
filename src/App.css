@@ -1,21 +1,17 @@
 @font-face {
-    font-family: "NotoBold";
-    src: url("assets/fonts/NotoSansKR-Bold.otf") format("opentype");
+    font-family: "PretendardBold";
+    src: url("assets/fonts/Pretendard-Bold.woff") format("woff");
 }
 @font-face {
-    font-family: "NotoRegular";
-    src: url("assets/fonts/NotoSansKR-Regular.otf") format("opentype");
-}
-@font-face {
-    font-family: "NotoThin";
-    src: url("assets/fonts/NotoSansKR-Thin.otf") format("opentype");
+    font-family: "PretendardRegular";
+    src: url("assets/fonts/Pretendard-Regular.woff") format("woff");
 }
 
 * {
-    font-family: "NotoRegular", sans-serif;
+    font-family: "PretendardRegular", sans-serif;
 }
 b {
-    font-family: "NotoBold", sans-serif;
+    font-family: "PretendardBold", sans-serif;
 }
 body {
     /*모달이 화면 밖으로 이동시 스크롤바가 생기는 현상 해결*/

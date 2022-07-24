@@ -71,7 +71,7 @@ const Top = styled.div`
   justify-content: space-between;
 `
 const Title = styled.div`
-  font-family: NotoBold, sans-serif;
+  font-family: PretendardBold, sans-serif;
 `
 const Time = styled.span`
   color: #aaaaaa;

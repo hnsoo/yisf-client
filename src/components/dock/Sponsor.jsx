@@ -50,7 +50,7 @@ const Container = styled.div`
 `
 const Title = styled.div`
   font-size: large;
-  font-family: "NotoBold", sans-serif;
+  font-family: "PretendardBold", sans-serif;
 `
 const Logo = styled.img`
   margin-top: 10px;
