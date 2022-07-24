@@ -110,7 +110,7 @@ const LoginContainer = styled.div`
   justify-content: space-between;
   background: rgba(60, 22, 44, 0.6);
   border-radius: 10px;
-  padding: 0.7em;
+  padding: 0.8em;
 `
 const Box = styled.input`
   height: 25px;
