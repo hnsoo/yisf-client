@@ -147,7 +147,7 @@ const Header = styled.div`
   padding: 6px;
 `
 const Back = styled.div`
-  padding: 6px;
+  padding: 8px;
   box-sizing: border-box;
   position: absolute;
   width: 40px;
@@ -159,7 +159,7 @@ const Back = styled.div`
   border-radius: 10px 0 0 10px;
 `
 const Front = styled.div`
-  padding: 6px;
+  padding: 8px;
   box-sizing: border-box;
   position: absolute;
   width: 40px;
