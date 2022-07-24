@@ -21,6 +21,7 @@ export default function Mypage(){
     const solvedReversing = useSelector(state => state.account.reversing)
     const solvedMisc = useSelector(state => state.account.misc)
 
+    // 첫 로드시 나의 정보 로드
     useEffect(() => {
         dispatch(getMyInfo())
             .then()
