@@ -51,6 +51,13 @@ export default function Mypage(){
         setCheckPw(e.target.value);
     };
 
+    const textConfirmPwLen = () => {
+        if(newPw.length >= 8 && newPw.length <= 20)
+            return <span style={{"color": "darkgreen"}}>8 ~ 20 사이 비밀번호</span>
+        else
+            return <span style={{"color": "indianred"}}>8 ~ 20 사이 비밀번호 입력</span>
+    }
+
     const textConfirmPw = () => {
         if(newPw.length > 0 || checkPw.length > 0){
             if(newPw === checkPw)
@@ -67,6 +74,13 @@ export default function Mypage(){
         setIsChangePwOpened(isChangePwOpened => !isChangePwOpened)
     }
 
+    const clickSubmit = () => {
+
+    }
+
+    const clickCancel = () => {
+        setIsChangePwOpened(false)
+    }
 
     Modal.setAppElement('#root')
 
@@ -114,7 +128,7 @@ export default function Mypage(){
                             />
                         </div>
                         <div>
-                            <ChangePwWord style={{"color": "blue"}}>8 ~ 20 사이 비밀번호</ChangePwWord>
+                            <ChangePwWord>{textConfirmPwLen()}</ChangePwWord>
                             <ChangePwInput
                                 placeholder="새 비밀번호"
                                 onChange={onChangeNewPw}
@@ -133,8 +147,8 @@ export default function Mypage(){
                         </div>
                     </div>
                     <ChangePwButtonContainer>
-                        <ChangePwCancel>취소</ChangePwCancel>
-                        <ChangePwSubmit>확인</ChangePwSubmit>
+                        <ChangePwCancel onClick={clickCancel}>취소</ChangePwCancel>
+                        <ChangePwSubmit onClick={clickSubmit}>확인</ChangePwSubmit>
                     </ChangePwButtonContainer>
                 </ChangePwContainer>
             </Modal>
