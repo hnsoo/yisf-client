@@ -217,6 +217,7 @@ const ChangePwWord = styled.div`
 const ChangePwInput = styled.input`
   padding: 5px;
   margin-bottom: 10px;
+  outline-color: #FE6B8B;
 `
 const ChangePwButtonContainer = styled.div`
   display: flex;
