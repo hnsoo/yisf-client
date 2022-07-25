@@ -132,10 +132,10 @@ export default function Mypage(){
                             />
                         </div>
                     </div>
-                    <div>
-                        <button>취소</button>
-                        <button>확인</button>
-                    </div>
+                    <ChangePwButtonContainer>
+                        <ChangePwCancel>취소</ChangePwCancel>
+                        <ChangePwSubmit>확인</ChangePwSubmit>
+                    </ChangePwButtonContainer>
                 </ChangePwContainer>
             </Modal>
             <Container>
@@ -203,6 +203,32 @@ const ChangePwWord = styled.div`
 const ChangePwInput = styled.input`
   padding: 5px;
   margin-bottom: 10px;
+`
+const ChangePwButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const ChangePwButton = styled.button`
+  width: 90px;
+  height: 30px;
+  color: white;
+  border: none;
+  :hover {
+    cursor: pointer;
+  }
+`
+const ChangePwCancel = styled(ChangePwButton)`
+  background-color: #997570;
+  margin-right: 10px;
+  :hover {
+    background-color: #896560;
+  }
+`
+const ChangePwSubmit = styled(ChangePwButton)`
+  background-color: #AC3652;
+  :hover {
+    background-color: #9C2642;
+  }
 `
 const Container = styled.div`
   //display: flex;
