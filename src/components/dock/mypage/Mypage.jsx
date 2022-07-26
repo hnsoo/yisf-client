@@ -70,7 +70,7 @@ export default function Mypage(){
                 <Description>닉네임 : {nickname}</Description>
                 <Description>이름 : {realName}</Description>
                 <Description>이메일 : {email}</Description>
-                <Description onClick={clickChangePw} style={{"color": "#f43232"}}>비밀번호 변경</Description>
+                <ChangePwWord onClick={clickChangePw}>비밀번호 변경</ChangePwWord>
                 <Line />
                 <Title>My score</Title>
                 <Description>{score}</Description>
@@ -128,6 +128,13 @@ const Description = styled.div`
   margin-top: 3px;
   margin-bottom: 3px;
   font-size: 0.9rem;
+`
+const ChangePwWord = styled.div`
+  color: #f43232;
+  :hover {
+    color:#e42222;
+    cursor: pointer;
+  }
 `
 const Line = styled.div`
   width: 100%;
