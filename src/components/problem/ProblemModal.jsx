@@ -267,4 +267,8 @@ const SubmitFlag = styled.button`
   padding-left: 20px;
   padding-right: 20px;
   color: white;
+  :hover {
+    cursor: pointer;
+    background: #9C2642;
+  }
 `
