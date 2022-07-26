@@ -57,10 +57,11 @@ export default function Mypage(){
                         height: "105%",
                     },
                     content: {
-                        top: '25%',
-                        left: '40%',
-                        right: '40%',
-                        bottom: '30%',
+                        left: "50%",
+                        top: "45%",
+                        transform: 'translate(-50%, -50%)',
+                        width: "280px",
+                        height: "300px",
                     }
                 }}
             >
