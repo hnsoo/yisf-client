@@ -22,7 +22,9 @@ export default function NotificationModal(){
                                 <Time>
                                     {moment(item.createTime).format("HH:mm")}
                                 </Time>
-                                <MdOutlineClose onClick={() => clickRemoveNotification(item.id)} style={{marginLeft: "15px"}}/>
+                                <Close>
+                                    <MdOutlineClose onClick={() => clickRemoveNotification(item.id)} />
+                                </Close>
                             </div>
                         </Top>
                         <Content>
@@ -72,6 +74,12 @@ const Top = styled.div`
 `
 const Title = styled.div`
   font-family: PretendardBold, sans-serif;
+`
+const Close = styled.span`
+  margin-left: 15px;
+  :hover {
+    cursor: pointer;
+  }
 `
 const Time = styled.span`
   color: #aaaaaa;
