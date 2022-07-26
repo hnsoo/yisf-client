@@ -45,9 +45,11 @@ export default function Main() {
     const isNewNotification = useSelector(state => state.notification.isNewNotification)
     const dispatch = useDispatch();
 
-    // 메인 폴더 선택 해제
+
     useEffect(() => {
+        // 메인 첫 접속시 알림 로드
         dispatch(getNotifications())
+        // 메인 폴더 선택 해제
         setIsIconsSelected(initField)
     }, [])
 
