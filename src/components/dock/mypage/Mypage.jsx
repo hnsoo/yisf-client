@@ -47,15 +47,17 @@ export default function Mypage(){
         <>
             <Modal
                 isOpen={isChangePwOpened}
+                closeTimeoutMS={300}
                 onRequestClose={() => setIsChangePwOpened(false)}
                 shouldCloseOnOverlayClick={false}
                 style={{
                     overlay: {
                         backgroundColor: 'rgba(0, 0, 0, 0.2)',
                         zIndex: 11,
+                        height: "105%",
                     },
                     content: {
-                        top: '30%',
+                        top: '25%',
                         left: '40%',
                         right: '40%',
                         bottom: '30%',

@@ -22,3 +22,18 @@ body {
     -ms-user-select:none;
     user-select:none
 }
+
+/* 모달 등장, 퇴장 관련 애니매이션 */
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+    transform: translateY(-5%);
+}
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+    transform: translateY(0px);
+}
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+    transform: translateY(-5%);
+}
