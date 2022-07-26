@@ -45,7 +45,20 @@ export default function ChangePw({setIsChangePwOpened}){
     }
 
     const clickSubmit = () => {
-
+        if(newPw.length >= 8 && newPw.length <= 20){
+            if(newPw === checkPw){
+                // 비밀번호 변경 API 요청
+                console.log('비밀번호 변경 API 요청')
+                alert("비밀번호가 변경 되었습니다.")
+                setIsChangePwOpened(false)
+            }
+            else{
+                alert("비밀번호 입력이 일치하지 않습니다.")
+            }
+        }
+        else{
+            alert("8 ~ 20 사이로 비밀번호를 설정바랍니다.")
+        }
     }
 
     const clickCancel = () => {
