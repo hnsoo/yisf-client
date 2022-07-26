@@ -113,7 +113,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
 `
-const ChangePwButton = styled.button`
+const Button = styled.button`
   width: 90px;
   height: 30px;
   color: white;
@@ -122,14 +122,14 @@ const ChangePwButton = styled.button`
     cursor: pointer;
   }
 `
-const Cancel = styled(ChangePwButton)`
+const Cancel = styled(Button)`
   background-color: #997570;
   margin-right: 10px;
   :hover {
     background-color: #896560;
   }
 `
-const Submit = styled(ChangePwButton)`
+const Submit = styled(Button)`
   background-color: #AC3652;
   :hover {
     background-color: #9C2642;
