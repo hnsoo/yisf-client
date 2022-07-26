@@ -47,6 +47,7 @@ export default function Main() {
 
     // 메인 폴더 선택 해제
     useEffect(() => {
+        dispatch(getNotifications())
         setIsIconsSelected(initField)
     }, [])
 
