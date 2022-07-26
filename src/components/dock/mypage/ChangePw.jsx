@@ -1,10 +1,17 @@
 import React, {useState} from "react";
 import styled from "styled-components";
+import {useEffect} from "react";
 
 export default function ChangePw({setIsChangePwOpened}){
     const [oldPw, setOldPw] = useState("");
     const [newPw, setNewPw] = useState("");
     const [checkPw, setCheckPw] = useState("");
+
+    useEffect(() => {
+        setOldPw("")
+        setNewPw("")
+        setCheckPw("")
+    }, [])
 
     const onChangeOldPw = (e) => {
         setOldPw(e.target.value);
