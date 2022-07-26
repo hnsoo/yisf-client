@@ -6,14 +6,12 @@ import AuthService from "../../../service/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {getMyInfo} from "../../../redux/actions/account";
 import SolvedList from "./SolvedList"
+import ChangePw from "./ChangePw";
 
 export default function Mypage(){
     const dispatch = useDispatch()
 
     const [isChangePwOpened, setIsChangePwOpened] = useState(false);
-    const [oldPw, setOldPw] = useState("");
-    const [newPw, setNewPw] = useState("");
-    const [checkPw, setCheckPw] = useState("");
 
     const username = useSelector(state => state.account.username)
     const nickname = useSelector(state => state.account.nickname)
@@ -39,47 +37,8 @@ export default function Mypage(){
         console.log(solvedPwnable)
     }, [dispatch])
 
-    const onChangeOldPw = (e) => {
-        setOldPw(e.target.value);
-    };
-
-    const onChangeNewPw = (e) => {
-        setNewPw(e.target.value);
-    };
-
-    const onChangeCheckPw = (e) => {
-        setCheckPw(e.target.value);
-    };
-
-    const textConfirmPwLen = () => {
-        if(newPw.length >= 8 && newPw.length <= 20)
-            return <span style={{"color": "darkgreen"}}>8 ~ 20 사이 비밀번호</span>
-        else
-            return <span style={{"color": "indianred"}}>8 ~ 20 사이 비밀번호 입력</span>
-    }
-
-    const textConfirmPw = () => {
-        if(newPw.length > 0 || checkPw.length > 0){
-            if(newPw === checkPw)
-                return <span style={{"color": "darkgreen"}}>비밀번호 일치</span>
-            else
-                return <span style={{"color": "indianred"}}>비밀번호 불일치</span>
-        }
-        else{
-            return <span>&nbsp;</span>
-        }
-    }
-
     const clickChangePw = () => {
         setIsChangePwOpened(isChangePwOpened => !isChangePwOpened)
-    }
-
-    const clickSubmit = () => {
-
-    }
-
-    const clickCancel = () => {
-        setIsChangePwOpened(false)
     }
 
     Modal.setAppElement('#root')
@@ -92,65 +51,18 @@ export default function Mypage(){
                 shouldCloseOnOverlayClick={false}
                 style={{
                     overlay: {
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
                         backgroundColor: 'rgba(0, 0, 0, 0.2)',
                         zIndex: 11,
                     },
                     content: {
-                        position: 'absolute',
                         top: '30%',
                         left: '40%',
                         right: '40%',
                         bottom: '30%',
-                        border: '1px solid #ccc',
-                        background: '#fff',
-                        overflow: 'auto',
-                        WebkitOverflowScrolling: 'touch',
-                        borderRadius: '4px',
-                        outline: 'none',
-                        padding: '20px',
                     }
                 }}
             >
-                <ChangePwContainer>
-                    <ChangePwTitle>비밀번호 변경</ChangePwTitle>
-                    <div>
-                        <div>
-                            <ChangePwInput
-                                placeholder="현재 비밀번호"
-                                onChange={onChangeOldPw}
-                                vlaue={oldPw}
-                                type="password"
-                            />
-                        </div>
-                        <div>
-                            <ChangePwWord>{textConfirmPwLen()}</ChangePwWord>
-                            <ChangePwInput
-                                placeholder="새 비밀번호"
-                                onChange={onChangeNewPw}
-                                vlaue={newPw}
-                                type="password"
-                            />
-                        </div>
-                        <div>
-                            <ChangePwWord>{textConfirmPw()}</ChangePwWord>
-                            <ChangePwInput
-                                placeholder="비밀번호 확인"
-                                onChange={onChangeCheckPw}
-                                vlaue={checkPw}
-                                type="password"
-                            />
-                        </div>
-                    </div>
-                    <ChangePwButtonContainer>
-                        <ChangePwCancel onClick={clickCancel}>취소</ChangePwCancel>
-                        <ChangePwSubmit onClick={clickSubmit}>확인</ChangePwSubmit>
-                    </ChangePwButtonContainer>
-                </ChangePwContainer>
+                <ChangePw setIsChangePwOpened={setIsChangePwOpened}/>
             </Modal>
             <Container>
                 <Title>My Info</Title>
@@ -200,51 +112,7 @@ export default function Mypage(){
         </>
     );
 }
-const ChangePwContainer = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-`
-const ChangePwTitle = styled.b`
-  font-size: large;
-`
-const ChangePwWord = styled.div`
-  font-size: small;
-`
-const ChangePwInput = styled.input`
-  padding: 5px;
-  margin-bottom: 10px;
-  outline-color: #FE6B8B;
-`
-const ChangePwButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`
-const ChangePwButton = styled.button`
-  width: 90px;
-  height: 30px;
-  color: white;
-  border: none;
-  :hover {
-    cursor: pointer;
-  }
-`
-const ChangePwCancel = styled(ChangePwButton)`
-  background-color: #997570;
-  margin-right: 10px;
-  :hover {
-    background-color: #896560;
-  }
-`
-const ChangePwSubmit = styled(ChangePwButton)`
-  background-color: #AC3652;
-  :hover {
-    background-color: #9C2642;
-  }
-`
+
 const Container = styled.div`
   //display: flex;
   text-align: left;
