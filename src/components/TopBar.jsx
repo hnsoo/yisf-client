@@ -14,6 +14,7 @@ export default function TopBar() {
     const isNotificationOpened = useSelector(state => state.notification.isNotificationOpened)
     const isNewNotification = useSelector(state => state.notification.isNewNotification)
 
+    // 알림 클릭 핸들링
     const clickNotification = () => {
         dispatch(readNotifications())
         if(isNotificationOpened){
@@ -25,6 +26,7 @@ export default function TopBar() {
         }
     }
 
+    // 로그아웃 클릭 핸들링
     const clickLogout = () => {
         // 로컬스토리지, 쿠키 제거
         AuthService.logout()
