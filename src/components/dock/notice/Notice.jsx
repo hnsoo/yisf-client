@@ -12,6 +12,7 @@ export default function Notice() {
     const notices = useSelector(state => state.notice.notices)
     const dispatch = useDispatch();
 
+    // 공지사항 리스트 로드
     useEffect(() => {
         dispatch(getNotices())
             .then()
