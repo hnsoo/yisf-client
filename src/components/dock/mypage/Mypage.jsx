@@ -37,6 +37,7 @@ export default function Mypage(){
         console.log(solvedPwnable)
     }, [dispatch])
 
+    // 비밀번호 변경 클릭 핸들링
     const clickChangePw = () => {
         setIsChangePwOpened(isChangePwOpened => !isChangePwOpened)
     }
