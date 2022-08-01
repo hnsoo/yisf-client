@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import {useEffect} from "react";
-
+import AccountService from "../../../service/account"
+import AuthService from "../../../service/auth"
+import {logout} from "../../../redux/actions/auth";
 export default function ChangePw({setIsChangePwOpened}){
     const [oldPw, setOldPw] = useState("");
     const [newPw, setNewPw] = useState("");
@@ -48,8 +50,20 @@ export default function ChangePw({setIsChangePwOpened}){
         if(newPw.length >= 8 && newPw.length <= 20){
             if(newPw === checkPw){
                 // 비밀번호 변경 API 요청
-                console.log('비밀번호 변경 API 요청')
-                alert("비밀번호가 변경 되었습니다.")
+                AccountService.changePw(oldPw, newPw)
+                    .then(() => alert("비밀번호가 변경 되었습니다."))
+                    .catch((err)=> {
+                        console.log(err)
+                        if (err.message === "HANDLE_ACCESS_DENIED")
+                            alert("잘못된 접근입니다.");
+                        else if(err.message === "PASSWORD_NOT_MATCH")
+                            alert("기존 비밀번호 입력이 맞지 않습니다.");
+                        else if(err.message === "MEMBER_NOT_FOUND")
+                            alert("존재하지 않는 회원 정보입니다.");
+                        else {
+                            alert("비밀번호 변경에 실패했습니다.")
+                        }
+                    })
                 setIsChangePwOpened(false)
             }
             else{
