@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import {useEffect} from "react";
 import AccountService from "../../../service/account"
-import AuthService from "../../../service/auth"
-import {logout} from "../../../redux/actions/auth";
 export default function ChangePw({setIsChangePwOpened}){
     const [oldPw, setOldPw] = useState("");
     const [newPw, setNewPw] = useState("");
