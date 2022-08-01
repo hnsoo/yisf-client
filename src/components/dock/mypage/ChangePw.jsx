@@ -54,7 +54,6 @@ export default function ChangePw({setIsChangePwOpened}){
                         setIsChangePwOpened(false)
                     })
                     .catch((err)=> {
-                        console.log(err)
                         if (err.message === "HANDLE_ACCESS_DENIED")
                             alert("잘못된 접근입니다.");
                         else if(err.message === "PASSWORD_NOT_MATCH")
