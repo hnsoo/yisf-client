@@ -51,7 +51,10 @@ export default function ChangePw({setIsChangePwOpened}){
             if(newPw === checkPw){
                 // 비밀번호 변경 API 요청
                 AccountService.changePw(oldPw, newPw)
-                    .then(() => alert("비밀번호가 변경 되었습니다."))
+                    .then(() => {
+                        alert("비밀번호가 변경 되었습니다.")
+                        setIsChangePwOpened(false)
+                    })
                     .catch((err)=> {
                         console.log(err)
                         if (err.message === "HANDLE_ACCESS_DENIED")
@@ -64,7 +67,6 @@ export default function ChangePw({setIsChangePwOpened}){
                             alert("비밀번호 변경에 실패했습니다.")
                         }
                     })
-                setIsChangePwOpened(false)
             }
             else{
                 alert("비밀번호 입력이 일치하지 않습니다.")
