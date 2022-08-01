@@ -24,6 +24,10 @@ export default function ChangePw({setIsChangePwOpened}){
     const onChangeCheckPw = (e) => {
         setCheckPw(e.target.value);
     };
+    // 엔터 누를시 패스워드 변경 실행
+    const onKyePress = (e) => {
+        if(e.key === "Enter") submit()
+    }
 
     const textConfirmPwLen = () => {
         if(newPw.length >= 8 && newPw.length <= 20)
@@ -44,7 +48,7 @@ export default function ChangePw({setIsChangePwOpened}){
         }
     }
 
-    const clickSubmit = () => {
+    const submit = () => {
         if(newPw.length >= 8 && newPw.length <= 20){
             if(newPw === checkPw){
                 // 비밀번호 변경 API 요청
@@ -87,6 +91,7 @@ export default function ChangePw({setIsChangePwOpened}){
                         placeholder="현재 비밀번호"
                         onChange={onChangeOldPw}
                         vlaue={oldPw}
+                        onKeyPress={onKyePress}
                         type="password"
                     />
                 </div>
@@ -96,6 +101,7 @@ export default function ChangePw({setIsChangePwOpened}){
                         placeholder="새 비밀번호"
                         onChange={onChangeNewPw}
                         vlaue={newPw}
+                        onKeyPress={onKyePress}
                         type="password"
                     />
                 </div>
@@ -105,13 +111,14 @@ export default function ChangePw({setIsChangePwOpened}){
                         placeholder="비밀번호 확인"
                         onChange={onChangeCheckPw}
                         vlaue={checkPw}
+                        onKeyPress={onKyePress}
                         type="password"
                     />
                 </div>
             </div>
             <ButtonContainer>
                 <Cancel onClick={clickCancel}>취소</Cancel>
-                <Submit onClick={clickSubmit}>확인</Submit>
+                <Submit onClick={submit}>확인</Submit>
             </ButtonContainer>
         </Container>
     )
