@@ -59,7 +59,7 @@ export default function ChangePw({setIsChangePwOpened}){
                         else if(err.message === "PASSWORD_NOT_MATCH")
                             alert("기존 비밀번호 입력이 맞지 않습니다.");
                         else if(err.message === "MEMBER_NOT_FOUND")
-                            alert("존재하지 않는 회원 정보입니다.");
+                            alert("존재하지 않는 회원 입니다.");
                         else {
                             alert("비밀번호 변경에 실패했습니다.")
                         }
