@@ -233,7 +233,7 @@ const FolderContainer = styled.div`
 `
 
 const Notification = styled.div`
-  position: absolute;
+  position: absolute; 
   z-index: 10;
   width: 300px;
   height: calc(100% - 40px);

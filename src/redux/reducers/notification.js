@@ -22,14 +22,14 @@ export default function (state = initialState, action) {
                 isNotificationOpened: false,
             };
         case LOAD_NOTIFICATION_SUCCESS:
-            for(let oldNotification of state.notifications){
+            for(let newNotification of payload.notifications){
                 let isNew = false;
-                for(let newNotification of payload.notifications){
+                for(let oldNotification of state.notifications){
+                    console.log(oldNotification, newNotification)
                     if(oldNotification.id === newNotification.id){
                         isNew = true;
                     }
                 }
-                // 기존에 없던 알림이 발결된 경우
                 if(!isNew){
                     return {
                         ...state,
