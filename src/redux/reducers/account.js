@@ -45,6 +45,9 @@ export default function(state = initialState, action) {
                 misc: [],
                 crypto: [],
             }
+            if(!payload.info.solved){
+                return result
+            }
             for(let problem of payload.info.solved){
                 obj[problem.type.toLowerCase()].push({id: problem.id, title: problem.title})
             }
