@@ -25,7 +25,6 @@ export default function (state = initialState, action) {
             for(let newNotification of payload.notifications){
                 let isNew = false;
                 for(let oldNotification of state.notifications){
-                    console.log(oldNotification, newNotification)
                     if(oldNotification.id === newNotification.id){
                         isNew = true;
                     }
