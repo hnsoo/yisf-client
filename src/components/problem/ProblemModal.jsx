@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {closeProblemModal} from "../../redux/actions/problem";
@@ -8,6 +8,7 @@ import {deselectProblemModal, selectProblemModal} from "../../redux/actions/zInd
 import close from "../../assets/img/close/web-close.png"
 import closeHover from "../../assets/img/close/web-close-hover.png";
 import closeClick from "../../assets/img/close/web-close-down.png";
+import download from "../../assets/img/download.png";
 import {logout} from "../../redux/actions/auth";
 import AuthService from "../../service/auth";
 import {AiOutlineLink} from "react-icons/ai"
@@ -179,6 +180,15 @@ export default function ProblemModal(){
                             <div dangerouslySetInnerHTML={{__html: info.description}}/>
                         </DescContent>
                     </Description>
+                    <File>
+                        <Title style={{marginRight: "20px"}}>File</Title>
+                        <DownloadButton
+                            // onClick={}
+                        >
+                            <img src={download} height="20px" style={{marginRight: "5px"}}/>
+                            Download
+                        </DownloadButton>
+                    </File>
                     <Flag>
                         <RiFlag2Fill size="30" color="#AC3652" />
                         <Title style={{"marginLeft": "10px", "paddingTop": "4px"}}>FLAG</Title>
@@ -190,10 +200,10 @@ export default function ProblemModal(){
                             spellCheck="false"
                             autoComplete="off"
                         ></InputFlag>
-                        <SubmitFlag
+                        <SubmitButton
                             onClick={sendFlag}
                         >Submit
-                        </SubmitFlag>
+                        </SubmitButton>
                     </Flag>
                 </Content>
             </Rnd>
@@ -274,6 +284,11 @@ const DescContent = styled.div`
   margin-top: 10px;
   padding: 15px;
 `
+const File = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px;
+`
 const Flag = styled.div`
   display: flex;
   margin: 10px;
@@ -290,13 +305,28 @@ const InputFlag = styled.input`
   margin-left: 15px;
   margin-right: 15px;
 `
-const SubmitFlag = styled.button`
+const Button = styled.button`
   border: none;
   border-radius: 50px;
-  background: #AC3652;
   height: 100%;
   padding-left: 20px;
   padding-right: 20px;
+`
+const DownloadButton = styled(Button)`
+  background: #E0E0E1;
+  display: flex;
+  align-items: center;
+  color: darkslategray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 25px;
+  :hover {
+    cursor: pointer;
+    background: #D0D0D1;
+  }
+`
+const SubmitButton = styled(Button)`
+  background: #AC3652;
   color: white;
   :hover {
     cursor: pointer;
