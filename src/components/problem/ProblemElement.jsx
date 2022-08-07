@@ -2,8 +2,8 @@ import pwnIcon from "../../assets/img/problem/gear.png";
 import solvedPwnIcon from "../../assets/img/problem/gear-solved.png"
 import reversingIcon from "../../assets/img/problem/leaf.png";
 import solvedReversingIcon from "../../assets/img/problem/leaf-solved.png"
-import forensicIcon from "../../assets/img/problem/fingerprint.png";
-import solvedForensicIcon from "../../assets/img/problem/fingerprint-solved.png"
+import forensicIcon from "../../assets/img/problem/disc.png";
+import solvedForensicIcon from "../../assets/img/problem/disc-solved.png"
 import webIcon from "../../assets/img/problem/global.png";
 import solvedWebIcon from "../../assets/img/problem/global-solved.png"
 import miscIcon from "../../assets/img/problem/light.png";
