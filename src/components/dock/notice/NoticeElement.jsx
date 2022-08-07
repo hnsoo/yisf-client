@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {openNoticeModal} from "../../../redux/actions/notice";
 import {selectNoticeModal} from "../../../redux/actions/zIndex";
 
-export default function NoticeElement({elementIndex, info}) {
+export default function NoticeElement({index, info}) {
     const dispatch = useDispatch()
     const noticeModalZIndex = useSelector(state => state.zIndex.noticeModalZIndex)
 
@@ -19,7 +19,7 @@ export default function NoticeElement({elementIndex, info}) {
         <Row
             onClick={clickNoticeElement}
         >
-            <Col>{elementIndex + 1}</Col>
+            <Col>{index}</Col>
             <Col>{info.title}</Col>
             <Col>{moment(info.createTime).format("MM/DD HH:mm")}</Col>
             <Col>{moment(info.updateTime).format("MM/DD HH:mm")}</Col>

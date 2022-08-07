@@ -34,7 +34,7 @@ export default function Notice() {
                 {notices && notices.map((notice, idx) =>
                     <NoticeElement
                         key={notice.id}
-                        elementIndex={idx}
+                        index={notices.length - idx}
                         info={notice}
                         // isSelected={isIconSelected[idx]}
                         // handleClick={handleClick}
