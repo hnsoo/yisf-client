@@ -29,7 +29,7 @@ class RankService {
             .then((result) => {
                 console.log(result)
                 return result.map((item) => {
-                    let obj = {time: item.timestamp.slice(11, 13) + "시",}
+                    let obj = {time: item.timestamp.slice(11, 13)}
                     for(let i=0; i<Number(count); i++){
                         obj[item.rank[i].nickname] = item.rank[i].score
                     }

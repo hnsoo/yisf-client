@@ -7,7 +7,7 @@ const color = ["#87CAB9", "#123E7A", "#A493F5", "#FF5B69", "#FFD549"]
 export default function RankChart({data, player}){
     return (
         <LineChart
-            width={650}
+            width={700}
             height={300}
             data={data}
             margin={{
