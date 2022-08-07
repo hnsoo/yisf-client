@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {closeProblemModal} from "../../redux/actions/problem";
@@ -171,7 +171,7 @@ export default function ProblemModal(){
                         <Black>{info.calculatedScore}</Black>
                         <Gray> | </Gray>
                         <Gray>solved </Gray>
-                        <Black>0</Black>
+                        <Black>{info.solve}</Black>
                     </Top>
                     <Description>
                         <Title>Description</Title>
