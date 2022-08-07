@@ -117,7 +117,6 @@ export default function ProblemModal(){
                     x: 400,
                     y: 150,
                     width: 750,
-                    height: 450,
                 }}
                 style={{
                     "zIndex": problemModalZIndex,
