@@ -48,7 +48,6 @@ export default function NoticeModal(){
                 x: 400,
                 y: 150,
                 width: 750,
-                height: 450,
             }}
             style={{
                 "display":"grid",
