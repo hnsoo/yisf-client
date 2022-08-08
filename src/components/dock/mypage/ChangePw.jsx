@@ -2,10 +2,14 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import {useEffect} from "react";
 import AccountService from "../../../service/account"
+import AuthService from "../../../service/auth";
+import {logout} from "../../../redux/actions/auth";
+import {useDispatch} from "react-redux";
 export default function ChangePw({setIsChangePwOpened}){
     const [oldPw, setOldPw] = useState("");
     const [newPw, setNewPw] = useState("");
     const [checkPw, setCheckPw] = useState("");
+    const dispatch = useDispatch()
 
     useEffect(() => {
         setOldPw("")
@@ -58,6 +62,10 @@ export default function ChangePw({setIsChangePwOpened}){
                         setIsChangePwOpened(false)
                     })
                     .catch((err)=> {
+                        if(!err) {
+                            AuthService.logout()
+                            dispatch(logout())
+                        }
                         if (err.message === "HANDLE_ACCESS_DENIED")
                             alert("잘못된 접근입니다.");
                         else if(err.message === "PASSWORD_NOT_MATCH")
