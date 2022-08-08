@@ -58,8 +58,8 @@ export default function ProblemModal(){
                     else if(err.message === "ONLY_ACCESS_USER") setModalContent("관리자는 문제를 맞출 수 없습니다.");
                     else {
                         // 세션 관련 에러
-                        dispatch(logout())
                         AuthService.logout()
+                        dispatch(logout())
                     }
                 })
         }

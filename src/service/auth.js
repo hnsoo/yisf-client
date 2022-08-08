@@ -55,7 +55,11 @@ class AuthService {
     }
     checkSession() {
         console.log("checkSession called")
-        //todo : 임시 방편으로 해둠 - seonghun
+        // 세 개의 토근중 하나라도 없으면 접근 거부
+        if(!(localStorage.getItem("token") && localStorage.getItem("tokenExpired")
+        && getCookie("refresh")))
+            return Promise.reject();
+
         let expires = new Date(localStorage.getItem("tokenExpired").replace("KST", ""));
         let now = new Date();
 

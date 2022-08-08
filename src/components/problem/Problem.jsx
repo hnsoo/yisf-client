@@ -17,16 +17,16 @@ export default function Problem({field}){
             .then()
             .catch((err) => {
                 // 세션 관련 에러
-                dispatch(logout)
                 AuthService.logout()
+                dispatch(logout())
             })
 
         dispatch(getProblems(field))
             .then()
             .catch((err)=> {
                 // 세션 관련 에러
-                dispatch(logout())
                 AuthService.logout()
+                dispatch(logout())
             })
         if(problems) setIsIconsSelected(Array(problems.length).fill(false));
     }, [field, dispatch])

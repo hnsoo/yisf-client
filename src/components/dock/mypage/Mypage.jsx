@@ -31,8 +31,8 @@ export default function Mypage(){
             .then()
             .catch((err) => {
                 // 세션 관련 에러
-                dispatch(logout)
                 AuthService.logout()
+                dispatch(logout())
             })
         console.log(solvedPwnable)
     }, [dispatch])

@@ -18,8 +18,8 @@ export default function Notice() {
             .then()
             .catch((err) => {
                 // 세션 관련 에러
-                dispatch(logout)
                 AuthService.logout()
+                dispatch(logout())
             })
     }, [dispatch])
 
