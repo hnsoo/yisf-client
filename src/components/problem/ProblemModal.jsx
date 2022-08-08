@@ -53,6 +53,11 @@ export default function ProblemModal(){
                     setModalContent('정답입니다 🎉')
                 })
                 .catch((err)=> {
+                    if(!err){
+                        // 세션 관련 에러
+                        AuthService.logout()
+                        dispatch(logout())
+                    }
                     if (err.message === "INCORRECT_FLAG") setModalContent("Flag가 일치 하지 않습니다.");
                     else if(err.message === "ALREADY_CORRECT") setModalContent("이미 맞춘 문제입니다.");
                     else if(err.message === "ONLY_ACCESS_USER") setModalContent("관리자는 문제를 맞출 수 없습니다.");
