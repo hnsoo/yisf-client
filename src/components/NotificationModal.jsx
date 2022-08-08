@@ -2,6 +2,8 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {MdOutlineClose} from "react-icons/md"
 import moment from "moment";
+import AuthService from "../service/auth"
+import {logout} from "../redux/actions/auth";
 import {removeNotification} from "../redux/actions/notification";
 
 export default function NotificationModal(){
@@ -10,6 +12,11 @@ export default function NotificationModal(){
 
     const clickRemoveNotification = (notificationId) => {
         dispatch(removeNotification(notificationId))
+            .catch(() => {
+                // 세션 관련 에러
+                AuthService.logout()
+                dispatch(logout())
+            })
     }
 
     const showNotifications = () => {
