@@ -31,9 +31,7 @@ const Login = () => {
     const onClickLogin = () => {
         console.log('로그인 클릭');
         dispatch(login(id, password))
-            .then(() => {
-                window.location.reload();
-            })
+            .then()
             .catch(() => {
                 console.log('login fail');
                 alert('Login Fail')
