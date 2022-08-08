@@ -22,6 +22,11 @@ export default function TopBar() {
         }
         else{
             dispatch(getNotifications())
+                .catch(() => {
+                    // 세션 관련 에러
+                    AuthService.logout()
+                    dispatch(logout())
+                })
             dispatch(openNotification())
         }
     }

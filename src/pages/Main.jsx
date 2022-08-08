@@ -22,6 +22,8 @@ import {closeNoticeModal} from "../redux/actions/notice";
 import {getNotifications} from "../redux/actions/notification";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import AuthService from "../service/auth";
+import {logout} from "../redux/actions/auth";
 
 
 export default function Main() {
@@ -49,6 +51,11 @@ export default function Main() {
     useEffect(() => {
         // 메인 첫 접속시 알림 로드
         dispatch(getNotifications())
+            .catch(() => {
+                // 세션 관련 에러
+                AuthService.logout()
+                dispatch(logout())
+            })
         // 메인 폴더 선택 해제
         setIsIconsSelected(initField)
     }, [])
@@ -84,6 +91,11 @@ export default function Main() {
     useEffect(() => {
         let id = setInterval(() => {
             dispatch(getNotifications())
+                .catch(() => {
+                    // 세션 관련 에러
+                    AuthService.logout()
+                    dispatch(logout())
+                })
         }, 60000);
         return () => clearInterval(id);
     }, []);
