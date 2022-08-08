@@ -35,7 +35,9 @@ class AuthService {
         localStorage.removeItem("token")
         localStorage.removeItem("tokenExpired")
         delCookie("refresh")
-        //todo : 로그아웃 api 요청
+        fetch(API_URL + '/logout', {
+            method: 'GET',
+        })
     }
     reissue() {
         return fetch(API_URL + '/reissue', {
