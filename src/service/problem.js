@@ -51,6 +51,38 @@ class ProblemService {
                 Promise.reject(err)
             );
     }
+    downloadFile(fileIdx, fileName) {
+        return AuthService.checkSession()
+            .then(() =>
+                fetch("http://15.165.86.75:8080/api/v1/file/" + fileIdx, {
+                    method: 'GET',
+                    responseType: 'blob',
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                })
+                    .then((res) => {
+                        // 200번대 응답이 아닐경우 에러 반환
+                        if(!res.ok)
+                            throw new Error()
+                        return res.blob()
+                    })
+                    .then((result) => {
+                        console.log(fileName)
+                        // 파일 다운로드
+                        const url = window.URL.createObjectURL(new Blob([result]));
+                        const link = document.createElement('a');
+                        link.href = url
+                        link.setAttribute('download', fileName);
+                        document.body.appendChild(link);
+                        link.click();
+                    })
+                    .catch((err) => Promise.reject(err))
+            )
+            .catch((err) =>
+                Promise.reject(err)
+            );
+    }
 }
 
 export default new ProblemService()

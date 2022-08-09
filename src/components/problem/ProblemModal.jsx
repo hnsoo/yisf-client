@@ -40,6 +40,10 @@ export default function ProblemModal(){
             setFlag("")
         }
     }
+    const downloadFile = () => {
+        ProblemService.downloadFile(info.fileIdx, info.fileName)
+            .catch(() => alert("파일 다운로드 실패"))
+    }
 
     const sendFlag = () => {
         setIsSubmitResultOpened(true)
@@ -190,7 +194,7 @@ export default function ProblemModal(){
                         <File>
                         <Title style={{marginRight: "20px"}}>File</Title>
                         <DownloadButton
-                            // onClick={}
+                            onClick={downloadFile}
                         >
                             <img src={download} height="20px" style={{marginRight: "5px"}}/>
                             Download
