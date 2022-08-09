@@ -184,7 +184,10 @@ export default function ProblemModal(){
                             <div dangerouslySetInnerHTML={{__html: info.description}}/>
                         </DescContent>
                     </Description>
-                    <File>
+                    {
+                        // 문제 파일이 있는 문제만 다운로드 ui 출력
+                        info.fileIdx &&
+                        <File>
                         <Title style={{marginRight: "20px"}}>File</Title>
                         <DownloadButton
                             // onClick={}
@@ -192,7 +195,8 @@ export default function ProblemModal(){
                             <img src={download} height="20px" style={{marginRight: "5px"}}/>
                             Download
                         </DownloadButton>
-                    </File>
+                        </File>
+                    }
                     <Flag>
                         <RiFlag2Fill size="30" color="#AC3652" />
                         <Title style={{"marginLeft": "10px", "paddingTop": "4px"}}>FLAG</Title>
