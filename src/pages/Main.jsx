@@ -24,8 +24,6 @@ import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import AuthService from "../service/auth";
 import {logout} from "../redux/actions/auth";
-import UtilService from "../service/util";
-import {moveToReady} from "../redux/actions/ready";
 import React from "react";
 
 
@@ -39,7 +37,6 @@ export default function Main() {
     }
     const [isIconSelected, setIsIconsSelected] = useState({});
 
-    const isPlaying = useSelector(state => state.ready.isPlaying)
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const isOpened = useSelector(state => state.folder.isOpened);
     const isProblemModalOpened = useSelector(state => state.problem.isProblemModalOpened);
@@ -50,16 +47,6 @@ export default function Main() {
     const noticeModalZIndex = useSelector(state => state.zIndex.noticeModalZIndex)
     const isNewNotification = useSelector(state => state.notification.isNewNotification)
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        UtilService.getTime()
-            .then((data) => {
-                let now = new Date();
-                if (!(now > data.openTime && now < data.endTime)) {
-                    dispatch(moveToReady())
-                }
-            })
-    }, [])
 
     useEffect(() => {
         // 메인 첫 접속시 알림 로드
@@ -119,11 +106,6 @@ export default function Main() {
             notify();
         }
     }, [isNewNotification])
-
-    // 대회시작전이라면 경로 "/ready"로 이동
-    if (isPlaying) {
-        return <Navigate to="/ready" />;
-    }
 
     // 로그인 상태가 아닐 경우 /login 으로 경로 이동
     if (!isLoggedIn) {
