@@ -13,10 +13,17 @@ class UtilService {
             }))
     }
     calculateRemainTime(targetTime) {
+        let result = {
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+        }
         let now = new Date().getTime()
         let time = new Date(targetTime).getTime()
         let remainDate = time - now;
-        let result = {}
+        // 목표 시간을 지났을 경우
+        if (remainDate < 0)
+            return result
         // 남은시간 % 하루 / 1시간 + (남은 Day * 24)
         result['hours'] = Math.floor((remainDate % (1000 * 60 * 60 * 24)) / (1000*60*60) +
             (remainDate / (1000 * 60 * 60 * 24)) * 24)
