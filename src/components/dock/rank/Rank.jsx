@@ -26,7 +26,8 @@ export default function Rank(){
                                 // 최상위 count 명 명단 설정
                                 let name = []
                                 for(let i = 0; i < Number(count); i++){
-                                    name.push(data[i].nickname);
+                                    if (data[i])
+                                        name.push(data[i].nickname);
                                 }
                                 setTopPlayer(name)
 
@@ -35,7 +36,8 @@ export default function Rank(){
                                 let time = `${now.getHours()}시 ${now.getMinutes()}분`
                                 let obj = {time: time}
                                 for(let i = 0; i < Number(count); i++){
-                                    obj[data[i].nickname] = data[i].score
+                                    if (data[i])
+                                        obj[data[i].nickname] = data[i].score
                                 }
                                 res.push(obj)
                                 setChartData(res)

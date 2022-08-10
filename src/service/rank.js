@@ -31,7 +31,8 @@ class RankService {
                 return result.map((item) => {
                     let obj = {time: item.timestamp.slice(11, 13)}
                     for(let i=0; i<Number(count); i++){
-                        obj[item.rank[i].nickname] = item.rank[i].score
+                        if(item.rank[i])
+                            obj[item.rank[i].nickname] = item.rank[i].score
                     }
                     return obj
             })
