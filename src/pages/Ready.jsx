@@ -35,12 +35,12 @@ export default function Ready() {
     return (
         <Background>
             <Container>
-                <Text>
-                    대회 시작까지
-                </Text>
                 <Timer>
                     {`${hours}:${minutes}:${seconds}`}
                 </Timer>
+                <Text>
+                    to start YISF
+                </Text>
             </Container>
         </Background>
     )
@@ -67,8 +67,8 @@ const Container = styled.div`
 const Timer = styled.div`
   font-size: 3.5rem;
   font-family: "PretendardBold", sans-serif;
-  margin-top: 10px;
 `
 const Text = styled.div`
+  margin-top: 10px;
   font-size: 1.3rem;
 `
