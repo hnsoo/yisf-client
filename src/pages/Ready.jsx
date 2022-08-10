@@ -46,9 +46,6 @@ export default function Ready() {
     )
 }
 const Background = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -56,14 +53,22 @@ const Background = styled.div`
   height: 100%;
   background-image: url(${WallPaper});
   background-size: cover;
+  text-align: center;
+  color: honeydew;
 `
 const Container = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
   display: flex;
   flex-direction: column;
 `
 const Timer = styled.div`
-    
+  font-size: 3.5rem;
+  font-family: "PretendardBold", sans-serif;
+  margin-top: 10px;
 `
 const Text = styled.div`
-
+  font-size: 1.3rem;
 `
