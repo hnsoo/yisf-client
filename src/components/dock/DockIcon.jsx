@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {openNotice, openMypage, openRank, openSponsor} from "../../redux/actions/folder";
@@ -21,6 +21,9 @@ export default function DockIcon({role, color, img}){
                 break;
             case 'sponsor':
                 dispatch(openSponsor())
+                break;
+            case 'discord':
+                window.open('https://discord.gg/RMMuuq29', '_blank')
                 break;
             default:
         }

@@ -20,6 +20,7 @@ export default function DockBar(){
             img={<BsBarChartFill size= "70px" color="white"/>}
         />
         <DockIcon
+            role={"discord"}
             color={"#3684AC"}
             img={<SiDiscord size= "70px" color="white"/>}
         />
