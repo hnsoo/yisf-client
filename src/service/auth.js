@@ -25,7 +25,7 @@ class AuthService {
         })
             .then((res) => res.json())
             .then((result) => {
-                if(result.errorCode) throw new Error(result);
+                if(result.errorCode || result.error) throw new Error(result);
                 setAuth(result.token, result.tokenExpired, result.refresh);
                 return result;
             })
@@ -49,7 +49,7 @@ class AuthService {
         })
             .then((res) => res.json())
             .then((result) => {
-                if(result.errorCode) throw new Error(result);
+                if(result.errorCode || result.error) throw new Error(result);
                 setAuth(result.token, result.tokenExpired, result.refresh);
                 return result;
             })

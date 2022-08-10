@@ -14,7 +14,7 @@ class AccountService {
                 })
                     .then((res) => res.json())
                     .then((result) => {
-                        if(result.errorCode) throw new Error(result);
+                        if(result.errorCode || result.error) throw new Error(result);
                         return result;
                     })
                     .catch((err) => Promise.reject(err))
