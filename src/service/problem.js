@@ -1,6 +1,6 @@
 import AuthService from "../service/auth";
 
-const API_URL = "http://15.165.86.75:8080/api/v1/problem"
+const API_URL = "http://211.229.232.100:8080/api/v1/problem"
 
 class ProblemService {
     problemList(field) {
@@ -54,7 +54,7 @@ class ProblemService {
     downloadFile(fileIdx, fileName) {
         return AuthService.checkSession()
             .then(() =>
-                fetch("http://15.165.86.75:8080/api/v1/file/" + fileIdx, {
+                fetch("http://211.229.232.100:8080/api/v1/file/" + fileIdx, {
                     method: 'GET',
                     responseType: 'blob',
                     headers: {

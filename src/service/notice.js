@@ -1,6 +1,6 @@
 import AuthService from "./auth";
 
-const API_URL = "http://15.165.86.75:8080/api/v1/notice"
+const API_URL = "http://211.229.232.100:8080/api/v1/notice"
 
 class NoticeService {
     getNotice() {
