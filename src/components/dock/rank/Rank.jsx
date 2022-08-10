@@ -10,7 +10,7 @@ export default function Rank(){
     const [topPlayer, setTopPlayer] = useState([]);
 
     useEffect(() => {
-        RankService.getRank("5")
+        RankService.getRank("20")
             .then(
                 (data) => {
                     setTableData(data)
