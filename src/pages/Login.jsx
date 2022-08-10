@@ -50,6 +50,7 @@ const Login = () => {
                 <LoginContainer>
                     <MainText>LOGIN</MainText>
                     <IdBox
+                        onKeyPress={onKyePress}
                         placeholder="User name"
                         value={id}
                         type="text"
