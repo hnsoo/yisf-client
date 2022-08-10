@@ -15,9 +15,8 @@ function App() {
     useEffect(() => {
         UtilService.getTime()
             .then((data) => {
-                console.log('get time')
                 let now = new Date();
-                // let openTime = data.openTime;
+                // let openTime = new Date(data.openTime);
                 let openTime = new Date("2022-08-09 01:00:00")
                 let endTime = new Date(data.endTime);
                 if (!(now > openTime && now < endTime)) {

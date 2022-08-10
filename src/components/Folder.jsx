@@ -126,7 +126,8 @@ export default function Folder() {
                                                                           color="#4f4f4f"/><MenuTitle>MyPage</MenuTitle></Menu>
                 <Menu onClick={() => dispatch(openRank())}><BsBarChartFill size="25"
                                                                            color="#4f4f4f"/><MenuTitle>Ranking</MenuTitle></Menu>
-                <Menu><SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
+                <Menu onClick={() => window.open('https://discord.gg/RMMuuq29', '_blank')}>
+                    <SiDiscord size="25" color="#4f4f4f"/><MenuTitle>Discord</MenuTitle></Menu>
                 <Menu onClick={() => dispatch(openNotice())}><BsMegaphoneFill size="25"
                                                                               color="#4f4f4f"/><MenuTitle>Notice</MenuTitle></Menu>
                 <Menu onClick={() => dispatch(openSponsor())}><FaHandshake size="25"
