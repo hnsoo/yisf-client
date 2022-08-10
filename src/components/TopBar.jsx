@@ -25,8 +25,7 @@ export default function TopBar() {
         UtilService.getTime()
             .then((data) => {
                 let now = new Date().getTime()
-                // let endTime = new Date(data.endTime).getTime()
-                let endTime = new Date("2022-08-14 09:00:00").getTime()
+                let endTime = new Date(data.endTime).getTime()
                 let remainDate = endTime - now;
                 // 남은시간 % 하루 / 1시간 + (남은 Day * 24)
                 setHours(Math.floor((remainDate % (1000 * 60 * 60 * 24)) / (1000*60*60) +
