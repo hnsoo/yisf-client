@@ -24,41 +24,22 @@ export default function TopBar() {
         // 서버 시간 로드
         UtilService.getTime()
             .then((data) => {
-                let now = new Date().getTime()
-                let endTime = new Date(data.endTime).getTime()
-                let remainDate = endTime - now;
-                // 남은시간 % 하루 / 1시간 + (남은 Day * 24)
-                setHours(Math.floor((remainDate % (1000 * 60 * 60 * 24)) / (1000*60*60) +
-                    (remainDate / (1000 * 60 * 60 * 24)) * 24))
-                // 남은시간 % 1시간 / 1분
-                setMinutes(Math.floor((remainDate % (1000 * 60 * 60)) / (1000*60)))
-                // 남은시간 % 1분 / 1초
-                setSeconds(Math.floor((remainDate % (1000 * 60)) / 1000))
+                let result = UtilService.calculateRemainTime(data.endTime)
+                setHours(result.hours)
+                setMinutes(result.minutes)
+                setSeconds(result.seconds)
             })
     }, [])
 
     // 상단바 타이머
     useEffect(() => {
         const countdown = setInterval(() => {
-            if (seconds > 0) {
-                setSeconds(seconds - 1);
-            }
-            if (seconds === 0) {
-                if ((minutes) > 0){
-                    setMinutes(minutes - 1);
-                    setSeconds(59);
-                }
-                else if (minutes === 0){
-                    if ((hours) > 0){
-                        setHours(hours - 1);
-                        setMinutes(59);
-                        setSeconds(59);
-                    }
-                    else {
-                        clearInterval(countdown);
-                    }
-                }
-            }
+            let result = UtilService.countDown(hours, minutes, seconds)
+            if (result.clear)
+                clearInterval(countdown)
+            setHours(result.hours)
+            setMinutes(result.minutes)
+            setSeconds(result.seconds)
         }, 1000);
         return () => clearInterval(countdown);
     }, [hours, minutes, seconds]);
