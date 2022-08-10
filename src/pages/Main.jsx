@@ -50,14 +50,16 @@ export default function Main() {
 
     useEffect(() => {
         // 메인 첫 접속시 알림 로드
-        dispatch(getNotifications())
-            .catch(() => {
-                // 세션 관련 에러
-                AuthService.logout()
-                dispatch(logout())
-            })
-        // 메인 폴더 선택 해제
-        setIsIconsSelected(initField)
+        if(isLoggedIn){
+            dispatch(getNotifications())
+                .catch(() => {
+                    // 세션 관련 에러
+                    AuthService.logout()
+                    dispatch(logout())
+                })
+            // 메인 폴더 선택 해제
+            setIsIconsSelected(initField)
+        }
     }, [])
 
     // ESC 키다운시 가장 위에 있는 모달 종료
