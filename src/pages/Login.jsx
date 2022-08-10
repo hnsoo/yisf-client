@@ -51,14 +51,14 @@ const Login = () => {
                     <MainText>LOGIN</MainText>
                     <IdBox
                         onKeyPress={onKyePress}
-                        placeholder="ID"
+                        placeholder="User name"
                         value={id}
                         type="text"
                         onChange={onChangeId}
                     />
                     <PwBox
                         onKeyPress={onKyePress}
-                        placeholder="PW"
+                        placeholder="Password"
                         value={password}
                         type={"password"}
                         onChange={onChangePassword}
