@@ -6,6 +6,7 @@ import zIndex from "./zIndex"
 import notice from "./notice";
 import account from "./account";
 import notification from "./notification";
+import ready from "./ready";
 
 export default combineReducers({
     auth,
@@ -15,4 +16,5 @@ export default combineReducers({
     notice,
     account,
     notification,
+    ready,
 });

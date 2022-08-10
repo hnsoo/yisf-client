@@ -1,16 +1,39 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector} from "react-redux"
 import WallPaper from '../assets/img/wallpaper.jpg';
 import { Navigate } from 'react-router-dom';
 import { login } from "../redux/actions/auth";
+import UtilService from "../service/util";
+import {moveToReady} from "../redux/actions/ready";
 
 const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
+    const isPlaying = useSelector(state => state.ready.isPlaying)
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        UtilService.getTime()
+            .then((data) => {
+                let now = new Date();
+                if (!(now > data.openTime && now < data.endTime)) {
+                    dispatch(moveToReady())
+                }
+            })
+    }, [])
+
+    // 대회시작전이라면 경로 "/ready"로 이동
+    if (isPlaying) {
+        return <Navigate to="/ready" />;
+    }
+
+    // 로그인 되어 있다면 경로 "/"로 이동
+    if (isLoggedIn) {
+        return <Navigate to="/" />;
+    }
 
     // 아이디 입력 감지
     const onChangeId = (e) => {
@@ -37,11 +60,6 @@ const Login = () => {
                 alert('Login Fail')
             });
     };
-
-    // 로그인 되어 있다면 경로 "/"로 이동
-    if (isLoggedIn) {
-        return <Navigate to="/" />;
-    }
 
     return (
         <Background>

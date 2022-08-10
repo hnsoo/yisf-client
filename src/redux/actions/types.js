@@ -2,6 +2,8 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
+export const MOVE_TO_READY = "MOVE_TO_READY";
+
 export const OPEN_FOLDER = "OPEN_FOLDER";
 export const CLOSE_FOLDER = "CLOSE_FOLDER";
 export const OPEN_NOTICE = "OPEN_NOTICE";
