@@ -53,7 +53,6 @@ export default function ProblemModal(){
         else {
             ProblemService.sendFlag(info.id, flag)
                 .then(()=> {
-                    console.log('success!')
                     setModalContent('정답입니다 🎉')
                 })
                 .catch((err)=> {

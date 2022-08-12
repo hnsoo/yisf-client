@@ -34,11 +34,9 @@ const Login = () => {
 
     // 로그인 버튼 핸들러
     const onClickLogin = () => {
-        console.log('로그인 클릭');
         dispatch(login(id, password))
             .then()
             .catch(() => {
-                console.log('login fail');
                 alert('Login Fail')
             });
     };

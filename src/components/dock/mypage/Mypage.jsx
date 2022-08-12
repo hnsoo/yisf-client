@@ -34,7 +34,6 @@ export default function Mypage(){
                 AuthService.logout()
                 dispatch(logout())
             })
-        console.log(solvedPwnable)
     }, [dispatch])
 
     // 비밀번호 변경 클릭 핸들링

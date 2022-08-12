@@ -27,7 +27,6 @@ class RankService {
         })
             .then(res => res.json())
             .then((result) => {
-                console.log(result)
                 return result.map((item) => {
                     let obj = {time: item.timestamp.slice(11, 13)}
                     for(let i=0; i<Number(count); i++){

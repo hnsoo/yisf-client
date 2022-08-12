@@ -56,7 +56,6 @@ class AuthService {
             .catch((err) => Promise.reject(err))
     }
     checkSession() {
-        console.log("checkSession called")
         // 세 개의 토근중 하나라도 없으면 접근 거부
         if(!(localStorage.getItem("token") && localStorage.getItem("tokenExpired")
         && getCookie("refresh")))

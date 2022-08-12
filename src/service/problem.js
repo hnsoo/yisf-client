@@ -68,7 +68,6 @@ class ProblemService {
                         return res.blob()
                     })
                     .then((result) => {
-                        console.log(fileName)
                         // 파일 다운로드
                         const url = window.URL.createObjectURL(new Blob([result]));
                         const link = document.createElement('a');
