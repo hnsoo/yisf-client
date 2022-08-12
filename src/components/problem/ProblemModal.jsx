@@ -288,6 +288,10 @@ const Black = styled.span`
 `
 const Description = styled.div`
   margin: 10px;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 `
 const DescContent = styled.div`
   border-radius: 10px;
