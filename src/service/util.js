@@ -11,6 +11,7 @@ class UtilService {
                 openTime: result.openTime,
                 endTime: result.endTime,
             }))
+            .catch(() => Promise.reject())
     }
     calculateRemainTime(targetTime) {
         let result = {

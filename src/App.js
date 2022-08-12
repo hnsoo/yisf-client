@@ -26,6 +26,7 @@ function App() {
                     setIsReady(false)
                 }
             })
+            .catch(() => console.log("서버 종료"))
     }, [])
 
   return (
