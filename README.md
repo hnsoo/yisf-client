@@ -1,46 +1,74 @@
-# Getting Started with Create React App and Redux
+# YISF-Client
+순천향대학교 정보보호학과에서 주최하는 2022 청소년정보보호페스티벌 해킹대회의 클라이언트 사이트
+## Special feature
+* Ubuntu OS Concept UI/UX
+* GUI OS UI처럼 이동 및 크기조절이 가능한 컴포넌트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Tech stack
+* Javascript
+* React JS
+* Redux
+* Styled Components
 
-## Available Scripts
+## Authentication
+### JWT
+* 토큰 방식의 인증 구조 
+* `token` - 인증 토큰
+* `tokenExpired` - 토큰 만료 시간
+* `refresh` - 토큰 재요청 토큰
+* 서버로 API를 요청할 때 요청 헤더에 `token`을 추가하여 인가된 사용자임을 서버에 확인 시키고 결과 데이터를 제공 받음 
 
-In the project directory, you can run:
+### Reissue
+* 새로운 토큰 요청 기능
+* `token`, `refresh`를 서버로 전송
+* 전송한 `token`, `refresh`가 유효할 경우 새로운 `token`, `tokenExpired`, `refresh` 지급
 
-### `npm start`
+### Check session
+* 토큰 유효기간 확인 기능
+* 토큰이 만료되었을 경우 `Reissue` 실행
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Service
+* 대기실
+* 로그인
+* 회원정보 조회
+* 비밀번호 변경
+* 게시글 로드
+* 유저 랭킹 조회
+* 문제 파일 다운로드
+* 문제 맞추기
+* 실시간 알림 수신
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 대기실
+* 대회 시작전 유저 접속의 리다이렉션 페이지
+* 대회 시작까지의 카운트다운 표시 
 
-### `npm test`
+## 로그인
+* 인가된 사용자가 해당 사이트에 접속할 수 있게하는 기능
+* Id, Password를 서버로 전송 후 유효한 계정일 경우 `token`, `tokenExpired`, `refresh`를  지급 받음
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 회원정보 조회
+* 아이디, 이름, 닉네임, 이메일, 점수 등을 표시
+* 해당 유저가 푼 문제들을 문제 카테고리별로 표시 
 
-### `npm run build`
+## 비밀번호 변경
+* 유저의 비밀번호 변경 기능
+* 유저의 입력을 비밀번호 양식과 비교하여 양식에 맞지 않을 경우 서비스 요청을 할 수 없게 제작
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 게시글 로드
+* 문제, 공지사항, 대회정보 로드
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 유저 랭킹 조회
+* 현재 유저들의 점수를 순위별로 확인 할 수 있는 기능
+* 현재시각 상위 5명의 점수를 그래프로 표시
+* 1시간 간격으로 그 시각 상위 5명의 점수를 그래프로 표시 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 문제 파일 다운로드
+* 문제에 사용되는 파일 다운로드
 
-### `npm run eject`
+## 문제 맞추기
+* 정답을 서버로 전송후 유효한지 체크 후 결과를 전송 받음
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 실시간 알림 수신
+* 관리자 페이지에서 전송한 알림을 수신
+* 1분 간격으로 알림 수신을 요청하여 알림이 있을 경우 알림창에 표시
+* 서버로 알림 삭제 요청으로 알림 삭제 가능
