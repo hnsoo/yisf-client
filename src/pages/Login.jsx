@@ -2,20 +2,21 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector} from "react-redux"
 import WallPaper from '../assets/img/wallpaper.jpg';
-import { Navigate } from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 import { login } from "../redux/actions/auth";
 
 const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
     const dispatch = useDispatch();
 
     // 로그인 되어 있다면 경로 "/"로 이동
-    if (isLoggedIn) {
-        return <Navigate to="/" />;
-    }
+    // if (isLoggedIn) {
+    //     return <Navigate to="/" />;
+    // }
 
     // 아이디 입력 감지
     const onChangeId = (e) => {
@@ -34,11 +35,12 @@ const Login = () => {
 
     // 로그인 버튼 핸들러
     const onClickLogin = () => {
-        dispatch(login(id, password))
-            .then()
-            .catch(() => {
-                alert('Login Fail')
-            });
+        // dispatch(login(id, password))
+        //     .then()
+        //     .catch(() => {
+        //         alert('Login Fail')
+        //     });
+        navigate("/");
     };
 
     return (

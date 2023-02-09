@@ -5,7 +5,7 @@ export default function SubmitResult({setIsSubmitResultOpened, text}){
     return (
         <Container>
             <Content>
-                {text}
+                정답이 아닙니다
             </Content>
             <Confirm>
                 <Button onClick={() => setIsSubmitResultOpened(false)}>확인</Button>

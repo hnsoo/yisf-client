@@ -89,19 +89,6 @@ export default function Main() {
         };
     }, [isOpened, isProblemModalOpened, isNoticeModalOpened, folderZIndex, problemModalZIndex, noticeModalZIndex])
 
-    // 주기적으로 notification 로드
-    useEffect(() => {
-        let id = setInterval(() => {
-            dispatch(getNotifications())
-                .catch(() => {
-                    // 세션 관련 에러
-                    AuthService.logout()
-                    dispatch(logout())
-                })
-        }, 60000);
-        return () => clearInterval(id);
-    }, []);
-
     // 만약 새로운 notification 수신시 토스트 알림 생성
     useEffect(() => {
         if(isNewNotification){
@@ -110,9 +97,9 @@ export default function Main() {
     }, [isNewNotification])
 
     // 로그인 상태가 아닐 경우 /login 으로 경로 이동
-    if (!isLoggedIn) {
-        return <Navigate to="/login" />;
-    }
+    // if (!isLoggedIn) {
+    //     return <Navigate to="/login" />;
+    // }
 
     // 토스트 알림 설정
     const notify = () => toast.info('새로운 알림이 존재합니다!', {

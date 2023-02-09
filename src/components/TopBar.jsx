@@ -9,9 +9,10 @@ import newNotificationIcon from "../assets/img/notification.png";
 import {closeNotification, getNotifications, openNotification, readNotifications} from "../redux/actions/notification";
 import {useEffect, useState} from "react";
 import UtilService from "../service/util";
+import {useNavigate} from "react-router-dom";
 
 export default function TopBar() {
-
+    const navigate = useNavigate();
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
@@ -63,10 +64,7 @@ export default function TopBar() {
 
     // 로그아웃 클릭 핸들링
     const clickLogout = () => {
-        // 로컬스토리지, 쿠키 제거
-        AuthService.logout()
-        // isLogedin false
-        dispatch(logout())
+        navigate("/login")
     }
 
     return (

@@ -6,7 +6,7 @@ import {
     REMOVE_NOTIFICATION_SUCCESS, REMOVE_NOTIFICATION_FAIL, READ_NOTIFICATIONS
 } from "../actions/types";
 
-const initialState = { isNotificationOpened: false, notifications: [], isNewNotification: false}
+const initialState = { isNotificationOpened: false, notifications: [], isNewNotification: true}
 
 export default function (state = initialState, action) {
     const { type, payload } = action;

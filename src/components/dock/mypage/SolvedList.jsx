@@ -6,7 +6,7 @@ export default function SolvedList({problems}){
         if(problems.length > 0){
             let result = []
             for(let problem of problems){
-                result.push(<Li>{problem.title}</Li>);
+                result.push(<Li>{problem}</Li>);
             }
             return <Ul>{result}</Ul>;
         }

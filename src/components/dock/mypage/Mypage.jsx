@@ -1,40 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import Modal from 'react-modal';
-import {logout} from "../../../redux/actions/auth";
-import AuthService from "../../../service/auth";
-import {useDispatch, useSelector} from "react-redux";
-import {getMyInfo} from "../../../redux/actions/account";
 import SolvedList from "./SolvedList"
 import ChangePw from "./ChangePw";
+import {username, realName, score, nickname, email, solvedForensic, solvedWeb, solvedMisc, solvedPwnable
+    , solvedReversing} from "../../../mock";
 
 export default function Mypage(){
-    const dispatch = useDispatch()
-
     const [isChangePwOpened, setIsChangePwOpened] = useState(false);
-
-    const username = useSelector(state => state.account.username)
-    const nickname = useSelector(state => state.account.nickname)
-    const realName = useSelector(state => state.account.realName)
-    const email = useSelector(state => state.account.email)
-    const score = useSelector(state => state.account.score)
-
-    const solvedPwnable = useSelector(state => state.account.pwnable)
-    const solvedWeb = useSelector(state => state.account.web)
-    const solvedForensic = useSelector(state => state.account.forensic)
-    const solvedReversing = useSelector(state => state.account.reversing)
-    const solvedMisc = useSelector(state => state.account.misc)
-
-    // 첫 로드시 나의 정보 로드
-    useEffect(() => {
-        dispatch(getMyInfo())
-            .then()
-            .catch((err) => {
-                // 세션 관련 에러
-                AuthService.logout()
-                dispatch(logout())
-            })
-    }, [dispatch])
 
     // 비밀번호 변경 클릭 핸들링
     const clickChangePw = () => {

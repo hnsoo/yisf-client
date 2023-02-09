@@ -16,37 +16,38 @@ import {selectProblemModal} from "../../redux/actions/zIndex";
 export default function ProblemElement({info, isSelected, handleClick, elementIndex}) {
     const dispatch = useDispatch();
     const problemModalZIndex = useSelector(state => state.zIndex.problemModalZIndex)
-    const solvedPwnable = useSelector(state => state.account.pwnable)
-    const solvedWeb = useSelector(state => state.account.web)
-    const solvedForensic = useSelector(state => state.account.forensic)
-    const solvedReversing = useSelector(state => state.account.reversing)
-    const solvedMisc = useSelector(state => state.account.misc)
+    const solvedPwnable = [10]
+    const solvedWeb = [7]
+    const solvedForensic = [4, 5]
+    const solvedReversing = []
+    const solvedMisc = []
 
     const fieldIcon = (field) => {
         switch (field) {
-            case "Pwnable":
+            case "pwnable":
                 for(let problem of solvedPwnable){
-                    if(problem.id === info.id) return <img src={solvedPwnIcon} />
+                    if(problem === info.id) return <img src={solvedPwnIcon} />
                 }
                 return <img src={pwnIcon} />
-            case "Reversing":
+            case "reversing":
                 for(let problem of solvedReversing){
-                    if(problem.id === info.id) return <img src={solvedReversingIcon} />
+                    if(problem === info.id) return <img src={solvedReversingIcon} />
                 }
                 return <img src={reversingIcon} />
-            case "Forensic":
+            case "forensic":
                 for(let problem of solvedForensic){
-                    if(problem.id === info.id) return <img src={solvedForensicIcon} />
+                    console.log(problem.id, info.id)
+                    if(problem === info.id) return <img src={solvedForensicIcon} />
                 }
                 return <img src={forensicIcon} />
-            case "Web":
+            case "web":
                 for(let problem of solvedWeb){
-                    if(problem.id === info.id) return <img src={solvedWebIcon} />
+                    if(problem === info.id) return <img src={solvedWebIcon} />
                 }
                 return <img src={webIcon} />
-            case "Misc":
+            case "misc":
                 for(let problem of solvedMisc){
-                    if(problem.id === info.id) return <img src={solvedMiscIcon} />
+                    if(problem === info.id) return <img src={solvedMiscIcon} />
                 }
                 return <img src={miscIcon} />
             default:

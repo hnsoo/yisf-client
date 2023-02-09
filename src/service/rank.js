@@ -1,41 +1,14 @@
 import moment from "moment";
-
+import {rankHistoryList, rankList} from "../mock";
 const API_URL = "http://211.229.232.100:8080/api/v1/rank"
 
 class RankService {
     getRank(count) {
-        return fetch(API_URL + "/" + count, {
-            method: 'GET',
-        })
-            .then(res => res.json())
-            .then((result) => {
-                return result.map((info, index) => (
-                    {
-                        rank: index + 1,
-                        nickname: info.nickname,
-                        score: info.score,
-                        solved: info.solved.length,
-                        lastSolvedTime: moment(info.lastAuthTime).format("MM/DD HH:mm"),
-                    }
-                ))
-            })
+        return Promise.resolve(rankList);
     }
 
     getRankHistory(count) {
-        return fetch(API_URL + "/history/" + count, {
-            method: 'GET',
-        })
-            .then(res => res.json())
-            .then((result) => {
-                return result.map((item) => {
-                    let obj = {time: item.timestamp.slice(11, 13)}
-                    for(let i=0; i<Number(count); i++){
-                        if(item.rank[i])
-                            obj[item.rank[i].nickname] = item.rank[i].score
-                    }
-                    return obj
-            })
-        })
+        return Promise.resolve(rankHistoryList);
     }
 }
 

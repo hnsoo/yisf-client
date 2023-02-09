@@ -4,24 +4,7 @@ const API_URL = "http://211.229.232.100:8080/api/v1"
 
 class AccountService {
     getMyInfo() {
-        return AuthService.checkSession()
-            .then(() =>
-                fetch(API_URL + '/account', {
-                    method: 'GET',
-                    headers: {
-                        Authorization: "Bearer " + localStorage.getItem("token"),
-                    }
-                })
-                    .then((res) => res.json())
-                    .then((result) => {
-                        if(result.errorCode || result.error) throw new Error(result);
-                        return result;
-                    })
-                    .catch((err) => Promise.reject(err))
-            )
-            .catch((err) =>
-                Promise.reject(err)
-            );
+        return Promise.resolve()
     }
     changePw(oldPassword, newPassword) {
         return AuthService.checkSession()

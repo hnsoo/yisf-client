@@ -23,6 +23,7 @@ export default function Rank(){
                     RankService.getRankHistory(count)
                         .then(
                             (res) => {
+                                const result = [...res];
                                 // 최상위 count 명 명단 설정
                                 let name = []
                                 for(let i = 0; i < Number(count); i++){
@@ -39,8 +40,8 @@ export default function Rank(){
                                     if (data[i])
                                         obj[data[i].nickname] = data[i].score
                                 }
-                                res.push(obj)
-                                setChartData(res)
+                                result.push(obj)
+                                setChartData(result)
                             }
                         )
                 }

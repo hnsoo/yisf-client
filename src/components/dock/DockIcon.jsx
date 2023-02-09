@@ -23,7 +23,7 @@ export default function DockIcon({role, color, img}){
                 dispatch(openSponsor())
                 break;
             case 'discord':
-                window.open('https://discord.gg/RMMuuq29', '_blank')
+                window.open('https://discord.com/', '_blank')
                 break;
             default:
         }
