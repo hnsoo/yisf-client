@@ -36,7 +36,7 @@ GUI OS 처럼 아래와 같은 UI/UX 특징을 구현하였다.
 * Redux
 * Styled Components
 
-### 프로젝트 폴더 구조
+## 프로젝트 폴더 구조
 ```
 src
 │   index.jsx       # root render, redux store
