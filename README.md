@@ -1,9 +1,13 @@
 # YISF-Client
+
 순천향대학교 정보보호학과에서 주최하는 2022 청소년정보보호페스티벌 해킹대회의 클라이언트 사이트
 
 관련 페이스북: [순천향대학교 청소년 정보보호 페스티벌](https://www.facebook.com/yisf.sch/)
 
 회고록: [2022 청소년정보보호페스티벌 클라이언트 제작 회고](https://velog.io/@hnsoo/2022-%EC%B2%AD%EC%86%8C%EB%85%84%EC%A0%95%EB%B3%B4%EB%B3%B4%ED%98%B8%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C-%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8-%EC%A0%9C%EC%9E%91-%ED%9A%8C%EA%B3%A0)
+
+![main-page](https://github.com/hnsoo/yisf-client/blob/master/main-page.png?raw=true)
+
 ## Special feature
 해킹대회 참가자의 관심사를 고려하여 리눅스 GUI 디자인을 모티브로 하였고, 웹에서 리눅스를 구동하는 듯한 느낌을 전달 하고 싶었다.
 
